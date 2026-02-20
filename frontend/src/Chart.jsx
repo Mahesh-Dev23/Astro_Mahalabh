@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import PlanetStack from "./components/PlanetStack";
 
 const Chart = ({ lagnaRashi = 1, planets = [], moonRashi, type }) => {
-  const [chartType, setChartType] = useState();
+  const [chartType, setChartType] = useState(0);
   const [moon, setMoon] = useState("");
   const [navmansh, setNavmansh] = useState();
   // Helper to calculate which Rashi goes in which House
