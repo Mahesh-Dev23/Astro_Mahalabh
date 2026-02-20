@@ -4,6 +4,7 @@ import PlanetStack from "./components/PlanetStack";
 const Chart = ({ lagnaRashi = 1, planets = [], moonRashi, type }) => {
   const [chartType, setChartType] = useState();
   const [moon, setMoon] = useState("");
+  const [navmansh, setNavmansh] = useState();
   // Helper to calculate which Rashi goes in which House
   // House 1 is index 0, House 2 is index 1, etc.
   // console.log(planets);
