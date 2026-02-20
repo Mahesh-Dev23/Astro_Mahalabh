@@ -6,9 +6,10 @@ import path from "path";
 // );
 
 import SwissEph from "swisseph-wasm";
+import { calculateNavamsa } from "./navmansha.js";
 
 export async function getKundliData(utcDate, lat, lon) {
-  // console.log(utcDate, lat, lon);ok
+  // console.log(utcDate, lat, lon); //ok
   const swe = new SwissEph();
   await swe.initSwissEph();
 
@@ -19,9 +20,12 @@ export async function getKundliData(utcDate, lat, lon) {
   const month = utcDate.getUTCMonth() + 1;
   const day = utcDate.getUTCDate();
   const hour = utcDate.getUTCHours() + utcDate.getUTCMinutes() / 60;
-  // console.log(year, month, day, hour);ok
+  // console.log(year, month, day, hour); //ok
   const jd = swe.julday(year, month, day, hour, swe.SE_GREG_CAL);
   // console.log(jd);
+
+  // const navmansha = calculateNavamsa(day, month, year, hour, lat, lon);
+  // console.log("nav", navmansha);
 
   // 1. Calculate Lagna and Houses (Whole Sign System)
   const houses = swe.houses_ex(jd, 65536, lat, lon, "W");
@@ -38,6 +42,10 @@ export async function getKundliData(utcDate, lat, lon) {
     swe.SE_JUPITER,
     swe.SE_VENUS,
     swe.SE_SATURN,
+    swe.SE_MEAN_NODE,
+    swe.SE_URANUS,
+    swe.SE_NEPTUNE,
+    swe.SE_PLUTO,
   ];
   const planetNames = [
     "Sun",
@@ -47,6 +55,12 @@ export async function getKundliData(utcDate, lat, lon) {
     "Jupiter",
     "Venus",
     "Saturn",
+    "Rahu",
+
+    "Uranus",
+    "Neptune",
+    "Pluto",
+    "ketu",
   ];
 
   const planets = planetIds.map((id, i) => {
@@ -60,10 +74,15 @@ export async function getKundliData(utcDate, lat, lon) {
       degreeInRashi: degree % 30,
     };
   });
-  // console.log(planets);
+  planets.push({
+    name: "Ketu",
+    rashi: ((planets[7] + 5) % 12) + 1,
+    degreeInRashi: planets[7].degreeInRashi,
+  });
 
   return {
     lagna,
+    lagnaDegree,
     planets,
     moonLongitude: planets[1].degreeInRashi + (planets[1].rashi - 1) * 30,
   };

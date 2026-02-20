@@ -1,18 +1,27 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import PlanetStack from "./components/PlanetStack";
 
-const Chart = ({ lagnaRashi = 1, planets = [] }) => {
+const Chart = ({ lagnaRashi = 1, planets = [], moonRashi, type }) => {
+  const [chartType, setChartType] = useState();
+  const [moon, setMoon] = useState("");
   // Helper to calculate which Rashi goes in which House
   // House 1 is index 0, House 2 is index 1, etc.
-  console.log(planets);
+  // console.log(planets);
+  useEffect(() => {
+    setMoon(Math.floor(moonRashi / 30) + 1);
+    type == "moon"
+      ? setChartType(Math.floor(moonRashi / 30) + 1)
+      : setChartType(lagnaRashi);
+  }, []);
   const getRashiForHouse = (houseNum) => {
-    let rashi = (lagnaRashi + houseNum - 1) % 12;
+    let rashi = (chartType + houseNum - 1) % 12;
+
     return rashi === 0 ? 12 : rashi;
   };
 
   // Group planets by house number (1-12)
   const groupedPlanets = planets.reduce((acc, p) => {
-    const house = ((p.rashi - lagnaRashi + 12) % 12) + 1;
+    const house = ((p.rashi - chartType + 12) % 12) + 1;
     if (!acc[house]) acc[house] = [];
     acc[house].push(p);
     return acc;

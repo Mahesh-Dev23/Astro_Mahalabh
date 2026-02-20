@@ -5,6 +5,7 @@ import cors from "cors";
 import { calculateFullChart } from "./utils/astroEngine.js";
 // const { getKundliData } = require("./utils/astrology-engine");
 import { getKundliData } from "./utils/astrology-engine.js";
+// import { calculateNavamsa } from "./utils/navmansha.js";
 const app = express();
 app.use(cors());
 
@@ -26,7 +27,7 @@ app.get("/api/get-kundli", async (req, res) => {
 });
 
 app.get("/api/get-full-chart", async (req, res) => {
-  // console.log(req.query);
+  console.log(req.query);
   try {
     const { dob, lat, lon } = req.query;
     // 1. Get Astronomical Data
@@ -40,6 +41,7 @@ app.get("/api/get-full-chart", async (req, res) => {
     // 2. Get Dasha Periods using the Moon Longitude from Step 1
     // const dashas = getVimshottariPeriods(astro.moonLongitude, new Date(dob));
 
+    // console.log("Navmansha ", calculateNavamsa(astro.planets));
     res.json({
       chart: astro,
       // timeline: dashas,

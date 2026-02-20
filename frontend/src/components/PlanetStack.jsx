@@ -33,8 +33,8 @@ const PlanetStack = ({ house, pList }) => {
           fontWeight="600"
           style={{ fill: "var(--text-main)", fontFamily: "sans-serif" }}
         >
-          {planet.name.substring(0, 2)}
-          {planet.degreeInRashi.toFixed(2)}
+          {`${planet.name.substring(0, 2)} ${planet.degreeInRashi.toFixed(2)}`}
+
           {/* {planet.isRetro && (
             <tspan fill="var(--retro-color)" fontSize="9">
               {" "}
