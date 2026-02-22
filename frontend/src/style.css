@@ -1,6 +1,7 @@
 :root {
-  --primary-color: #6366f1; /* Indigo */
-  --accent-color: #f43f5e; /* Rose for 'Active' status */
+  --primary-color: #9d0303; /* Indigo */
+  --accent-color: #ff8c00; /* Rose for 'Active' status */
+  --background: #fff9f2;
   --bg-card: #ffffff;
   --bg-active: #f8faff;
   --text-main: #1f2937;
@@ -12,6 +13,18 @@
   --transit-color: #3b82f6; /* Bright Blue */
   --retro-color: #ef4444; /* Red for Retrograde */
   --success: #10b981;
+  --pSun: #ff8c00;
+  --pMoon: #0090dd;
+  --pMars: #d11500;
+  --pMercury: #009708;
+  --pJupiter: #ebbc00;
+  --pVenus: #ff1d74;
+  --pSaturn: #000453;
+  --pRahu: #3a3a39;
+  --pKetu: #a6a6a6;
+  --pUranus: #6b7280;
+  --pNeptune: #6b7280;
+  --pPluto: #6b7280;
 }
 
 .timeline-container {

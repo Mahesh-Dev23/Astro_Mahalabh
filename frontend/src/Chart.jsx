@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import PlanetStack from "./components/PlanetStack";
 
 const Chart = ({ lagnaRashi = 1, planets = [], moonRashi, type }) => {
-  const [chartType, setChartType] = useState(0);
+  const [chartType, setChartType] = useState(1);
   const [moon, setMoon] = useState("");
   const [navmansh, setNavmansh] = useState();
   // Helper to calculate which Rashi goes in which House
   // House 1 is index 0, House 2 is index 1, etc.
-  // console.log(planets);
+  // console.log(type);
   useEffect(() => {
     setMoon(Math.floor(moonRashi / 30) + 1);
     type == "moon"
@@ -27,7 +27,11 @@ const Chart = ({ lagnaRashi = 1, planets = [], moonRashi, type }) => {
     acc[house].push(p);
     return acc;
   }, {});
-  // console.log(groupedPlanets);
+  useEffect(() => {
+    // console.log(`${type}`, Object.keys(groupedPlanets));
+  }, []);
+
+  // console.log(chartType);
 
   return (
     <div className="flex flex-col items-center p-4">
@@ -45,22 +49,22 @@ const Chart = ({ lagnaRashi = 1, planets = [], moonRashi, type }) => {
           height="400"
           fill="none"
           stroke="black"
-          strokeWidth="2"
+          strokeWidth="1"
         />
 
         {/* The "X" Cross Lines */}
-        <line x1="0" y1="0" x2="400" y2="400" stroke="black" strokeWidth="2" />
-        <line x1="400" y1="0" x2="0" y2="400" stroke="black" strokeWidth="2" />
+        <line x1="0" y1="0" x2="400" y2="400" stroke="black" strokeWidth="1" />
+        <line x1="400" y1="0" x2="0" y2="400" stroke="black" strokeWidth="1" />
 
         {/* The Inner Diamond Lines */}
-        <line x1="200" y1="0" x2="0" y2="200" stroke="black" strokeWidth="2" />
+        <line x1="200" y1="0" x2="0" y2="200" stroke="black" strokeWidth="1" />
         <line
           x1="0"
           y1="200"
           x2="200"
           y2="400"
           stroke="black"
-          strokeWidth="2"
+          strokeWidth="1"
         />
         <line
           x1="200"
@@ -68,7 +72,7 @@ const Chart = ({ lagnaRashi = 1, planets = [], moonRashi, type }) => {
           x2="400"
           y2="200"
           stroke="black"
-          strokeWidth="2"
+          strokeWidth="1"
         />
         <line
           x1="400"
@@ -76,14 +80,14 @@ const Chart = ({ lagnaRashi = 1, planets = [], moonRashi, type }) => {
           x2="200"
           y2="0"
           stroke="black"
-          strokeWidth="2"
+          strokeWidth="1"
         />
 
         {/* House Labels (Rashi Numbers) */}
         {/* 1st House (Top Center) */}
         <text
           x="200"
-          y="180"
+          y="185"
           textAnchor="middle"
           className="text-xl font-bold fill-red-600"
         >
@@ -91,23 +95,58 @@ const Chart = ({ lagnaRashi = 1, planets = [], moonRashi, type }) => {
         </text>
 
         {/* 2nd House (Top Left Triangle) */}
-        <text x="120" y="60" textAnchor="middle" className="fill-gray-600">
+        <text x="100" y="90" textAnchor="middle" className="fill-gray-600">
           {getRashiForHouse(2)}
         </text>
 
+        {/* 3rd House (side Left Triangle) */}
+        <text x="80" y="105" textAnchor="middle" className="fill-gray-600">
+          {getRashiForHouse(3)}
+        </text>
+
         {/* 4th House (Left Center Diamond) */}
-        <text x="100" y="210" textAnchor="middle" className="fill-gray-600">
+        <text x="180" y="205" textAnchor="middle" className="fill-gray-600">
           {getRashiForHouse(4)}
         </text>
 
+        {/* 5th House (side Left Triangle) */}
+        <text x="80" y="305" textAnchor="middle" className="fill-gray-600">
+          {getRashiForHouse(5)}
+        </text>
+
+        {/* 6th House (Top Left Triangle) */}
+        <text x="100" y="325" textAnchor="middle" className="fill-gray-600">
+          {getRashiForHouse(6)}
+        </text>
+
         {/* 7th House (Bottom Center Diamond) */}
-        <text x="200" y="310" textAnchor="middle" className="fill-gray-600">
+        <text x="200" y="225" textAnchor="middle" className="fill-gray-600">
           {getRashiForHouse(7)}
         </text>
 
+        {/* 8th House (Top Left Triangle) */}
+        <text x="300" y="325" textAnchor="middle" className="fill-gray-600">
+          {getRashiForHouse(8)}
+        </text>
+
+        {/* 9th House (side Left Triangle) */}
+        <text x="320" y="305" textAnchor="middle" className="fill-gray-600">
+          {getRashiForHouse(9)}
+        </text>
+
         {/* 10th House (Right Center Diamond) */}
-        <text x="300" y="210" textAnchor="middle" className="fill-gray-600">
+        <text x="220" y="205" textAnchor="middle" className="fill-gray-600">
           {getRashiForHouse(10)}
+        </text>
+
+        {/* 11th House (side Left Triangle) */}
+        <text x="315" y="105" textAnchor="middle" className="fill-gray-600">
+          {getRashiForHouse(11)}
+        </text>
+
+        {/* 12th House (Top Left Triangle) */}
+        <text x="300" y="90" textAnchor="middle" className="fill-gray-600">
+          {getRashiForHouse(12)}
         </text>
 
         {/* You would continue adding labels for all 12 houses here... */}
@@ -121,9 +160,9 @@ const Chart = ({ lagnaRashi = 1, planets = [], moonRashi, type }) => {
         ))}
       </svg>
 
-      <p className="mt-4 text-sm text-gray-500">
+      {/* <p className="mt-4 text-sm text-gray-500">
         Lagna is in Rashi #{lagnaRashi}
-      </p>
+      </p> */}
     </div>
   );
 };

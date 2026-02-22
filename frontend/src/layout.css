@@ -1,0 +1,30 @@
+@import "./style.css";
+.chartsTwo {
+  display: flex;
+  gap: 20px;
+}
+
+.planetList {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  /* border: 1px solid red; */
+}
+
+.planetRow {
+  width: 300px;
+  display: flex;
+  flex-direction: row;
+  gap: 1px;
+  border-bottom: 1px solid var(--pKetu);
+  padding: 2px;
+}
+
+.pname {
+  width: 100px;
+  color: var(--text-muted);
+}
+
+.pdeg {
+  width: 70px;
+}

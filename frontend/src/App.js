@@ -1,7 +1,11 @@
 import "./App.css";
+import "./style.css";
+import "./layout.css";
 import React, { useState, useEffect } from "react";
 import Chart from "./Chart";
-import NorthChart from "./components/NorthChart";
+import PlanetsList from "./components/PlanetsList";
+import Ashtakvarg from "./components/Ashtakvarg";
+// import AshtakavargaDashboard from "./components/AshtakavargaDashboard";
 
 function App() {
   const [data, setData] = useState(null);
@@ -33,7 +37,14 @@ function App() {
     setData(result);
   };
 
-  useEffect(() => console.log("data ", data), [data]);
+  useEffect(() => {
+    // let planetPositions = {};
+    // data &&
+    //   data?.chart?.planets.map((p) => (planetPositions[p.name] = p.rashi));
+    // // console.log("data ", data?.chart?.planets)
+    // console.log("planetPositions ", planetPositions);
+  }, [data]);
+
   return (
     // <div className="App">
     //   <button onClick={handleCalculate}>Generate Kundli</button>
@@ -43,16 +54,23 @@ function App() {
       <button onClick={fetchAstroData}>Calculate Chart</button>
       {data && (
         <div className="app-container">
-          {/* <NorthChart
-            lagnaRashi={data.chart?.lagna}
-            planets={data.chart?.planets}
-          /> */}
-          <Chart
-            lagnaRashi={data.chart?.lagna}
-            planets={data.chart?.planets}
-            moonRashi={data.chart?.moonLongitude}
-            type="moon"
-          />
+          <div className="chartsTwo">
+            <Chart
+              lagnaRashi={data.chart?.lagna}
+              planets={data.chart?.planets}
+              moonRashi={data.chart?.moonLongitude}
+              type="lagna"
+            />
+            <Chart
+              lagnaRashi={data.chart?.navmanshaLagna}
+              planets={data.chart?.navmanshaPlanets}
+              // moonRashi={data.chart?.navmansha.moonLongitude}
+              type="nav"
+            />
+            <PlanetsList planets={data.chart?.planets} />
+          </div>
+          <Ashtakvarg planets={data.chart?.planets} lagna={data.chart?.lagna} />
+
           {/* <div className="dasha-card">
             <h3>Vimshottari Dasha</h3>
             {data.timeline.map((d, i) => (

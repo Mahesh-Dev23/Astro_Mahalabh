@@ -4,18 +4,18 @@ const PlanetStack = ({ house, pList }) => {
   // Center coordinates for each house to place planet text
   // console.log(house, pList);
   const houseCoords = {
-    1: { x: 200, y: 100 },
-    2: { x: 120, y: 100 },
-    3: { x: 50, y: 100 },
-    4: { x: 140, y: 210 },
-    5: { x: 75, y: 295 },
-    6: { x: 120, y: 345 },
+    1: { x: 200, y: 70 },
+    2: { x: 100, y: 15 },
+    3: { x: 30, y: 70 },
+    4: { x: 80, y: 170 },
+    5: { x: 30, y: 270 },
+    6: { x: 100, y: 345 },
     7: { x: 200, y: 285 },
-    8: { x: 280, y: 345 },
-    9: { x: 335, y: 295 },
-    10: { x: 265, y: 210 },
-    11: { x: 370, y: 100 },
-    12: { x: 300, y: 50 },
+    8: { x: 300, y: 345 },
+    9: { x: 370, y: 270 },
+    10: { x: 300, y: 170 },
+    11: { x: 370, y: 70 },
+    12: { x: 300, y: 15 },
   };
 
   const { x, y } = houseCoords[house];
