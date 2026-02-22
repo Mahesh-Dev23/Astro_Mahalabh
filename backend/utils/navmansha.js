@@ -88,3 +88,5 @@ export async function calculateNavamsa(day, month, year, hour, lat, lng) {
 
 // module.exports = { getNavmanshaChart };
 // export default getNavmanshaChart();
+
+// https://www.youtube.com/watch?v=Io5ASm3-z5c

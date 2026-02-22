@@ -27,7 +27,7 @@ app.get("/api/get-kundli", async (req, res) => {
 });
 
 app.get("/api/get-full-chart", async (req, res) => {
-  console.log(req.query);
+  // console.log(req.query);
   try {
     const { dob, lat, lon } = req.query;
     // 1. Get Astronomical Data
@@ -37,7 +37,7 @@ app.get("/api/get-full-chart", async (req, res) => {
       parseFloat(lat),
       parseFloat(lon),
     );
-    console.log("Server ", astro);
+    // console.log("Server ", astro);
     // 2. Get Dasha Periods using the Moon Longitude from Step 1
     // const dashas = getVimshottariPeriods(astro.moonLongitude, new Date(dob));
 

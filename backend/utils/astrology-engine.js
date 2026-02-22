@@ -7,6 +7,8 @@ import path from "path";
 
 import SwissEph from "swisseph-wasm";
 import { calculateNavamsa } from "./navmansha.js";
+import { getNavamshaSign } from "./dNine.js";
+import { calculateSAVForSign } from "./ashtak.js";
 
 export async function getKundliData(utcDate, lat, lon) {
   // console.log(utcDate, lat, lon); //ok
@@ -72,6 +74,7 @@ export async function getKundliData(utcDate, lat, lon) {
       name: planetNames[i],
       rashi: Math.floor(degree / 30) + 1,
       degreeInRashi: degree % 30,
+      longitude: degree,
     };
   });
   planets.push({
@@ -80,11 +83,20 @@ export async function getKundliData(utcDate, lat, lon) {
     degreeInRashi: planets[7].degreeInRashi,
   });
 
+  const navmansha = getNavamshaSign(lagnaDegree, planets);
+
+  // let planetPosition = {};
+  // const planetAshtak = planets.map((p, i) => {
+  //   planetAshtak[p.name] = p.rashi;
+  // });
+  // console.log("planetPos", planetAshtak);
   return {
     lagna,
     lagnaDegree,
     planets,
     moonLongitude: planets[1].degreeInRashi + (planets[1].rashi - 1) * 30,
+    navmanshaLagna: navmansha.lagna,
+    navmanshaPlanets: navmansha.planets,
   };
 }
 
