@@ -1,5 +1,4 @@
-import React from "react";
-import PlanetStack from "./PlanetStack"; // <-- 1. Import the component
+import PlanetStack from ".Components/PlanetStack.jsx"; // <-- 1. Import the component
 
 const NorthChart = ({ lagnaRashi, planets }) => {
   // 2. Logic to find which Rashi belongs in which House

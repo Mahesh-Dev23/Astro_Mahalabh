@@ -1,0 +1,267 @@
+:root {
+    --primary-color: #9d0303;
+    --accent-color: #ff8c00;
+    --background: #fff9f2;
+    --bg-card: #ffffff;
+    --bg-active: #f8faff;
+    --text-main: #1f2937;
+    --text-muted: #6b7280;
+    --timeline-line: #e5e7eb;
+    --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --spacing-lg: 24px;
+    --natal-color: #111827;
+    --transit-color: #3b82f6;
+    --retro-color: #ef4444;
+    --success: #10b981;
+    --pSun: #ff8c00;
+    --pMoon: #0090dd;
+    --pMars: #d11500;
+    --pMercury: #009708;
+    --pJupiter: #ebbc00;
+    --pVenus: #ff1d74;
+    --pSaturn: #000453;
+    --pRahu: #3a3a39;
+    --pKetu: #a6a6a6;
+    --pUranus: #6b7280;
+    --pNeptune: #6b7280;
+    --pPluto: #6b7280;
+}
+
+.timeline-container {
+    max-width: 500px;
+    margin: 0 auto;
+    font-family: "Inter", sans-serif;
+    padding: var(--spacing-lg);
+    position: relative;
+    background: #fdfdfd;
+}
+
+/* The vertical line running through the center */
+.timeline-track {
+    position: absolute;
+    left: 40px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: var(--timeline-line);
+}
+
+.dasha-item {
+    position: relative;
+    margin-bottom: 20px;
+    padding-left: 60px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.dasha-item.active {
+    transform: scale(1.02);
+}
+
+.timeline-dot {
+    position: absolute;
+    left: 29px;
+    /* Centered on the 2px track */
+    top: 15px;
+    width: 24px;
+    height: 24px;
+    background: white;
+    border: 4px solid var(--timeline-line);
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.active .timeline-dot {
+    border-color: var(--primary-color);
+    background: var(--primary-color);
+    box-shadow: 0 0 10px rgba(99, 102, 241, 0.4);
+}
+
+.dasha-card {
+    background: var(--bg-card);
+    border: 1px solid var(--timeline-line);
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: var(--card-shadow);
+}
+
+.active .dasha-card {
+    background: var(--bg-active);
+    border-color: var(--primary-color);
+}
+
+.lord-name {
+    display: block;
+    font-weight: 700;
+    color: var(--text-main);
+    font-size: 1.1rem;
+}
+
+.date-range {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.status-badge {
+    background: var(--accent-color);
+    color: white;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+/* Antardasha Styling */
+.antardasha-list {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--timeline-line);
+    animation: slideDown 0.3s ease-out;
+}
+
+.sub-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    padding: 4px 0;
+    color: var(--text-main);
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.natal-planet-text {
+    fill: var(--natal-color);
+    font-size: 11px;
+}
+
+.transit-planet-text {
+    fill: var(--transit-color);
+    font-size: 10px;
+    font-weight: bold;
+    opacity: 0.8;
+}
+
+/* Add a "pulsing" effect for major transits like Saturn or Jupiter */
+.transit-planet-text.slow-mover {
+    animation: pulse 2s infinite;
+}
+
+/* Alerts */
+.alerts-container {
+    width: 100%;
+    max-width: 500px;
+    margin-bottom: 20px;
+}
+
+.alert-card {
+    display: flex;
+    gap: 15px;
+    padding: 16px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    border-left: 5px solid var(--primary);
+    background: white;
+    box-shadow: var(--card-shadow);
+}
+
+.alert-card.high {
+    border-left-color: #ef4444;
+    /* Red for Saturn/Sade Sati */
+    background: #fef2f2;
+}
+
+.alert-card.positive {
+    border-left-color: #10b981;
+    /* Green for Jupiter */
+    background: #ecfdf5;
+}
+
+.alert-content h4 {
+    margin: 0;
+    font-size: 1rem;
+    color: var(--text-main);
+}
+
+.alert-content p {
+    margin: 4px 0 0;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+/* strength */
+
+.strength-card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
+    width: 100%;
+    max-width: 500px;
+}
+
+.meter-item {
+    margin-bottom: 15px;
+}
+
+.meter-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.progress-bg {
+    height: 8px;
+    background: #f3f4f6;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    transition: width 1s ease-in-out;
+}
+
+
+/* Layout Styling -------------------------------------------------------------------------- */
+.chartsTwo {
+    display: flex;
+    gap: 20px;
+}
+
+.planetList {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid red; */
+}
+
+.planetRow {
+    width: 300px;
+    display: flex;
+    flex-direction: row;
+    gap: 1px;
+    border-bottom: 1px solid var(--pKetu);
+    padding: 2px;
+}
+
+.pname {
+    width: 100px;
+    color: var(--text-muted);
+}
+
+.pdeg {
+    width: 70px;
+}

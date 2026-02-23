@@ -1,5 +1,3 @@
-import React from "react";
-
 const NorthChart = ({ lagnaRashi, planets }) => {
   const getRashiForHouse = (houseNum) => ((lagnaRashi + houseNum - 2) % 12) + 1;
 

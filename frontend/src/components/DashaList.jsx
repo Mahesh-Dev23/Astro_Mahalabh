@@ -1,5 +1,3 @@
-import React from "react";
-
 const DashaList = ({ dashas }) => {
   return (
     <div className="dasha-container">

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import NorthIndianSAVChart from "./NorthIndianSAVChart"; // Your existing component
 
 const AshtakavargaDashboard = ({ avData }) => {
@@ -26,7 +26,7 @@ const AshtakavargaDashboard = ({ avData }) => {
 
   useEffect(() => {
     getScoreColor(avData?.[activeView], activeView);
-  }, [activeView]);
+  }, [activeView, avData]);
 
   return (
     <div

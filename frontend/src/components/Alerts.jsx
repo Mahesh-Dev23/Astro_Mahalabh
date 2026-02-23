@@ -1,5 +1,3 @@
-import React from "react";
-
 const Alerts = ({ alerts }) => {
   if (!alerts || alerts.length === 0) return null;
 

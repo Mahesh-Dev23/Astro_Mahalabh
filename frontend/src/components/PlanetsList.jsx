@@ -1,5 +1,5 @@
-import React from "react";
-import "../layout.css";
+import "../main.css";
+
 function PlanetsList({ planets }) {
   //   console.log(planets);
   return (

@@ -1,5 +1,3 @@
-import React from "react";
-
 const NorthIndianSAVChart = ({
   points = [], // The 12-length array (SAV or BAV)
   ascendantSign = 1, // The Rashi number for the 1st house

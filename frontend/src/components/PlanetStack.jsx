@@ -1,5 +1,3 @@
-import React from "react";
-
 const PlanetStack = ({ house, pList }) => {
   // Center coordinates for each house to place planet text
   // console.log(house, pList);
