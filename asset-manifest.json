@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Astro_Mahalabh/static/css/main.6fadd4f8.css",
+    "main.js": "/Astro_Mahalabh/static/js/main.3a282eea.js",
+    "static/js/453.20359781.chunk.js": "/Astro_Mahalabh/static/js/453.20359781.chunk.js",
+    "index.html": "/Astro_Mahalabh/index.html",
+    "main.6fadd4f8.css.map": "/Astro_Mahalabh/static/css/main.6fadd4f8.css.map",
+    "main.3a282eea.js.map": "/Astro_Mahalabh/static/js/main.3a282eea.js.map",
+    "453.20359781.chunk.js.map": "/Astro_Mahalabh/static/js/453.20359781.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6fadd4f8.css",
+    "static/js/main.3a282eea.js"
+  ]
+}
