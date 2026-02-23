@@ -1,7 +1,7 @@
 import "../main.css";
 
 function PlanetsList({ planets }) {
-  //   console.log(planets);
+  console.log(planets);
   return (
     <div className="planetList">
       {planets.map((p) => (
@@ -17,6 +17,12 @@ function PlanetsList({ planets }) {
           </div>
           <div className="pdeg" style={{ color: `var(--p${p.name})` }}>
             {p.degreeInRashi.toFixed(2)}
+          </div>
+          <div className="pdeg" style={{ color: `var(--p${p.name})` }}>
+            {`${p.nakshtra.name} ${p.nakshtra.pada}`}
+          </div>
+          <div className="pdeg" style={{ color: `var(--p${p.name})` }}>
+            {p.nakshtra.lord}
           </div>
         </div>
       ))}

@@ -1,10 +1,14 @@
-import React from 'react'
-import "./sarvashtak.css"
+import React from "react";
+import "./sarvashtak.css";
+import Ashtakvarg from "../../components/Ashtakvarg";
 
 const sarvashtak = () => {
   return (
-    <div>sarvashtak</div>
-  )
-}
+    <div>
+      sarvashtak
+      {/* <Ashtakvarg planets={data.chart?.planets} lagna={data.chart?.lagna} /> */}
+    </div>
+  );
+};
 
-export default sarvashtak
+export default sarvashtak;
