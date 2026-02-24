@@ -1,9 +1,9 @@
 import "../../main.css";
 import { useState } from "react";
 import { baseURL } from "../../Server/server";
-import Chart from "../../components/Chart";
-import PlanetsList from "../../components/PlanetsList";
-import Ashtakvarg from "../../components/Ashtakvarg";
+import Chart from "../../Components/Chart";
+import PlanetsList from "../../Components/PlanetsList";
+import Ashtakvarg from "../../Components/Ashtakvarg";
 
 const LandingPage = () => {
   const [data, setData] = useState(null);

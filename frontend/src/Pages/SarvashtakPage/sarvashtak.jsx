@@ -1,6 +1,6 @@
 import React from "react";
 import "./sarvashtak.css";
-import Ashtakvarg from "../../components/Ashtakvarg";
+// import ashtakvarg from "../Components/Ashtakvarg";
 
 const sarvashtak = () => {
   return (

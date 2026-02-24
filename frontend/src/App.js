@@ -1,13 +1,13 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 // Components
-import Header from "./components/Header/header.jsx";
-import Footer from "./components/Footer/footer";
+import Header from "./Components/Header/header.jsx";
+import Footer from "./Components/Footer/footer";
 
 // Pages
 import LandingPage from "./Pages/LandingPage/LandingPage.jsx";
 import Sarvashtak from "./Pages/SarvashtakPage/Sarvashtak.jsx";
-import PageNotFound from "./Pages/PageNotFound/pageNotFound";
+import PageNotFound from "./Pages/PageNotFound/PageNotFound.jsx";
 
 function App() {
   return (
