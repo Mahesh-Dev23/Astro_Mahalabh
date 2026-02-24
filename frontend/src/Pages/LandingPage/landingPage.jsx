@@ -1,4 +1,4 @@
-import "../../main.css";
+import "./landingPage.css";
 import { useState } from "react";
 import { baseURL } from "../../Server/server";
 import Chart from "../../Components/Chart";

@@ -27,6 +27,35 @@
     --pPluto: #6b7280;
 }
 
+body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background-color: var(--background) !important;
+    color: var(--text-main) !important;
+    width: 100% !important;
+    height: 100% !important;
+    font-family: "Inter", sans-serif !important;
+    /* overflow-x: hidden !important; */
+}
+
+.pages {
+    min-height: 90vh !important;
+}
+
+h2 {
+    font-size: 40px !important;
+    color: var(--text-main);
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+p {
+    font-size: 18px;
+    color: var(--text-muted) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
 .timeline-container {
     max-width: 500px;
     margin: 0 auto;
