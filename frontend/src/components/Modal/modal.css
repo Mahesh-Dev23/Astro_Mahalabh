@@ -29,31 +29,13 @@
 }
 
 .modal-input {
-    width: 100%;
-    border: 1px solid var(--primary-color) !important;
-    background: var(--background) !important;
-    border-radius: 20px;
-    font-size: 18px;
-    font-weight: 400;
-    font-family: 'inter', sans-serif !important;
-    width: 286px;
-    height: 39px;
-    color: var(--accent-color) !important;
+    width: 80%;
+    height: 40px;
     padding: 0 18px;
-    box-sizing: border-box;
-}
-.modal-input:focus {
-    outline: none !important;
-}
-.modal-input::placeholder {
-    color: var(--accent-color) !important;
-}
-select.modal-input {
-    line-height: 39px !important;
 }
 
 
-/* Close (X) Button */
+/* Close (X) Button ----------------------------------------------------- */
 .modal-close {
     position: absolute;
     top: 10px;
@@ -81,7 +63,7 @@ select.modal-input {
 }
 
 
-/* Error text and button container  */
+/* Error text and button container -------------------------------------- */
 .error-text {
     color: var(--primary-color) !important;
     font-size: 12px !important;
@@ -100,7 +82,7 @@ select.modal-input {
 }
 
 
-/* Animations  */
+/* Animations -------------------------------------------------------------*/
 @keyframes fadeIn {
     from {
         opacity: 0;

@@ -1,27 +1,17 @@
 @import "../../main.css";
 
 .search-box {
-    min-width: 200px;
-    padding: 10px;
-    color: var(--accent-color) !important;
-    font-weight: 400 !important;
-    font-size: 18px !important;
-    margin: 20px auto;
+    height: 40px !important;
+    /* min-width: 100px !important; */
+    padding: 0 14px;
     display: flex;
-    gap: 10px;
-    border-radius: 20px !important;
-    padding-left: 14px !important;
-    border: 1px solid var(--primary-color) !important;
-    background-color: var(--background) !important;
-    display: flex;
-    justify-self: end !important;
-    font-family: "inter", sans-serif !important;
+    justify-self: center !important;
 }
 
-.search-box:focus {
-    outline: none !important;
-}
 
-.search-box::placeholder {
-    color: var(--accent-color) !important;
+/* Responsive - Laptop screens  ------------------------------------------------------------- */
+@media screen and (max-width: 1300px) {
+    .search-box {
+        height: 36px !important;
+    }
 }

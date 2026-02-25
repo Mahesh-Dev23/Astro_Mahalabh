@@ -5,6 +5,9 @@ import ButtonPrimary from "../Buttons/ButtonPrimary";
 import SearchBox from "../SearchBox/SearchBox";
 import ModalNewDetails from "../Modal/ModalNewDetails";
 
+// Your Webiste Logo Title Here
+const logo_title = "Astro Mahalabh";
+
 // Add your navigation tabs with their URL addresses here
 const navigationTabs = {
   lagna: "/lagna",
@@ -25,7 +28,9 @@ const Header = () => {
   return (
     <>
       <div className="navbar">
-        <div className="logo">Logo</div>
+        <div className="logo-container">
+          <h1 className="logo">{logo_title}</h1>
+        </div>
 
         <div className="nav-buttons">
           {
@@ -49,12 +54,14 @@ const Header = () => {
           />
         </div>
 
-        <SearchBox />
+        <div className="search-box-container">
+          <SearchBox />
+        </div>
       </div>
 
       {
         modalOpen && (
-          <ModalNewDetails setModalOpen={setModalOpen}/>
+          <ModalNewDetails setModalOpen={setModalOpen} />
         )
       }
     </>

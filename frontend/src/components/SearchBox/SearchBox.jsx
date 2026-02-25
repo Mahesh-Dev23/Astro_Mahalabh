@@ -7,7 +7,13 @@ const SearchBox = () => {
     };
 
     return (
-        <input className='search-box' placeholder="Search" onChange={(e) => searchFunction(e.target.value)} />
+        <input
+            type="text"
+            name="search"
+            className='search-box'
+            placeholder="Search"
+            onChange={(e) => searchFunction(e.target.value)}
+        />
     )
 }
 

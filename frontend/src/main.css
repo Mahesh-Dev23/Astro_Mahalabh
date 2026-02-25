@@ -1,3 +1,12 @@
+@charset "UTF-8";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif !important;
+}
+
 :root {
     --primary-color: #9d0303;
     --accent-color: #ff8c00;
@@ -27,6 +36,7 @@
     --pPluto: #6b7280;
 }
 
+html,
 body {
     margin: 0 !important;
     padding: 0 !important;
@@ -40,11 +50,25 @@ body {
 
 .pages {
     min-height: 90vh !important;
+    padding: 0px !important;
+}
+
+
+/* Fonts common styling attributes --------------------------------------------------------- */
+h1 {
+    font-size: 48px !important;
+    color: var(--primary-color) !important;
+    font-weight: 600 !important;
+    font-style: normal !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 h2 {
     font-size: 40px !important;
-    color: var(--text-main);
+    color: var(--primary-color) !important;
+    font-weight: 600 !important;
+    font-style: normal !important;
     margin: 0 !important;
     padding: 0 !important;
 }
@@ -56,6 +80,56 @@ p {
     padding: 0 !important;
 }
 
+a {
+    text-decoration: none !important;
+}
+
+button {
+    cursor: pointer !important;
+}
+
+
+/* Input & Select box common styling attributes -------------------------------- */
+input,
+select {
+    font-family: "Inter", sans-serif !important;
+    color: var(--accent-color) !important;
+    border: 1px solid var(--primary-color) !important;
+    background-color: var(--background) !important;
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    box-sizing: border-box !important;
+    border-radius: 20px !important;
+    align-items: center !important;
+    text-align: left !important;
+}
+
+@media screen and (max-width: 1300px) {
+
+    input,
+    select {
+        font-size: 14px !important;
+    }
+}
+
+input::placeholder {
+    color: var(--accent-color) !important;
+}
+
+select::placeholder {
+    color: var(--accent-color) !important;
+}
+
+input:focus {
+    outline: none !important;
+}
+
+select:focus {
+    outline: none !important;
+}
+
+
+/* Others ----------------------------------------------------------------- */
 .timeline-container {
     max-width: 500px;
     margin: 0 auto;
@@ -188,9 +262,12 @@ p {
 
 /* Alerts */
 .alerts-container {
+    position: relative;
     width: 100%;
+    height: 100%;
     max-width: 500px;
     margin-bottom: 20px;
+    z-index: auto;
 }
 
 .alert-card {
