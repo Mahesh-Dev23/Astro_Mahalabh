@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { calculateFullAshtakavarga } from "../module/sravashtaknew.js";
+import { calculateFullAshtakavarga } from "../../module/sravashtaknew.js";
 import AshtakavargaDashboard from "./AshtakavargaDashboard.jsx";
 
 /* 

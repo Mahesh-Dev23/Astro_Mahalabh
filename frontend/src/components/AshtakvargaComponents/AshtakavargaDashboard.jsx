@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import NorthIndianSAVChart from "./NorthIndianSAVChart"; // Your existing component
+import NorthIndianSAVChart from "../NorthIndianSAVChart"; // Your existing component
 
 const AshtakavargaDashboard = ({ avData }) => {
   // 'total' represents SAV, others (sun, moon, etc.) represent BAV
@@ -33,8 +33,6 @@ const AshtakavargaDashboard = ({ avData }) => {
       className="av-container"
       style={{ padding: "20px", fontFamily: "sans-serif" }}
     >
-      <h2>Sarvashtak{activeView.toUpperCase()} Chart</h2>
-
       <div
         className="controls"
         style={{
@@ -67,6 +65,8 @@ const AshtakavargaDashboard = ({ avData }) => {
         style={{ maxWidth: "500px", margin: "0 auto" }}
       >
         {/* Pass the 12-sign array to your existing Diamond Chart component */}
+        <p>Sarvashtak {activeView.toUpperCase()} Chart</p>
+
         <NorthIndianSAVChart
           points={avData?.[activeView]}
           ascendantSign={avData?.ascendant}

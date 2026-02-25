@@ -1,1 +1,23 @@
 @import "../../main.css";
+
+
+.page-buttons-section {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: flex-start;
+    padding: 0 20px;
+    align-items: center;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.charts-detail-section{
+    width: 100% !important;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-content: start stretch;
+    align-self: start;
+    gap: 20px;
+}

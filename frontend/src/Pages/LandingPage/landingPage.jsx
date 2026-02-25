@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { baseURL } from "../../Server/server.js";
 import Chart from "../../Components/Chart.jsx";
 import PlanetsList from "../../Components/PlanetsList.jsx";
-import Ashtakvarg from "../../Components/Ashtakvarg.jsx";
 import ButtonPrimary from "../../Components/Buttons/ButtonPrimary.jsx";
 import PageTitle from "../../Components/PageTItle/PageTitle.jsx";
 
@@ -17,6 +16,8 @@ const LandingPage = () => {
   //     lat: "19.07",
   //     lon: "72.87",
   //   };
+
+  //Temporay Client Details for Testing Purpose ---------------------------------------------------------------
   const user = {
     name: "Salil",
     dob: "2002-06-11",
@@ -25,73 +26,71 @@ const LandingPage = () => {
     lon: "72.87",
   };
 
+
+  // To Fetch the MAIN ASTRO DATA based upon the client details from the SERVER --------------------------------- 
   const fetchAstroData = async () => {
     const response = await fetch(
       `${baseURL}/api/get-full-chart?dob=${user.dob}T${user.time}&lat=${user.lat}&lon=${user.lon}`,
     );
     const result = await response.json();
-
     setData(result);
   };
 
-  // To set the data in the LOCAL STORAGE
+
+  // To SET the data in the LOCAL STORAGE -----------------------------------------------------------------------
   useEffect(() => {
     if (data) {
-      localStorage.setItem(`Data for Client - ${user.name}`, JSON.stringify(data));
+      localStorage.setItem(`Astro Data`, JSON.stringify(data));
     }
-  }, [data, user.name]);
+  }, [data]);
 
+
+  // To UNSET the data in the LOCAL STORAGE -----------------------------------------------------------------------
   const unsetClientData = () => {
-    localStorage.removeItem(`Data for Client - ${user.name}`);
+    localStorage.removeItem(`Astro Data`);
     setData(null);
   }
 
   return (
-    <div className="main">
-
+    <>
       <PageTitle />
-      <ButtonPrimary
-        buttonText="Generate Chart"
-        onClick={fetchAstroData}
-      />
 
-      <ButtonPrimary
-        buttonText="Unset Client Data"
-        onClick={() => unsetClientData()}
-      />
+      <div className="page-buttons-section">
+        <ButtonPrimary
+          buttonText="Generate Chart"
+          onClick={fetchAstroData}
+        />
 
-      {data && (
-        <div className="app-container">
-          <div className="chartsTwo">
+        <ButtonPrimary
+          buttonText="Unset Client Data"
+          onClick={() => unsetClientData()}
+        />
+      </div>
+
+      {/* Chart and Planets Details Section --------------------------------------------------------------------------------- */}
+      {
+        data && (
+          <div className="charts-detail-section">
             <Chart
               lagnaRashi={data.chart?.lagna}
               planets={data.chart?.planets}
               moonRashi={data.chart?.moonLongitude}
               type="lagna"
             />
+
             <Chart
               lagnaRashi={data.chart?.navmanshaLagna}
               planets={data.chart?.navmanshaPlanets}
               // moonRashi={data.chart?.navmansha.moonLongitude}
               type="nav"
             />
-            {/* <PlanetsList planets={data.chart?.planets} /> */}
-          </div>
-          <PlanetsList planets={data.chart?.planets} />
-          <Ashtakvarg planets={data.chart?.planets} lagna={data.chart?.lagna} />
 
-          {/* <div className="dasha-card">
-                        <h3>Vimshottari Dasha</h3>
-                        {data.timeline.map((d, i) => (
-                            <div key={i} className="dasha-item">
-                                <strong>{d.lord}</strong>
-                                <span>{new Date(d.end).getFullYear()}</span>
-                            </div>
-                        ))}
-                    </div> */}
-        </div>
-      )}
-    </div>
+            {/* <PlanetsList planets={data.chart?.planets} /> */}
+
+            <PlanetsList planets={data.chart?.planets} />
+          </div>
+        )}
+    </>
   );
 };
 

@@ -1,14 +1,34 @@
-import PageTitle from "../../Components/PageTItle/PageTitle.jsx";
 import "./sarvashtak.css";
-// import ashtakvarg from "../Components/Ashtakvarg";
+import { useState, useEffect } from "react";
+import PageTitle from "../../Components/PageTItle/PageTitle.jsx";
+import Ashtakvarg from "../../Components/AshtakvargaComponents/Ashtakvarg.jsx";
 
-const sarvashtak = () => {
+const Sarvashtak = () => {
+
+  // Data setup 
+  const [data, setData] = useState(null);
+  useEffect(() => {
+    const savedData = localStorage.getItem("Astro Data");
+
+    if (savedData) {
+      const parsedData = JSON.parse(savedData);
+      setData(parsedData);
+    }
+  }, []);
+
   return (
     <div>
       <PageTitle />
-      {/* <Ashtakvarg planets={data.chart?.planets} lagna={data.chart?.lagna} /> */}
+
+      {
+        data && (
+          <Ashtakvarg
+            planets={data.chart?.planets}
+            lagna={data.chart?.lagna}
+          />
+        )}
     </div>
   );
 };
 
-export default sarvashtak;
+export default Sarvashtak;
