@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import PageTitle from "../../Components/PageTItle/PageTitle.jsx";
+import PageTitle from "../../Components/PageTitle/PageTitle.jsx";
 
 const Dasha = () => {
 
@@ -14,18 +14,11 @@ const Dasha = () => {
     }
   }, []);
 
+  console.log(data);
+
   return (
     <div>
       <PageTitle />
-      {/* <div className="dasha-card">
-                        <h3>Vimshottari Dasha</h3>
-                        {data.timeline.map((d, i) => (
-                            <div key={i} className="dasha-item">
-                                <strong>{d.lord}</strong>
-                                <span>{new Date(d.end).getFullYear()}</span>
-                            </div>
-                        ))}
-                    </div> */}
     </div>
   )
 }

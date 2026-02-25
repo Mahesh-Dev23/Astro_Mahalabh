@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import PageTitle from "../../Components/PageTItle/PageTitle.jsx";
+import PageTitle from "../../Components/PageTitle/PageTitle.jsx";
 
 const Gemini = () => {
 
@@ -13,6 +13,8 @@ const Gemini = () => {
       setData(parsedData);
     }
   }, []);
+
+  console.log(data);
 
   return (
     <div>

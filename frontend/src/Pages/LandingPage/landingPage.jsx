@@ -4,52 +4,69 @@ import { baseURL } from "../../Server/server.js";
 import Chart from "../../Components/Chart.jsx";
 import PlanetsList from "../../Components/PlanetsList.jsx";
 import ButtonPrimary from "../../Components/Buttons/ButtonPrimary.jsx";
-import PageTitle from "../../Components/PageTItle/PageTitle.jsx";
+import PageTitle from "../../Components/PageTitle/PageTitle.jsx";
 
 const LandingPage = () => {
   const [data, setData] = useState(null);
-
-  //   const user = {
-  //     name: "",
-  //     dob: "1971-09-23",
-  //     time: "12:35",
-  //     lat: "19.07",
-  //     lon: "72.87",
-  //   };
-
-  //Temporay Client Details for Testing Purpose ---------------------------------------------------------------
-  const user = {
-    name: "Salil",
-    dob: "2002-06-11",
-    time: "12:20",
-    lat: "19.07",
-    lon: "72.87",
-  };
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
 
-  // To Fetch the MAIN ASTRO DATA based upon the client details from the SERVER --------------------------------- 
+  // CORE Function to FETCH DATA -----------------------------------------------------------------------------------
   const fetchAstroData = async () => {
-    const response = await fetch(
-      `${baseURL}/api/get-full-chart?dob=${user.dob}T${user.time}&lat=${user.lat}&lon=${user.lon}`,
-    );
-    const result = await response.json();
-    setData(result);
+
+    // Temporary Client Details 
+    const user = {
+      name: "Salil",
+      dob: "2002-06-11",
+      time: "12:20",
+      lat: "19.07",
+      lon: "72.87",
+    };
+
+    try {
+      setLoading(true);
+      setError(null);
+
+      const response = await fetch(
+        `${baseURL}/api/get-full-chart?dob=${user.dob}T${user.time}&lat=${user.lat}&lon=${user.lon}`
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch astrology data");
+      }
+
+      const result = await response.json();
+
+      setData(result);
+
+      // To SET data in LOCAL STORAGE ----------------------------------------------------------------------------
+      localStorage.setItem("Astro Data", JSON.stringify(result));
+
+    } catch (err) {
+      console.error(err);
+      setError("Something went wrong while fetching data.");
+    } finally {
+      setLoading(false);
+    }
   };
 
 
-  // To SET the data in the LOCAL STORAGE -----------------------------------------------------------------------
+  // To check data in Local Storage - On Page Load ----------------------------------------------------------------
   useEffect(() => {
-    if (data) {
-      localStorage.setItem(`Astro Data`, JSON.stringify(data));
+    const storedData = localStorage.getItem("Astro Data");
+
+    if (storedData) {
+      setData(JSON.parse(storedData));
     }
-  }, [data]);
+  }, []);
 
 
-  // To UNSET the data in the LOCAL STORAGE -----------------------------------------------------------------------
+  // To UNSET data from LOCAL STORAGE ----------------------------------------------------------------------------
   const unsetClientData = () => {
-    localStorage.removeItem(`Astro Data`);
+    localStorage.removeItem("Astro Data");
     setData(null);
-  }
+  };
 
   return (
     <>
@@ -57,39 +74,37 @@ const LandingPage = () => {
 
       <div className="page-buttons-section">
         <ButtonPrimary
-          buttonText="Generate Chart"
+          buttonText={loading ? "Generating..." : "Generate Chart"}
           onClick={fetchAstroData}
         />
 
         <ButtonPrimary
           buttonText="Unset Client Data"
-          onClick={() => unsetClientData()}
+          onClick={unsetClientData}
         />
       </div>
 
-      {/* Chart and Planets Details Section --------------------------------------------------------------------------------- */}
-      {
-        data && (
-          <div className="charts-detail-section">
-            <Chart
-              lagnaRashi={data.chart?.lagna}
-              planets={data.chart?.planets}
-              moonRashi={data.chart?.moonLongitude}
-              type="lagna"
-            />
+      {error && <p className="error-text">{error}</p>}
 
-            <Chart
-              lagnaRashi={data.chart?.navmanshaLagna}
-              planets={data.chart?.navmanshaPlanets}
-              // moonRashi={data.chart?.navmansha.moonLongitude}
-              type="nav"
-            />
+      {/* Charts Section */}
+      {data && (
+        <div className="charts-detail-section">
+          <Chart
+            lagnaRashi={data?.chart?.lagna}
+            planets={data?.chart?.planets}
+            moonRashi={data?.chart?.moonLongitude}
+            type="lagna"
+          />
 
-            {/* <PlanetsList planets={data.chart?.planets} /> */}
+          <Chart
+            lagnaRashi={data?.chart?.navmanshaLagna}
+            planets={data?.chart?.navmanshaPlanets}
+            type="nav"
+          />
 
-            <PlanetsList planets={data.chart?.planets} />
-          </div>
-        )}
+          <PlanetsList planets={data?.chart?.planets} />
+        </div>
+      )}
     </>
   );
 };

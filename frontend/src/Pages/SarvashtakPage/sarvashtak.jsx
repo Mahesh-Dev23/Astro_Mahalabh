@@ -1,6 +1,6 @@
 import "./sarvashtak.css";
 import { useState, useEffect } from "react";
-import PageTitle from "../../Components/PageTItle/PageTitle.jsx";
+import PageTitle from "../../Components/PageTitle/PageTitle.jsx";
 import Ashtakvarg from "../../Components/AshtakvargaComponents/Ashtakvarg.jsx";
 
 const Sarvashtak = () => {
