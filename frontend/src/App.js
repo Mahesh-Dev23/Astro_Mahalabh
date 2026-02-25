@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 // Components
-import Header from "./components/Header/Header.jsx";
-import Footer from "./components/Footer/Footer.jsx";
+import Header from "./Components/Header/Header.jsx";
+import Footer from "./Components/Footer/Footer.jsx";
 
 // Pages
 import LandingPage from "./Pages/LandingPage/LandingPage.jsx";
