@@ -1,8 +1,10 @@
-import React from 'react'
+import PageTitle from "../../Components/PageTItle/PageTitle.jsx";
 
 const Yogs = () => {
   return (
-    <div>Yogs</div>
+    <div>
+      <PageTitle />
+    </div>
   )
 }
 

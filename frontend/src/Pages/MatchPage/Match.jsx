@@ -1,8 +1,10 @@
-import React from 'react'
+import PageTitle from "../../Components/PageTItle/PageTitle.jsx";
 
 const Match = () => {
   return (
-    <div>Match</div>
+    <div>
+      <PageTitle />
+    </div>
   )
 }
 

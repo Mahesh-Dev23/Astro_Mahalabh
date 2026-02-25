@@ -1,8 +1,10 @@
-import React from 'react'
+import PageTitle from "../../Components/PageTItle/PageTitle.jsx";
 
 const Gochar = () => {
   return (
-    <div>Gochar</div>
+    <div>
+      <PageTitle />
+    </div>
   )
 }
 

@@ -1,9 +1,11 @@
 import "./landingPage.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { baseURL } from "../../Server/server.js";
 import Chart from "../../Components/Chart.jsx";
 import PlanetsList from "../../Components/PlanetsList.jsx";
 import Ashtakvarg from "../../Components/Ashtakvarg.jsx";
+import ButtonPrimary from "../../Components/Buttons/ButtonPrimary.jsx";
+import PageTitle from "../../Components/PageTItle/PageTitle.jsx";
 
 const LandingPage = () => {
   const [data, setData] = useState(null);
@@ -16,8 +18,8 @@ const LandingPage = () => {
   //     lon: "72.87",
   //   };
   const user = {
-    name: "",
-    dob: "2006-10-09",
+    name: "Salil",
+    dob: "2002-06-11",
     time: "12:20",
     lat: "19.07",
     lon: "72.87",
@@ -28,12 +30,36 @@ const LandingPage = () => {
       `${baseURL}/api/get-full-chart?dob=${user.dob}T${user.time}&lat=${user.lat}&lon=${user.lon}`,
     );
     const result = await response.json();
+
     setData(result);
   };
 
+  // To set the data in the LOCAL STORAGE
+  useEffect(() => {
+    if (data) {
+      localStorage.setItem(`Data for Client - ${user.name}`, JSON.stringify(data));
+    }
+  }, [data, user.name]);
+
+  const unsetClientData = () => {
+    localStorage.removeItem(`Data for Client - ${user.name}`);
+    setData(null);
+  }
+
   return (
     <div className="main">
-      <button onClick={fetchAstroData}>Calculate Chart</button>
+
+      <PageTitle />
+      <ButtonPrimary
+        buttonText="Generate Chart"
+        onClick={fetchAstroData}
+      />
+
+      <ButtonPrimary
+        buttonText="Unset Client Data"
+        onClick={() => unsetClientData()}
+      />
+
       {data && (
         <div className="app-container">
           <div className="chartsTwo">

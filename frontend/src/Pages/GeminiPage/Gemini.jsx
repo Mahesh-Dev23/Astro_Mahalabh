@@ -1,8 +1,10 @@
-import React from 'react'
+import PageTitle from "../../Components/PageTItle/PageTitle.jsx";
 
 const Gemini = () => {
   return (
-    <div>Gemini</div>
+    <div>
+      <PageTitle />
+    </div>
   )
 }
 
