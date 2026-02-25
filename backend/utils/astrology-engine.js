@@ -9,9 +9,12 @@ import SwissEph from "swisseph-wasm";
 import { calculateNavamsa } from "./navmansha.js";
 import { getNavamshaSign } from "./dNine.js";
 import { calculateSAVForSign } from "./ashtak.js";
+import { getNakshtra } from "./nakshtra.js";
+import { getFullDashaTimeline } from "./dasha.js";
 
 export async function getKundliData(utcDate, lat, lon) {
-  // console.log(utcDate, lat, lon); //ok
+  // console.log(typeof utcDate, lat, lon); //ok
+  console.log(typeof utcDate);
   const swe = new SwissEph();
   await swe.initSwissEph();
 
@@ -75,21 +78,29 @@ export async function getKundliData(utcDate, lat, lon) {
       rashi: Math.floor(degree / 30) + 1,
       degreeInRashi: degree % 30,
       longitude: degree,
+      nakshtra: getNakshtra(degree),
     };
   });
   planets.push({
     name: "Ketu",
-    rashi: ((planets[7] + 5) % 12) + 1,
+    rashi: ((planets[7].rashi + 5) % 12) + 1,
     degreeInRashi: planets[7].degreeInRashi,
+    longitude: (180 + planets[7].longitude) % 360,
+    nakshtra: getNakshtra((180 + planets[7].longitude) % 360),
   });
 
   const navmansha = getNavamshaSign(lagnaDegree, planets);
+  const dasha = getFullDashaTimeline(
+    planets[1].longitude,
+    `${year}-${month}-${day}`,
+  );
 
   // let planetPosition = {};
   // const planetAshtak = planets.map((p, i) => {
   //   planetAshtak[p.name] = p.rashi;
   // });
   // console.log("planetPos", planetAshtak);
+  // console.log("planets ", planets[1]);
   return {
     lagna,
     lagnaDegree,
@@ -97,6 +108,7 @@ export async function getKundliData(utcDate, lat, lon) {
     moonLongitude: planets[1].degreeInRashi + (planets[1].rashi - 1) * 30,
     navmanshaLagna: navmansha.lagna,
     navmanshaPlanets: navmansha.planets,
+    dasha,
   };
 }
 
