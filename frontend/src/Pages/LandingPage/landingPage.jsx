@@ -1,10 +1,10 @@
 import "./landingPage.css";
 import { useState, useEffect } from "react";
 import { baseURL } from "../../Server/server.js";
-import Chart from "../../Components_temp/Chart.js";
-import PlanetsList from "../../Components_temp/PlanetsList.js";
-import ButtonPrimary from "../../Components_temp/Buttons/ButtonPrimary.jsx";
-import PageTitle from "../../Components_temp/PageTitle/PageTitle.js";
+import Chart from "../../Components/Chart.js";
+import PlanetsList from "../../Components/PlanetsList.js";
+import ButtonPrimary from "../../Components/Buttons/ButtonPrimary.js";
+import PageTitle from "../../Components/PageTitle/PageTitle.js";
 
 const LandingPage = () => {
   const [data, setData] = useState(null);
