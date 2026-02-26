@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import PlanetStack from "../Components_temp/PlanetStack";
+import PlanetStack from "../Components/PlanetStack";
 
 const Chart = ({ lagnaRashi = 1, planets = [], moonRashi, type }) => {
   
