@@ -1,1 +1,68 @@
 @import "../../main.css";
+
+.dash-Wrapper {
+  /* border: 1px solid green; */
+  /* width: max-content; */
+  justify-self: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+  height: 500px;
+}
+.dashaCard {
+  width: auto;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  border-radius: 5px;
+  /* border: 1px solid red; */
+  box-shadow: 0px 0px 2px var(--accent-color);
+  background: var(--bg-card);
+  gap: 10px;
+}
+
+.dashaTitle {
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  border-radius: 5px;
+  overflow: hidden;
+  height: fit-content;
+  width: 100%;
+  /* justify-content: center; */
+}
+.dashaLord {
+  text-align: center;
+  width: 100%;
+  padding: 5px;
+  color: var(--bg-card);
+}
+.dashaTime {
+  background: var(--text-muted);
+  color: var(--bg-card);
+  text-align: center;
+  padding: 5px;
+}
+.antDashaList {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.antarDashaRow {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  padding: 2px;
+  border-bottom: 1px solid var(--text-muted);
+}
+.antarDashaLord {
+  width: 70px;
+}
+/* .dashaList {
+  width: 300px;
+  height: 40px;
+} */

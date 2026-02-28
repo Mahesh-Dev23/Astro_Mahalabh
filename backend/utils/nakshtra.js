@@ -1,33 +1,34 @@
+import { astroData } from "./astroData.js";
 export function getNakshtra(longitude) {
-  const NAKSHATRAS = [
-    "Ashwini",
-    "Bharani",
-    "Krittika",
-    "Rohini",
-    "Mrigashira",
-    "Ardra",
-    "Punarvasu",
-    "Pushya",
-    "Ashlesha",
-    "Magha",
-    "Purva Phalguni",
-    "Uttara Phalguni",
-    "Hasta",
-    "Chitra",
-    "Swati",
-    "Vishakha",
-    "Anuradha",
-    "Jyeshtha",
-    "Mula",
-    "Purva Ashadha",
-    "Uttara Ashadha",
-    "Shravana",
-    "Dhanishta",
-    "Shatabhisha",
-    "Purva Bhadrapada",
-    "Uttara Bhadrapada",
-    "Revati",
-  ];
+  // const NAKSHATRAS = [
+  //   "Ashwini",
+  //   "Bharani",
+  //   "Krittika",
+  //   "Rohini",
+  //   "Mrigashira",
+  //   "Ardra",
+  //   "Punarvasu",
+  //   "Pushya",
+  //   "Ashlesha",
+  //   "Magha",
+  //   "Purva Phalguni",
+  //   "Uttara Phalguni",
+  //   "Hasta",
+  //   "Chitra",
+  //   "Swati",
+  //   "Vishakha",
+  //   "Anuradha",
+  //   "Jyeshtha",
+  //   "Mula",
+  //   "Purva Ashadha",
+  //   "Uttara Ashadha",
+  //   "Shravana",
+  //   "Dhanishta",
+  //   "Shatabhisha",
+  //   "Purva Bhadrapada",
+  //   "Uttara Bhadrapada",
+  //   "Revati",
+  // ];
   /**
    * @param {number} longitude - Absolute longitude (0-360)
    * @returns {Object} - Nakshatra details
@@ -42,21 +43,21 @@ export function getNakshtra(longitude) {
     Math.floor((totalMinutes % minutesInNakshatra) / minutesInPada) + 1;
 
   // Nakshatra Lords follow a fixed sequence (Ketu, Venus, Sun, Moon, Mars, Rahu, Jupiter, Saturn, Mercury)
-  const lords = [
-    "Ketu",
-    "Venus",
-    "Sun",
-    "Moon",
-    "Mars",
-    "Rahu",
-    "Jupiter",
-    "Saturn",
-    "Mercury",
-  ];
-  const lord = lords[nakshatraIndex % 9];
+  // const lords = [
+  //   "Ketu",
+  //   "Venus",
+  //   "Sun",
+  //   "Moon",
+  //   "Mars",
+  //   "Rahu",
+  //   "Jupiter",
+  //   "Saturn",
+  //   "Mercury",
+  // ];
+  const lord = astroData.nakshatraLords[nakshatraIndex % 9];
 
   return {
-    name: NAKSHATRAS[nakshatraIndex],
+    name: astroData.NAKSHATRAS[nakshatraIndex],
     pada: pada,
     lord: lord,
     index: nakshatraIndex + 1,

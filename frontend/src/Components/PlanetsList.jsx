@@ -18,10 +18,13 @@ function PlanetsList({ planets }) {
           <div className="pdeg" style={{ color: `var(--p${p.name})` }}>
             {p.degreeInRashi.toFixed(2)}
           </div>
-          <div className="pdeg" style={{ color: `var(--p${p.name})` }}>
-            {`${p.nakshtra.name} ${p.nakshtra.pada}`}
+          <div className="pnakshatra" style={{ color: `var(--p${p.name})` }}>
+            {p.nakshtra.name}
           </div>
-          <div className="pdeg" style={{ color: `var(--p${p.name})` }}>
+          <div className="ppdeg" style={{ color: `var(--p${p.name})` }}>
+            {p.nakshtra.pada}
+          </div>
+          <div className="pname" style={{ color: `var(--p${p.name})` }}>
             {p.nakshtra.lord}
           </div>
         </div>

@@ -1,16 +1,18 @@
 @import "../../main.css";
 
 .page-title {
-    display: grid;
-    justify-self: center;
-    width: 100% !important;
-    height: 80px !important;
-    align-content: center !important;
-    text-align: center !important;
-    /* border-bottom: 4px solid var(--primary-color) !important;
-    border-radius: 0 0 20px 20px !important; */
-    color: var(--primary-color) !important;
-    font-weight: 600 !important;
-    font-style: normal !important;
-    text-transform: capitalize !important;
+  display: grid;
+  justify-self: left;
+  width: 100% !important;
+  height: 40px !important;
+  align-content: center !important;
+  text-align: left !important;
+  /* border-bottom: 4px solid var(--primary-color) !important;
+  border-radius: 0 0 20px 20px !important; */
+  color: var(--primary-color) !important;
+  font-weight: 600 !important;
+  font-style: normal !important;
+  text-transform: capitalize !important;
+  background-color: var(--timeline-line);
+  padding-left: 20px;
 }

@@ -4,9 +4,11 @@ import NorthIndianSAVChart from "../NorthIndianSAVChart"; // Your existing compo
 const AshtakavargaDashboard = ({ avData }) => {
   // 'total' represents SAV, others (sun, moon, etc.) represent BAV
   const [activeView, setActiveView] = useState("total");
+  const [activeColor, setActiveColor] = useState("Total");
 
   const planetList = [
-    { id: "total", name: "SAV (Total)" },
+    { id: "total", name: "Total" },
+    { id: "lagna", name: "Lagna" },
     { id: "sun", name: "Sun" },
     { id: "moon", name: "Moon" },
     { id: "mars", name: "Mars" },
@@ -18,7 +20,7 @@ const AshtakavargaDashboard = ({ avData }) => {
 
   // Helper to determine color based on SAV score
   const getScoreColor = (score, type) => {
-    if (type !== "total") return "#333"; // Default for individual BAV
+    if (type !== "Total") return "#333"; // Default for individual BAV
     if (score >= 30) return "#2e7d32"; // Strong Green
     if (score >= 25) return "#fbc02d"; // Neutral Yellow
     return "#d32f2f"; // Weak Red
@@ -26,56 +28,53 @@ const AshtakavargaDashboard = ({ avData }) => {
 
   useEffect(() => {
     getScoreColor(avData?.[activeView], activeView);
+    let stateColor = "";
+    planetList.map((p, i) => {
+      if (p.id == activeView) return (stateColor = planetList[i].name);
+    });
+    stateColor == "Total"
+      ? setActiveColor("pRahu")
+      : stateColor == "Lagna"
+        ? setActiveColor("primary-color")
+        : setActiveColor(`p${stateColor}`);
   }, [activeView, avData]);
+  console.log("activeView ", activeView, `var(--${activeColor})`);
 
   return (
-    <div
-      className="av-container"
-      style={{ padding: "20px", fontFamily: "sans-serif" }}
-    >
-      <div
-        className="controls"
-        style={{
-          marginBottom: "20px",
-          display: "flex",
-          gap: "10px",
-          flexWrap: "wrap",
-        }}
-      >
-        {planetList.map((p) => (
-          <button
-            key={p.id}
-            onClick={() => setActiveView(p.id)}
-            style={{
-              padding: "8px 16px",
-              backgroundColor: activeView === p.id ? "#007bff" : "#f0f0f0",
-              color: activeView === p.id ? "white" : "black",
-              border: "none",
-              borderRadius: "4px",
-              cursor: "pointer",
-            }}
-          >
-            {p.name}
-          </button>
-        ))}
-      </div>
-
+    <div className="av-container">
       <div
         className="chart-wrapper"
-        style={{ maxWidth: "500px", margin: "0 auto" }}
+        // main.css
+        // style={{ justifySelf: "center" }}
       >
-        {/* Pass the 12-sign array to your existing Diamond Chart component */}
-        <p>Sarvashtak {activeView.toUpperCase()} Chart</p>
-
         <NorthIndianSAVChart
           points={avData?.[activeView]}
           ascendantSign={avData?.ascendant}
           title="Sarvashtakavarga"
+          color={activeColor}
         />
       </div>
-
-      <div style={{ marginTop: "10px", textAlign: "center" }}>
-        <strong>Grand Total: {avData?.grandTotalPoints}</strong>
+      <div
+        className="controls"
+        style={{ borderTop: `1px solid var(--${activeColor})` }}
+      >
+        {planetList.map((p) => (
+          <div
+            key={p.id}
+            onClick={() => setActiveView(p.id)}
+            style={{
+              padding: "8px 16px",
+              backgroundColor:
+                activeView === p.id
+                  ? `var(--${activeColor})`
+                  : `var(--background)`,
+              color: activeView === p.id ? `var(--bg-card)` : `var(--pRahu)`,
+            }}
+            className="controlsButton"
+          >
+            {p.name}
+          </div>
+        ))}
       </div>
     </div>
   );

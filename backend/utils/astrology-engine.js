@@ -11,10 +11,11 @@ import { getNavamshaSign } from "./dNine.js";
 import { calculateSAVForSign } from "./ashtak.js";
 import { getNakshtra } from "./nakshtra.js";
 import { getFullDashaTimeline } from "./dasha.js";
+import { calculatePanchang } from "./panchang.js";
 
 export async function getKundliData(utcDate, lat, lon) {
   // console.log(typeof utcDate, lat, lon); //ok
-  console.log(typeof utcDate);
+  // console.log(typeof utcDate);
   const swe = new SwissEph();
   await swe.initSwissEph();
 
@@ -27,7 +28,8 @@ export async function getKundliData(utcDate, lat, lon) {
   const hour = utcDate.getUTCHours() + utcDate.getUTCMinutes() / 60;
   // console.log(year, month, day, hour); //ok
   const jd = swe.julday(year, month, day, hour, swe.SE_GREG_CAL);
-  // console.log(jd);
+  console.log(jd);
+  // console.log("swe", swe);
 
   // const navmansha = calculateNavamsa(day, month, year, hour, lat, lon);
   // console.log("nav", navmansha);
@@ -95,12 +97,103 @@ export async function getKundliData(utcDate, lat, lon) {
     `${year}-${month}-${day}`,
   );
 
+  // Helper to get Sunrise/Sunset using SwissEph
+  // async function getSunEvents(swe, jd, lat, lon) {
+  // const flags = swe.SEFLG_SWIEPH;
+  // const geopos = [lon, lat, 0];
+  // // SE_CALC_RISE for Sunrise
+  // const riseRes = swe.rise_trans(
+  //   jd,
+  //   swe.SE_SUN,
+  //   null,
+  //   flags,
+  //   swe.SE_CALC_RISE,
+  //   geopos,
+  //   0,
+  //   0,
+  // );
+  // // SE_CALC_SET for Sunset
+  // const setRes = swe.rise_trans(
+  //   jd,
+  //   swe.SE_SUN,
+  //   null,
+  //   flags,
+  //   swe.SE_CALC_SET,
+  //   geopos,
+  //   0,
+  //   0,
+  // );
+  // const sun = {
+  //   sunrise: riseRes.res && riseRes.res[0] > 1000000 ? riseRes.res[0] : null,
+  //   sunset: setRes.res && setRes.res[0] > 1000000 ? setRes.res[0] : null,
+  // };
+
+  // function getRahuKaal(sunrise, sunset, dayOfWeek) {
+  //   const dayDuration = sunset - sunrise;
+  //   const segment = dayDuration / 8;
+  //   const mapping = { 1: 1, 6: 2, 5: 3, 3: 4, 4: 5, 2: 6, 0: 7 }; // Sunday=0...Saturday=6
+  //   const startSegment = mapping[dayOfWeek];
+
+  //   return {
+  //     start: sunrise + startSegment * segment,
+  //     end: sunrise + (startSegment + 1) * segment,
+  //   };
+  // }
+
+  // return { sunrise: resRise.trise, sunset: resSet.tset };
+  // }
+
+  // Flags for sunrise/sunset
+  // const flag = swe.SE_CALC_RISE | swe.SE_BIT_DISALLOW_CACHED;
+
+  // const getSunTimes = (swe, julianDay, lat, lon, flag) => {
+  //   return new Promise((resolve) => {
+  //     swe.rise_trans(
+  //       julianDay,
+  //       swe.SE_SUN,
+  //       null,
+  //       flag,
+  //       swe.SE_CALC_RISE,
+  //       [lon, lat, 0],
+  //       0,
+  //       0,
+  //       (rise) => {
+  //         swe.rise_trans(
+  //           julianDay,
+  //           swe.SE_SUN,
+  //           null,
+  //           flag,
+  //           swe.SE_CALC_SET,
+  //           [lon, lat, 0],
+  //           0,
+  //           0,
+  //           (set) => {
+  //             resolve({ sunrise: rise.res[0], sunset: set.res[0] });
+  //           },
+  //         );
+  //       },
+  //     );
+  //   });
+  // };
+  // console.log(
+  //   "sun ",
+  //   getRahuKaal(sun.sunrise, sun.sunset, new Date().getDay()),
+  // );
+
+  const panchang = calculatePanchang(
+    planets[0].longitude,
+    planets[1].longitude,
+    utcDate,
+  );
+
   // let planetPosition = {};
   // const planetAshtak = planets.map((p, i) => {
   //   planetAshtak[p.name] = p.rashi;
   // });
   // console.log("planetPos", planetAshtak);
   // console.log("planets ", planets[1]);
+  // console.log("panchang ", panchang);
+  console.log("lagna", lagnaDegree, lagna);
   return {
     lagna,
     lagnaDegree,
@@ -109,6 +202,7 @@ export async function getKundliData(utcDate, lat, lon) {
     navmanshaLagna: navmansha.lagna,
     navmanshaPlanets: navmansha.planets,
     dasha,
+    panchang,
   };
 }
 

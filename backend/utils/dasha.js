@@ -1,18 +1,19 @@
-const DASHA_SEQUENCE = [
-  { planet: "Ketu", years: 7 },
-  { planet: "Venus", years: 20 },
-  { planet: "Sun", years: 6 },
-  { planet: "Moon", years: 10 },
-  { planet: "Mars", years: 7 },
-  { planet: "Rahu", years: 18 },
-  { planet: "Jupiter", years: 16 },
-  { planet: "Saturn", years: 19 },
-  { planet: "Mercury", years: 17 },
-];
+// const DASHA_SEQUENCE = [
+//   { planet: "Ketu", years: 7 },
+//   { planet: "Venus", years: 20 },
+//   { planet: "Sun", years: 6 },
+//   { planet: "Moon", years: 10 },
+//   { planet: "Mars", years: 7 },
+//   { planet: "Rahu", years: 18 },
+//   { planet: "Jupiter", years: 16 },
+//   { planet: "Saturn", years: 19 },
+//   { planet: "Mercury", years: 17 },
+// ];
 
 /**
  * Generates full Mahadasha and Antardasha timeline
  */
+import { astroData } from "./astroData.js";
 export const getFullDashaTimeline = (moonLong, birthDate) => {
   const arcPerNak = 13.333333;
   const nakIndex = Math.floor(moonLong / arcPerNak);
@@ -27,7 +28,7 @@ export const getFullDashaTimeline = (moonLong, birthDate) => {
   // Loop through 9 Mahadashas
   for (let i = 0; i < 9; i++) {
     const mIdx = (startingIndex + i) % 9;
-    const mPlanet = DASHA_SEQUENCE[mIdx];
+    const mPlanet = astroData.DASHA_SEQUENCE[mIdx];
 
     // Calculate Mahadasha duration (Adjust first one for balance)
     const mDurationYears =
@@ -43,7 +44,7 @@ export const getFullDashaTimeline = (moonLong, birthDate) => {
 
     for (let j = 0; j < 9; j++) {
       const aIdx = (mIdx + j) % 9;
-      const aPlanet = DASHA_SEQUENCE[aIdx];
+      const aPlanet = astroData.DASHA_SEQUENCE[aIdx];
 
       // AD Duration = (MD years * AD years) / 120
       // If it's the first MD, we scale the ADs proportionally to the balance

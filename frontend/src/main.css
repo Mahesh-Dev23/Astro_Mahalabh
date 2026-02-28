@@ -1,373 +1,443 @@
 @charset "UTF-8";
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Inter", sans-serif !important;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif !important;
 }
 
 :root {
-    --primary-color: #9d0303;
-    --accent-color: #ff8c00;
-    --background: #fff9f2;
-    --bg-card: #ffffff;
-    --bg-active: #f8faff;
-    --text-main: #1f2937;
-    --text-muted: #6b7280;
-    --timeline-line: #e5e7eb;
-    --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    --spacing-lg: 24px;
-    --natal-color: #111827;
-    --transit-color: #3b82f6;
-    --retro-color: #ef4444;
-    --success: #10b981;
-    --pSun: #ff8c00;
-    --pMoon: #0090dd;
-    --pMars: #d11500;
-    --pMercury: #009708;
-    --pJupiter: #ebbc00;
-    --pVenus: #ff1d74;
-    --pSaturn: #000453;
-    --pRahu: #3a3a39;
-    --pKetu: #a6a6a6;
-    --pUranus: #6b7280;
-    --pNeptune: #6b7280;
-    --pPluto: #6b7280;
+  --primary-color: #9d0303;
+  --accent-color: #ff8c00;
+  --background: #fff9f2;
+  --bg-card: #ffffff;
+  --bg-active: #f8faff;
+  --text-main: #1f2937;
+  --text-muted: #a6a6a6;
+  --timeline-line: #e5e7eb;
+  --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --spacing-lg: 24px;
+  --natal-color: #111827;
+  --transit-color: #3b82f6;
+  --retro-color: #ef4444;
+  --success: #10b981;
+  --pSun: #ff8c00;
+  --pMoon: #0090dd;
+  --pMars: #d11500;
+  --pMercury: #009708;
+  --pJupiter: #ebbc00;
+  --pVenus: #ff1d74;
+  --pSaturn: #000453;
+  --pRahu: #3a3a39;
+  --pKetu: #6b7280;
+  --pUranus: #6b7280;
+  --pNeptune: #6b7280;
+  --pPluto: #a6a6a6;
+  --chartLine: #ffc073;
 }
 
 html,
 body {
-    margin: 0 !important;
-    padding: 0 !important;
-    background-color: var(--background) !important;
-    color: var(--text-main) !important;
-    width: 100% !important;
-    height: 100% !important;
-    font-family: "Inter", sans-serif !important;
-    /* overflow-x: hidden !important; */
+  margin: 0 !important;
+  padding: 0 !important;
+  background-color: var(--bg-card) !important;
+  color: var(--text-main) !important;
+  width: 100% !important;
+  height: 100% !important;
+  font-family: "Inter", sans-serif !important;
+  /* overflow-x: hidden !important; */
 }
 
 .pages {
-    min-height: 90vh !important;
-    padding: 0px !important;
+  min-height: 90vh !important;
+  padding: 0px !important;
 }
-
 
 /* Fonts common styling attributes --------------------------------------------------------- */
 h1 {
-    font-size: 40px !important;
-    color: var(--primary-color) !important;
-    font-weight: 600 !important;
-    font-style: normal !important;
-    margin: 0 !important;
-    padding: 0 !important;
+  font-size: 40px !important;
+  color: var(--primary-color) !important;
+  font-weight: 600 !important;
+  font-style: normal !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 h2 {
-    font-size: 36px !important;
-    color: var(--primary-color) !important;
-    font-weight: 600 !important;
-    font-style: normal !important;
-    margin: 0 !important;
-    padding: 0 !important;
+  font-size: 36px !important;
+  color: var(--primary-color) !important;
+  font-weight: 600 !important;
+  font-style: normal !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 p {
-    font-size: 18px;
-    color: var(--text-muted) !important;
-    margin: 0 !important;
-    padding: 0 !important;
+  font-size: 18px;
+  color: var(--text-muted) !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 a {
-    text-decoration: none !important;
+  text-decoration: none !important;
 }
 
 button {
-    cursor: pointer !important;
+  cursor: pointer !important;
 }
-
 
 /* Input & Select box common styling attributes -------------------------------- */
 input,
 select {
-    font-family: "Inter", sans-serif !important;
-    color: var(--accent-color) !important;
-    border: 1px solid var(--primary-color) !important;
-    background-color: var(--background) !important;
-    font-size: 16px !important;
-    font-weight: 400 !important;
-    box-sizing: border-box !important;
-    border-radius: 20px !important;
-    align-items: center !important;
-    text-align: left !important;
+  font-family: "Inter", sans-serif !important;
+  color: var(--accent-color) !important;
+  border: 1px solid var(--primary-color) !important;
+  background-color: var(--background) !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  box-sizing: border-box !important;
+  border-radius: 20px !important;
+  align-items: center !important;
+  text-align: left !important;
 }
 
 @media screen and (max-width: 1300px) {
-
-    input,
-    select {
-        font-size: 14px !important;
-    }
+  input,
+  select {
+    font-size: 14px !important;
+  }
 }
 
 input::placeholder {
-    color: var(--accent-color) !important;
+  color: var(--accent-color) !important;
 }
 
 select::placeholder {
-    color: var(--accent-color) !important;
+  color: var(--accent-color) !important;
 }
 
 input:focus {
-    outline: none !important;
+  outline: none !important;
 }
 
 select:focus {
-    outline: none !important;
+  outline: none !important;
 }
-
 
 /* Others ----------------------------------------------------------------- */
 .timeline-container {
-    max-width: 500px;
-    margin: 0 auto;
-    font-family: "Inter", sans-serif;
-    padding: var(--spacing-lg);
-    position: relative;
-    background: #fdfdfd;
+  max-width: 500px;
+  margin: 0 auto;
+  font-family: "Inter", sans-serif;
+  padding: var(--spacing-lg);
+  position: relative;
+  background: #fdfdfd;
 }
 
 /* The vertical line running through the center */
 .timeline-track {
-    position: absolute;
-    left: 40px;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background-color: var(--timeline-line);
+  position: absolute;
+  left: 40px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: var(--timeline-line);
 }
 
 .dasha-item {
-    position: relative;
-    margin-bottom: 20px;
-    padding-left: 60px;
-    cursor: pointer;
-    transition: transform 0.2s ease;
+  position: relative;
+  margin-bottom: 20px;
+  padding-left: 60px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
 }
 
 .dasha-item.active {
-    transform: scale(1.02);
+  transform: scale(1.02);
 }
 
 .timeline-dot {
-    position: absolute;
-    left: 29px;
-    /* Centered on the 2px track */
-    top: 15px;
-    width: 24px;
-    height: 24px;
-    background: white;
-    border: 4px solid var(--timeline-line);
-    border-radius: 50%;
-    z-index: 2;
+  position: absolute;
+  left: 29px;
+  /* Centered on the 2px track */
+  top: 15px;
+  width: 24px;
+  height: 24px;
+  background: white;
+  border: 4px solid var(--timeline-line);
+  border-radius: 50%;
+  z-index: 2;
 }
 
 .active .timeline-dot {
-    border-color: var(--primary-color);
-    background: var(--primary-color);
-    box-shadow: 0 0 10px rgba(99, 102, 241, 0.4);
+  border-color: var(--primary-color);
+  background: var(--primary-color);
+  box-shadow: 0 0 10px rgba(99, 102, 241, 0.4);
 }
 
 .dasha-card {
-    background: var(--bg-card);
-    border: 1px solid var(--timeline-line);
-    border-radius: 12px;
-    padding: 16px;
-    box-shadow: var(--card-shadow);
+  background: var(--bg-card);
+  border: 1px solid var(--timeline-line);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: var(--card-shadow);
 }
 
 .active .dasha-card {
-    background: var(--bg-active);
-    border-color: var(--primary-color);
+  background: var(--bg-active);
+  border-color: var(--primary-color);
 }
 
 .lord-name {
-    display: block;
-    font-weight: 700;
-    color: var(--text-main);
-    font-size: 1.1rem;
+  display: block;
+  font-weight: 700;
+  color: var(--text-main);
+  font-size: 1.1rem;
 }
 
 .date-range {
-    font-size: 0.85rem;
-    color: var(--text-muted);
+  font-size: 0.85rem;
+  color: var(--text-muted);
 }
 
 .status-badge {
-    background: var(--accent-color);
-    color: white;
-    font-size: 10px;
-    padding: 2px 8px;
-    border-radius: 20px;
-    text-transform: uppercase;
-    font-weight: bold;
+  background: var(--accent-color);
+  color: white;
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
 /* Antardasha Styling */
 .antardasha-list {
-    margin-top: 12px;
-    padding-top: 12px;
-    border-top: 1px dashed var(--timeline-line);
-    animation: slideDown 0.3s ease-out;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--timeline-line);
+  animation: slideDown 0.3s ease-out;
 }
 
 .sub-item {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.9rem;
-    padding: 4px 0;
-    color: var(--text-main);
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  padding: 4px 0;
+  color: var(--text-main);
 }
 
 @keyframes slideDown {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
 
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .natal-planet-text {
-    fill: var(--natal-color);
-    font-size: 11px;
+  fill: var(--natal-color);
+  font-size: 11px;
 }
 
 .transit-planet-text {
-    fill: var(--transit-color);
-    font-size: 10px;
-    font-weight: bold;
-    opacity: 0.8;
+  fill: var(--transit-color);
+  font-size: 10px;
+  font-weight: bold;
+  opacity: 0.8;
 }
 
 /* Add a "pulsing" effect for major transits like Saturn or Jupiter */
 .transit-planet-text.slow-mover {
-    animation: pulse 2s infinite;
+  animation: pulse 2s infinite;
 }
 
 /* Alerts */
 .alerts-container {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    max-width: 500px;
-    margin-bottom: 20px;
-    z-index: auto;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 500px;
+  margin-bottom: 20px;
+  z-index: auto;
 }
 
 .alert-card {
-    display: flex;
-    gap: 15px;
-    padding: 16px;
-    border-radius: 12px;
-    margin-bottom: 10px;
-    border-left: 5px solid var(--primary);
-    background: white;
-    box-shadow: var(--card-shadow);
+  display: flex;
+  gap: 15px;
+  padding: 16px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  border-left: 5px solid var(--primary);
+  background: white;
+  box-shadow: var(--card-shadow);
 }
 
 .alert-card.high {
-    border-left-color: #ef4444;
-    /* Red for Saturn/Sade Sati */
-    background: #fef2f2;
+  border-left-color: #ef4444;
+  /* Red for Saturn/Sade Sati */
+  background: #fef2f2;
 }
 
 .alert-card.positive {
-    border-left-color: #10b981;
-    /* Green for Jupiter */
-    background: #ecfdf5;
+  border-left-color: #10b981;
+  /* Green for Jupiter */
+  background: #ecfdf5;
 }
 
 .alert-content h4 {
-    margin: 0;
-    font-size: 1rem;
-    color: var(--text-main);
+  margin: 0;
+  font-size: 1rem;
+  color: var(--text-main);
 }
 
 .alert-content p {
-    margin: 4px 0 0;
-    font-size: 0.85rem;
-    color: var(--text-muted);
+  margin: 4px 0 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
 }
 
 /* strength */
 
 .strength-card {
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: var(--card-shadow);
-    width: 100%;
-    max-width: 500px;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: var(--card-shadow);
+  width: 100%;
+  max-width: 500px;
 }
 
 .meter-item {
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 
 .meter-label {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.9rem;
-    margin-bottom: 5px;
-    font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+  font-weight: 600;
 }
 
 .progress-bg {
-    height: 8px;
-    background: #f3f4f6;
-    border-radius: 4px;
-    overflow: hidden;
+  height: 8px;
+  background: #f3f4f6;
+  border-radius: 4px;
+  overflow: hidden;
 }
 
 .progress-fill {
-    height: 100%;
-    transition: width 1s ease-in-out;
+  height: 100%;
+  transition: width 1s ease-in-out;
 }
 
-
 /* Layout Styling -------------------------------------------------------------------------- */
+.planetGroup {
+  border: 1px solid red;
+}
 .chartsTwo {
-    display: flex;
-    gap: 20px;
+  display: flex;
+  gap: 20px;
 }
 
 .planetList {
-    width: 300px;
-    display: flex;
-    flex-direction: column;
-    /* border: 1px solid red; */
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 0 10px;
+  /* border: 1px solid red; */
+  background: var(--bg-card);
 }
 
 .planetRow {
-    width: 300px;
-    display: flex;
-    flex-direction: row;
-    gap: 1px;
-    border-bottom: 1px solid var(--pKetu);
-    padding: 2px;
+  width: auto;
+  display: flex;
+  flex-direction: row;
+  gap: 1px;
+  border-bottom: 1px solid var(--pKetu);
+  padding: 8px 2px;
 }
 
 .pname {
-    width: 100px;
-    color: var(--text-muted);
+  width: 70px;
+  padding: 0 5px;
+  color: var(--text-main);
 }
 
 .pdeg {
-    width: 70px;
+  width: 50px;
+  text-align: right;
+}
+
+.pnakshatra {
+  width: 120px;
+  padding: 0 10px;
+  color: var(--text-muted);
+}
+
+.planetStack {
+  width: auto;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 0 10px;
+  gap: 10px;
+  /* border: 1px solid red; */
+  /* background: var(--bg-card); */
+}
+
+.planetCard {
+  width: auto;
+  display: flex;
+  flex-direction: row;
+  padding: 15px;
+  border-radius: 5px;
+  /* border: 1px solid red; */
+  box-shadow: 0px 0px 2px var(--accent-color);
+  background: var(--bg-card);
+}
+
+.housenode {
+  fill: var(--primary-color);
+}
+
+.av-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* border: 1px solid red; */
+  gap: 20px;
+}
+.controls {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+  gap: 5px;
+  justify-content: center;
+  border-top: 1px solid var(--accent-color);
+  padding: 0 10px 10px 10px;
+  background: var(--timeline-line);
+}
+
+.controlsButton {
+  border-radius: 0 0 4px 4px;
+  border: "none";
+  cursor: "pointer";
+}
+.chart-wrapper {
+  /* border: 1px solid green; */
+  /* width: max-content; */
+  justify-self: center;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
 }

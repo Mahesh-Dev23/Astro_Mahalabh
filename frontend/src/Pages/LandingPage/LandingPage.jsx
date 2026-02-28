@@ -11,11 +11,9 @@ const LandingPage = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-
   // CORE Function to FETCH DATA -----------------------------------------------------------------------------------
   const fetchAstroData = async () => {
-
-    // Temporary Client Details 
+    // Temporary Client Details
     const user = {
       name: "Salil",
       dob: "2002-06-11",
@@ -29,7 +27,7 @@ const LandingPage = () => {
       setError(null);
 
       const response = await fetch(
-        `${baseURL}/api/get-full-chart?dob=${user.dob}T${user.time}&lat=${user.lat}&lon=${user.lon}`
+        `${baseURL}/api/get-full-chart?dob=${user.dob}T${user.time}&lat=${user.lat}&lon=${user.lon}`,
       );
 
       if (!response.ok) {
@@ -42,7 +40,6 @@ const LandingPage = () => {
 
       // To SET data in LOCAL STORAGE ----------------------------------------------------------------------------
       localStorage.setItem("Astro Data", JSON.stringify(result));
-
     } catch (err) {
       console.error(err);
       setError("Something went wrong while fetching data.");
@@ -50,7 +47,6 @@ const LandingPage = () => {
       setLoading(false);
     }
   };
-
 
   // To check data in Local Storage - On Page Load ----------------------------------------------------------------
   useEffect(() => {
@@ -61,7 +57,6 @@ const LandingPage = () => {
     }
   }, []);
 
-
   // To UNSET data from LOCAL STORAGE ----------------------------------------------------------------------------
   const unsetClientData = () => {
     localStorage.removeItem("Astro Data");
@@ -69,12 +64,39 @@ const LandingPage = () => {
   };
 
   return (
-    <>
+    <div className="av-container">
       <PageTitle />
 
-      <div className="page-buttons-section">
+      {error && <p className="error-text">{error}</p>}
+
+      {/* Charts Section */}
+      {data && (
+        <div className="chart-wrapper">
+          <Chart
+            lagnaRashi={data?.chart?.lagna}
+            planets={data?.chart?.planets}
+            moonRashi={data?.chart?.moonLongitude}
+            type="lagna"
+          />
+          <div className="av-container">
+            <Chart
+              lagnaRashi={data?.chart?.navmanshaLagna}
+              planets={data?.chart?.navmanshaPlanets}
+              type="nav"
+            />
+            <div className="controls">
+              <ButtonPrimary buttonText="M" onClick={fetchAstroData} />
+              <ButtonPrimary buttonText="N" onClick={fetchAstroData} />
+              <ButtonPrimary buttonText="G" onClick={fetchAstroData} />
+            </div>
+          </div>
+
+          <PlanetsList planets={data?.chart?.planets} />
+        </div>
+      )}
+      <div className="controls">
         <ButtonPrimary
-          buttonText={loading ? "Generating..." : "Generate Chart"}
+          buttonText={loading ? "Generating..." : "Creat Chart"}
           onClick={fetchAstroData}
         />
 
@@ -83,29 +105,7 @@ const LandingPage = () => {
           onClick={unsetClientData}
         />
       </div>
-
-      {error && <p className="error-text">{error}</p>}
-
-      {/* Charts Section */}
-      {data && (
-        <div className="charts-detail-section">
-          <Chart
-            lagnaRashi={data?.chart?.lagna}
-            planets={data?.chart?.planets}
-            moonRashi={data?.chart?.moonLongitude}
-            type="lagna"
-          />
-
-          <Chart
-            lagnaRashi={data?.chart?.navmanshaLagna}
-            planets={data?.chart?.navmanshaPlanets}
-            type="nav"
-          />
-
-          <PlanetsList planets={data?.chart?.planets} />
-        </div>
-      )}
-    </>
+    </div>
   );
 };
 
