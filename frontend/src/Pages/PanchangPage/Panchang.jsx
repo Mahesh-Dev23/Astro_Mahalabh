@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import PageTitle from "../../Components/PageTitle/PageTitle.jsx";
+import "./panchang.css";
 
 const Panchang = () => {
   // Data setup
@@ -25,9 +26,9 @@ const Panchang = () => {
           <div className="planetList">
             {objectData &&
               objectData.map((object) => (
-                <div className="planetRow">
-                  <div className="pname">{object}</div>
-                  <div className="pname">{data[object]}</div>
+                <div className="panchangRow">
+                  <div className="panchangSubTitle">{object}</div>
+                  <div className="panchangSubValue">{data[object]}</div>
                 </div>
               ))}
           </div>

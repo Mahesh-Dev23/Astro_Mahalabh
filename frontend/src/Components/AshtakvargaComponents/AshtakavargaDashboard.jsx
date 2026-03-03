@@ -38,7 +38,7 @@ const AshtakavargaDashboard = ({ avData }) => {
         ? setActiveColor("primary-color")
         : setActiveColor(`p${stateColor}`);
   }, [activeView, avData]);
-  console.log("activeView ", activeView, `var(--${activeColor})`);
+  // console.log("activeView ", activeView, `var(--${activeColor})`);
 
   return (
     <div className="av-container">

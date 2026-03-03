@@ -1,1 +1,37 @@
 @import "../../main.css";
+
+.geminiStack {
+  width: auto;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 0 10px;
+  gap: 5px;
+  /* border: 1px solid red; */
+}
+.geminiCard {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  padding-left: 15px;
+  /* padding-right: 10px; */
+  /* padding-bottom: 0; */
+  /* border-bottom: 1px solid var(--text-muted); */
+  background-color: rgb(from var(--bg-light) r g b / var(--opacity-level));
+  border-radius: 5px;
+}
+.geminiKarak {
+  width: 100px;
+  color: var(--text-main);
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+}
+.geminiName {
+  width: 130px;
+  border-radius: 5px;
+  color: var(--bg-card);
+  padding: 15px;
+  text-align: center;
+}

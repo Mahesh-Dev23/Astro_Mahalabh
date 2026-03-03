@@ -57,8 +57,8 @@ const Chart = ({ lagnaRashi = 1, planets = [], moonRashi, type }) => {
           y="0"
           width="400"
           height="400"
-          fill={`var(--background)`}
-          stroke={`var(--chartLine)`}
+          fill={`var(--bg-light)`}
+          stroke={`var(--gold)`}
           strokeWidth="1"
         />
 
@@ -68,7 +68,7 @@ const Chart = ({ lagnaRashi = 1, planets = [], moonRashi, type }) => {
           y1="0"
           x2="400"
           y2="400"
-          stroke={`var(--chartLine)`}
+          stroke={`var(--gold)`}
           strokeWidth="1"
         />
         <line
@@ -76,7 +76,7 @@ const Chart = ({ lagnaRashi = 1, planets = [], moonRashi, type }) => {
           y1="0"
           x2="0"
           y2="400"
-          stroke={`var(--chartLine)`}
+          stroke={`var(--gold)`}
           strokeWidth="1"
         />
 
@@ -86,7 +86,7 @@ const Chart = ({ lagnaRashi = 1, planets = [], moonRashi, type }) => {
           y1="0"
           x2="0"
           y2="200"
-          stroke={`var(--chartLine)`}
+          stroke={`var(--gold)`}
           strokeWidth="1"
         />
         <line
@@ -94,7 +94,7 @@ const Chart = ({ lagnaRashi = 1, planets = [], moonRashi, type }) => {
           y1="200"
           x2="200"
           y2="400"
-          stroke={`var(--chartLine)`}
+          stroke={`var(--gold)`}
           strokeWidth="1"
         />
         <line
@@ -102,7 +102,7 @@ const Chart = ({ lagnaRashi = 1, planets = [], moonRashi, type }) => {
           y1="400"
           x2="400"
           y2="200"
-          stroke={`var(--chartLine)`}
+          stroke={`var(--gold)`}
           strokeWidth="1"
         />
         <line
@@ -110,7 +110,7 @@ const Chart = ({ lagnaRashi = 1, planets = [], moonRashi, type }) => {
           y1="200"
           x2="200"
           y2="0"
-          stroke={`var(--chartLine)`}
+          stroke={`var(--gold)`}
           strokeWidth="1"
         />
 

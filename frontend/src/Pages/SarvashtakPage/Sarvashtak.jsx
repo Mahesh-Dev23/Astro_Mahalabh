@@ -4,8 +4,7 @@ import PageTitle from "../../Components/PageTitle/PageTitle.jsx";
 import Ashtakvarg from "../../Components/AshtakvargaComponents/Ashtakvarg.jsx";
 
 const Sarvashtak = () => {
-
-  // Data setup 
+  // Data setup
   const [data, setData] = useState(null);
   useEffect(() => {
     const savedData = localStorage.getItem("Astro Data");
@@ -17,17 +16,13 @@ const Sarvashtak = () => {
   }, []);
 
   return (
-    <div>
+    <>
       <PageTitle />
 
-      {
-        data && (
-          <Ashtakvarg
-            planets={data.chart?.planets}
-            lagna={data.chart?.lagna}
-          />
-        )}
-    </div>
+      {data && (
+        <Ashtakvarg planets={data.chart?.planets} lagna={data.chart?.lagna} />
+      )}
+    </>
   );
 };
 

@@ -1,1 +1,22 @@
 @import "../../main.css";
+
+.panchangRow {
+  width: auto;
+  display: flex;
+  flex-direction: row;
+  gap: 1px;
+  /* border-bottom: 1px solid var(--pKetu); */
+  padding-right: 10px;
+  padding-bottom: 0;
+  /* background-color: var(--bg-card), var(--opacity-level); */
+  background-color: rgb(from var(--bg-light) r g b / var(--opacity-level));
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+.panchangSubTitle {
+  color: var(--text-main);
+  width: 110px;
+}
+.panchangSubValue {
+  color: var(--primary-color);
+}

@@ -112,9 +112,9 @@ function Ashtakvarg({ planets, lagna }) {
 
   //   console.log("ashtakvarag ", data);
   return (
-    <div>
+    <>
       <AshtakavargaDashboard avData={data} />
-    </div>
+    </>
   );
 }
 

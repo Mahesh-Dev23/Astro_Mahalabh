@@ -1,7 +1,7 @@
 @import "../../main.css";
 
 .button-primary {
-  background-color: var(--background) !important;
+  background-color: var(--bg-light) !important;
   border: 0px solid var(--primary-color) !important;
   color: var(--primary-color);
   border-radius: 0 0 4px 4px;
@@ -28,6 +28,75 @@
 }
 
 .button-primary.active {
+  background-color: var(--primary-color) !important;
+  color: white !important;
+}
+
+.button-secondary {
+  background-color: var(--bg-light) !important;
+  border: 0px solid var(--primary-color) !important;
+  color: var(--primary-color);
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  line-height: 100% !important;
+  text-align: center !important;
+  min-width: 100px !important;
+  width: auto !important;
+  /* height: 40px !important; */
+  text-decoration: none !important;
+  text-transform: capitalize !important;
+  transition: background-color 0.6s ease;
+  padding: 12px;
+}
+
+.button-secondary:hover {
+  background-color: var(--primary-color) !important;
+  color: white !important;
+}
+
+.button-secondary.active {
+  background-color: var(--primary-color) !important;
+  color: white !important;
+}
+
+.button-round {
+  width: 16px;
+  height: 16px;
+  padding: 16px;
+  border-radius: 16px;
+  background-color: var(--bg-light) !important;
+  border: 0px solid var(--primary-color) !important;
+  color: var(--primary-color);
+  margin-top: 10px;
+  /* border-radius: 0 0 4px 4px; */
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  /* line-height: 100% !important; */
+  text-align: center !important;
+  /* min-width: 100px !important; */
+  /* width: auto !important; */
+  /* height: 40px !important; */
+  text-decoration: none !important;
+  text-transform: capitalize !important;
+  transition: background-color 0.6s ease;
+  /* padding: 12px; */
+}
+
+.button-round:hover {
+  background-color: var(--primary-color) !important;
+  color: white !important;
+}
+
+.button-round.active {
   background-color: var(--primary-color) !important;
   color: white !important;
 }

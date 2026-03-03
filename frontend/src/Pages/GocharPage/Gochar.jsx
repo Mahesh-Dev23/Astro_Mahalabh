@@ -6,17 +6,17 @@ import ButtonPrimary from "../../Components/Buttons/ButtonPrimary.jsx";
 
 const Gochar = () => {
   // Data setup
-  const [data, setData] = useState(null);
+  const [data, setData] = useState({});
   useEffect(() => {
     const savedData = localStorage.getItem("Astro Data");
 
     if (savedData) {
       const parsedData = JSON.parse(savedData);
-      setData(parsedData);
+      setData(parsedData.gochar);
     }
   }, []);
 
-  console.log(data);
+  // console.log(data?.chart?.planets);
 
   return (
     <div>

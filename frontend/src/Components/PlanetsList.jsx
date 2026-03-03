@@ -1,34 +1,47 @@
 import "../main.css";
 
 function PlanetsList({ planets }) {
-  console.log(planets);
+  // console.log(planets);
   return (
     <div className="planetList">
-      {planets.map((p) => (
-        <div className="planetRow">
-          <div
-            className="pname"
-            style={{
-              color: `var(--p${p.name})`,
-            }}
-          >
-            {p.name}
-            {/* {` ${`var(--p${p.name})`.includes(p.name) ? p.name : `no`}`} */}
-          </div>
-          <div className="pdeg" style={{ color: `var(--p${p.name})` }}>
-            {p.degreeInRashi.toFixed(2)}
-          </div>
-          <div className="pnakshatra" style={{ color: `var(--p${p.name})` }}>
-            {p.nakshtra.name}
-          </div>
-          <div className="ppdeg" style={{ color: `var(--p${p.name})` }}>
-            {p.nakshtra.pada}
-          </div>
-          <div className="pname" style={{ color: `var(--p${p.name})` }}>
-            {p.nakshtra.lord}
-          </div>
-        </div>
-      ))}
+      {planets &&
+        planets?.map(
+          (p) =>
+            p.name != "Uranus" &&
+            p.name != "Neptune" &&
+            p.name != "Pluto" && (
+              <div className="planetRow" key={`planet${p.name}`}>
+                <div
+                  className="pname"
+                  style={{
+                    background: `var(--p${p.name})`,
+                  }}
+                >
+                  {p.name}
+                </div>
+
+                <div
+                  className="pnakshatra"
+                  style={{ color: `var(--p${p.nakshtra.lord})` }}
+                >
+                  <div className="pdeg" style={{ color: `var(--text-main)` }}>
+                    {p.degreeInRashi.toFixed(2)}
+                  </div>
+                  {p.nakshtra.name}
+
+                  <div
+                    className="nPada"
+                    style={{ background: `var(--p${p.nakshtra.lord})` }}
+                  >
+                    {p.nakshtra.pada}
+                  </div>
+                  <div style={{ color: `var(--p${p.nakshtra.lord})` }}>
+                    {p.nakshtra.lord}
+                  </div>
+                </div>
+              </div>
+            ),
+        )}
     </div>
   );
 }

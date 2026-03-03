@@ -2,12 +2,14 @@ import { useState, useEffect } from "react";
 import PageTitle from "../../Components/PageTitle/PageTitle.jsx";
 import Chart from "../../Components/Chart.jsx";
 import PlanetsList from "../../Components/PlanetsList.jsx";
+import "./gemini.css";
 import "../../main.css";
 
 const Gemini = () => {
   // Data setup
   const [data, setData] = useState(null);
   const [planetList, setPlanetList] = useState([]);
+  const [yuti, setYuti] = useState([]);
   const karakGemini = [
     "Atmakarak",
     "Amatyakarak",
@@ -34,52 +36,89 @@ const Gemini = () => {
       // console.log("parsedData ", sevenPlanets);
     }
   }, []);
+  console.log("planetList", planetList);
   useEffect(() => {
-    console.log("sevenPlanets ", planetList[0]?.name);
+    // console.log("sevenPlanets ", planetList);
+    let yutiInRashi = [];
+    planetList.map((p) => yutiInRashi.push(p.rashi));
+    // for (let x = 0; x < planetList.length; x++) {
+    //   // planetList.map((p) => p.rashi == x + 1 && yutiInRashi.push(p.rashi));
+    //   planetList.map((p) => yutiInRashi.push(p.rashi));
+    // }
+    // console.log(yutiInRashi);// ---------------
+    let karakYuti = [];
+    for (let y = 0; y < yutiInRashi.length; y++) {
+      // console.log(yutiInRashi[y], planetList[y].rashi);
+      // planetList.map((p) => p.rashi == x + 1 && yutiInRashi.push(p.rashi));
+      for (let z = y + 1; z < yutiInRashi.length; z++) {
+        // yutiInRashi[y] == yutiInRashi[z + 1] &&
+        //   console.log(yutiInRashi[y], yutiInRashi[z]);
+        yutiInRashi[y] == yutiInRashi[z] && karakYuti.push([y, z]);
+        // console.log("sameRashi ", yutiInRashi[y], yutiInRashi[z]);
+        // console.log("sameRashi ", y, z);
+        // setYuti(...yuti, [y, z]);
+      }
+    }
+    // console.log("karakYuti", karakYuti);
+    setYuti(karakYuti);
   }, [planetList]);
 
+  // console.log(yuti);
+
   return (
-    <>
+    <div className="av-container">
       <PageTitle />
       <div className="chart-wrapper">
-        <Chart
-          lagnaRashi={data?.chart?.navmanshaLagna}
-          planets={data?.chart?.navmanshaPlanets}
-          type="nav"
-        />
-        <div className="planetStack">
+        <div className="geminiStack">
           {karakGemini.map((p, i) => (
             <div
-              className="planetCard"
+              className="geminiCard"
               key={p}
               style={{
                 color: `var(--p${planetList[i]?.name})`,
               }}
             >
               <div
-                className="pnakshatra"
+                className="geminiKarak"
                 style={{
-                  color: `var(--p${planetList[i]?.name})`,
+                  color: `var(--text-main)`,
+                  width: "100px",
+                  // border: "1px solid red",
                 }}
               >
                 {p}
               </div>
               <div
-                className="pname"
+                className="geminiName"
                 style={{
-                  color: `var(--p${planetList[i]?.name})`,
+                  background: `var(--p${planetList[i]?.name})`,
                 }}
               >
-                {planetList[i]?.name}
-              </div>
-              <div className="pname">
-                {planetList[i]?.degreeInRashi.toFixed(2)}
+                {`${planetList[i]?.name} ${planetList[i]?.degreeInRashi.toFixed(2)}`}
               </div>
             </div>
           ))}
         </div>
+        <Chart
+          lagnaRashi={data?.chart?.navmanshaLagna}
+          planets={data?.chart?.navmanshaPlanets}
+          type="nav"
+        />
+        <div className="geminiStack">
+          {/* <div className="reportSubTitle">Yuti</div> */}
+          {yuti.map((y) => (
+            <div className="reportRow">
+              <div className="reportSubValue">Yuti &#129030; </div>
+              {y.map((yIndex) => (
+                <div className="reportSubTitle">
+                  {`${karakGemini[yIndex]} `}
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 

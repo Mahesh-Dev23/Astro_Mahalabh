@@ -1,16 +1,18 @@
 @import "../../main.css";
 
-.dash-Wrapper {
+.dasha-Wrapper {
   /* border: 1px solid green; */
   /* width: max-content; */
+  height: 76vh;
   justify-self: center;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
+  align-items: stretch;
   padding: 20px;
-  height: 500px;
+  /* height: 500px; */
 }
 .dashaCard {
   width: auto;
@@ -20,8 +22,8 @@
   padding: 5px;
   border-radius: 5px;
   /* border: 1px solid red; */
-  box-shadow: 0px 0px 2px var(--accent-color);
-  background: var(--bg-card);
+  /* box-shadow: 0px 0px 2px var(--accent-color); */
+  /* background: var(--bg-card); */
   gap: 10px;
 }
 
@@ -38,11 +40,13 @@
 .dashaLord {
   text-align: center;
   width: 100%;
-  padding: 5px;
+  font-weight: bold;
+  padding: 10px 5px;
   color: var(--bg-card);
+  text-transform: uppercase;
 }
 .dashaTime {
-  background: var(--text-muted);
+  background: var(--natal-color);
   color: var(--bg-card);
   text-align: center;
   padding: 5px;
@@ -50,17 +54,29 @@
 .antDashaList {
   display: flex;
   flex-direction: column;
-  gap: 1px;
+  gap: 5px;
 }
 .antarDashaRow {
   display: flex;
   flex-direction: row;
-  gap: 5px;
-  padding: 2px;
-  border-bottom: 1px solid var(--text-muted);
+  align-items: center;
+  gap: 10px;
+  padding: 0;
+  padding-right: 10px;
+  /* padding-bottom: 0; */
+  /* border-bottom: 1px solid var(--text-muted); */
+  background-color: rgb(from var(--bg-light) r g b / var(--opacity-level));
+  border-radius: 5px;
 }
 .antarDashaLord {
-  width: 70px;
+  width: 80px;
+  border-radius: 5px;
+  color: var(--bg-card);
+  padding: 10px 5px;
+  text-align: center;
+}
+.antDashsDates {
+  padding-top: 5px;
 }
 /* .dashaList {
   width: 300px;

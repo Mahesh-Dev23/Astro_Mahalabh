@@ -13,6 +13,6 @@
   font-weight: 600 !important;
   font-style: normal !important;
   text-transform: capitalize !important;
-  background-color: var(--timeline-line);
+  background-color: var(--bg-gray);
   padding-left: 20px;
 }

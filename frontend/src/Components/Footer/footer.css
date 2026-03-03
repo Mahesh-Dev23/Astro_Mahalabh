@@ -1,1 +1,7 @@
 @import "../../main.css";
+
+.footer {
+  min-height: 5vh !important;
+  background-color: rgb(from var(--text-main) r g b / var(--opacity-level));
+  color: var(--bg-card);
+}
