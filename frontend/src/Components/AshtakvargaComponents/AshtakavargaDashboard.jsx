@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "../../main.css";
 import NorthIndianSAVChart from "../NorthIndianSAVChart"; // Your existing component
 
 const AshtakavargaDashboard = ({ avData }) => {
@@ -41,7 +42,7 @@ const AshtakavargaDashboard = ({ avData }) => {
   // console.log("activeView ", activeView, `var(--${activeColor})`);
 
   return (
-    <div className="av-container">
+    <>
       <div
         className="chart-wrapper"
         // main.css
@@ -62,21 +63,21 @@ const AshtakavargaDashboard = ({ avData }) => {
           <div
             key={p.id}
             onClick={() => setActiveView(p.id)}
+            className="controlsButton"
             style={{
-              padding: "8px 16px",
               backgroundColor:
                 activeView === p.id
                   ? `var(--${activeColor})`
-                  : `var(--background)`,
-              color: activeView === p.id ? `var(--bg-card)` : `var(--pRahu)`,
+                  : `var(--bg-light)`,
+              color:
+                activeView === p.id ? `var(--bg-card)` : `var(--primary-color)`,
             }}
-            className="controlsButton"
           >
             {p.name}
           </div>
         ))}
       </div>
-    </div>
+    </>
   );
 };
 

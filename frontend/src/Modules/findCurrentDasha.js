@@ -1,6 +1,6 @@
 export const findCurrentDasha = (dates, i) => {
   const now = new Date().getTime();
-  // console.log(dates);
+  // console.log(dates, i);
   // const index = dates.findIndex((range) => {
   const startDate = new Date(dates.start).getTime();
   const endDate = new Date(dates.end).getTime();

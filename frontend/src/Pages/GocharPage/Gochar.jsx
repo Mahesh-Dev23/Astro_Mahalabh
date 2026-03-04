@@ -12,14 +12,14 @@ const Gochar = () => {
 
     if (savedData) {
       const parsedData = JSON.parse(savedData);
-      setData(parsedData.gochar);
+      setData(parsedData?.gochar);
     }
   }, []);
 
   // console.log(data?.chart?.planets);
 
   return (
-    <div>
+    <>
       <PageTitle />
       {data && (
         <div className="chart-wrapper">
@@ -29,7 +29,7 @@ const Gochar = () => {
             moonRashi={data?.chart?.moonLongitude}
             type="lagna"
           />
-          <div className="av-container">
+          <div>
             <Chart
               lagnaRashi={data?.chart?.navmanshaLagna}
               planets={data?.chart?.navmanshaPlanets}
@@ -56,7 +56,7 @@ const Gochar = () => {
           onClick={unsetClientData}
         />
       </div> */}
-    </div>
+    </>
   );
 };
 

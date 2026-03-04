@@ -26,21 +26,21 @@ const Gemini = () => {
       const parsedData = JSON.parse(savedData);
       setData(parsedData);
 
-      let sevenPlanets = parsedData.chart?.navmanshaPlanets.filter((p, i) => {
+      let sevenPlanets = parsedData.chart?.navmanshaPlanets?.filter((p, i) => {
         if (i < 7) return p;
       });
-      sevenPlanets.sort(function (a, b) {
+      sevenPlanets?.sort(function (a, b) {
         return b.degreeInRashi - a.degreeInRashi;
       });
       setPlanetList(sevenPlanets);
       // console.log("parsedData ", sevenPlanets);
     }
   }, []);
-  console.log("planetList", planetList);
+  // console.log("planetList", planetList);
   useEffect(() => {
     // console.log("sevenPlanets ", planetList);
     let yutiInRashi = [];
-    planetList.map((p) => yutiInRashi.push(p.rashi));
+    planetList?.map((p) => yutiInRashi.push(p.rashi));
     // for (let x = 0; x < planetList.length; x++) {
     //   // planetList.map((p) => p.rashi == x + 1 && yutiInRashi.push(p.rashi));
     //   planetList.map((p) => yutiInRashi.push(p.rashi));
@@ -66,38 +66,39 @@ const Gemini = () => {
   // console.log(yuti);
 
   return (
-    <div className="av-container">
+    <>
       <PageTitle />
       <div className="chart-wrapper">
         <div className="geminiStack">
-          {karakGemini.map((p, i) => (
-            <div
-              className="geminiCard"
-              key={p}
-              style={{
-                color: `var(--p${planetList[i]?.name})`,
-              }}
-            >
+          {planetList?.length > 0 &&
+            karakGemini.map((p, i) => (
               <div
-                className="geminiKarak"
+                className="geminiCard"
+                key={p}
                 style={{
-                  color: `var(--text-main)`,
-                  width: "100px",
-                  // border: "1px solid red",
+                  color: `var(--p${planetList[i]?.name})`,
                 }}
               >
-                {p}
+                <div
+                  className="geminiKarak"
+                  style={{
+                    color: `var(--text-main)`,
+                    width: "100px",
+                    // border: "1px solid red",
+                  }}
+                >
+                  {p}
+                </div>
+                <div
+                  className="geminiName"
+                  style={{
+                    background: `var(--p${planetList[i]?.name})`,
+                  }}
+                >
+                  {`${planetList[i]?.name} ${planetList[i]?.degreeInRashi.toFixed(2)}`}
+                </div>
               </div>
-              <div
-                className="geminiName"
-                style={{
-                  background: `var(--p${planetList[i]?.name})`,
-                }}
-              >
-                {`${planetList[i]?.name} ${planetList[i]?.degreeInRashi.toFixed(2)}`}
-              </div>
-            </div>
-          ))}
+            ))}
         </div>
         <Chart
           lagnaRashi={data?.chart?.navmanshaLagna}
@@ -118,7 +119,7 @@ const Gemini = () => {
           ))}
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

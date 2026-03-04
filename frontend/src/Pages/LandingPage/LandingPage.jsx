@@ -1,5 +1,6 @@
 import "./landingPage.css";
 import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { baseURL } from "../../Server/server.js";
 import Chart from "../../Components/Chart.jsx";
 import PlanetsList from "../../Components/PlanetsList.jsx";
@@ -7,6 +8,7 @@ import ButtonPrimary from "../../Components/Buttons/ButtonPrimary.jsx";
 import ButtonRound from "../../Components/Buttons/ButtonRound.jsx";
 import PageTitle from "../../Components/PageTitle/PageTitle.jsx";
 import SelectUserModal from "../../Components/Modal/SelectUserModal.jsx";
+import ModalNewDetails from "../../Components/Modal/ModalNewDetails.jsx";
 import { findCurrentDasha } from "../../Modules/findCurrentDasha.js";
 import { dateRearrange } from "../../Modules/dateRearrange.js";
 import { isSingleDigit } from "../../Modules/checkSingleDigit.js";
@@ -14,18 +16,18 @@ import { isSingleDigit } from "../../Modules/checkSingleDigit.js";
 const LandingPage = () => {
   const [data, setData] = useState(null);
   const [gochar, setGochar] = useState({});
-  const [forLocalStorage, setForLocalStorage] = useState({}); // use to data to update in local storage Astro Data
+  const [forLocalStorage, setForLocalStorage] = useState({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [localData, setLocalData] = useState();
   const [secondChart, setSecondChart] = useState("N");
-  const [selectedUser, setSelectedUser] = useState({});
+  const [selectedUser, setSelectedUser] = useState({ name: "" });
   const [modalOpen, setModalOpen] = useState(false);
+  const [modalType, setModalType] = useState("");
   const [currentDasha, setCurrentDasha] = useState({});
+  const [today, setToday] = useState("");
+  const [thisTime, setThistime] = useState("");
 
-  const date = new Date();
-  const today = `${date.getUTCFullYear()}-${isSingleDigit(date.getUTCMonth()) ? `0${date.getUTCMonth() + 1}` : date.getUTCMonth()}-${isSingleDigit(date.getUTCDate()) ? `0${date.getUTCDate()}` : date.getUTCDate()}`;
-  const thisTime = `${date.getHours()}:${date.getMinutes()}`;
   let lat = "19.07";
   let lon = "72.87";
 
@@ -38,13 +40,17 @@ const LandingPage = () => {
     lon: "72.87",
   };
   // CORE Function to FETCH DATA -----------------------------------------------------------------------------------
-  const fetchAstroData = async () => {
+  const fetchAstroData = async (newUser, gochar) => {
+    // console.log(newUser);
+
     try {
+      // console.log(2);
+
       setLoading(true);
       setError(null);
 
       const response = await fetch(
-        `${baseURL}/api/get-full-chart?dob=${selectedUser.dob}T${selectedUser.time}&lat=${selectedUser.lat}&lon=${selectedUser.lon}`,
+        `${baseURL}/api/get-full-chart?dob=${newUser?.dob}T${newUser?.time}&lat=${newUser?.lat}&lon=${newUser?.lon}`,
       );
 
       if (!response.ok) {
@@ -53,7 +59,6 @@ const LandingPage = () => {
 
       const result = await response.json();
 
-      // setData(result);
       // console.log("result", result.chart.dasha); // find all dasha
 
       // select current dasha -------------------------------------------
@@ -76,14 +81,14 @@ const LandingPage = () => {
           break;
         }
         antdashaIndex = findCurrentDasha(
-          result.chart.dasha[dashaIndex]?.antardashas,
+          result.chart.dasha[dashaIndex]?.antardashas[x],
           x,
         );
       }
 
-      result.chart.dasha[dashaIndex].antardashas?.map((p, i) => {
-        antdashaIndex = findCurrentDasha(p, i);
-      });
+      // result.chart.dasha[dashaIndex].antardashas?.map((p, i) => {
+      //   antdashaIndex = findCurrentDasha(p, i);
+      // });
 
       // console.log("result", {
       //   curretDasha: {
@@ -101,27 +106,33 @@ const LandingPage = () => {
       };
 
       // result object with current dasha
-      const resultWithCurrentDasha = { ...result, currentDasha, selectedUser };
+      const resultWithCurrentDasha = {
+        ...result,
+        currentDasha,
+        selectedUser,
+        gochar,
+      };
       // console.log("resultWithCurrentDasha", resultWithCurrentDasha);
 
       // set data with current dasha
       setData(resultWithCurrentDasha);
 
-      // // To SET data in LOCAL STORAGE ----------------------------------------------------------------------------
-      // localStorage.setItem(
-      //   "Astro Data",
-      //   JSON.stringify(resultWithCurrentDasha),
-      // );
+      // To SET data in LOCAL STORAGE ----------------------------------------------------------------------------
+      localStorage.setItem(
+        "Astro Data",
+        JSON.stringify(resultWithCurrentDasha),
+      );
     } catch (err) {
-      console.error(err);
-      setError("Something went wrong while fetching data.");
+      console.error(Object.keys(err));
+      setError(`Fetching error. ${err}`);
+      // setError(err);
     } finally {
       setLoading(false);
     }
   };
 
   // Function to FETCH GOchar DATA -----------------------------------------------------------------------------------
-  const fetchGocharData = async (data, today, time, lat, lon) => {
+  const fetchGocharData = async (today, time, lat, lon) => {
     // console.log("fetchGocharData", today, data);
     try {
       // setLoading(true);
@@ -139,7 +150,8 @@ const LandingPage = () => {
       // console.log("gochar ", result);
 
       // set gochar data for loca storage
-      setForLocalStorage({ ...data, gochar: result });
+      setGochar(result);
+      // setForLocalStorage({ ...data, gochar: result });
       // console.log({ ...forLocalStorage, gochar: result });
     } catch (err) {
       console.error("error in gochar", err);
@@ -153,38 +165,68 @@ const LandingPage = () => {
     setSecondChart(name);
   };
 
-  // To check data in Local Storage - On Page Load ----------------------------------------------------------------
-  useEffect(() => {
-    const storedData = localStorage.getItem("Astro Data");
+  // select which modal to open
+  const getThisModal = (modalType) => {
+    setModalType(modalType);
+    setModalOpen(true);
+  };
 
+  // step 1 To check data in Local Storage - On Page Load ----------------------------------------------------------------
+  useEffect(() => {
+    const date = new Date();
+    const day = `${date.getUTCFullYear()}-${isSingleDigit(date.getUTCMonth()) ? `0${date.getUTCMonth() + 1}` : date.getUTCMonth()}-${isSingleDigit(date.getUTCDate()) ? `0${date.getUTCDate()}` : date.getUTCDate()}`;
+    const time = `${date.getHours()}:${date.getMinutes()}`;
+
+    setToday(day);
+    setThistime(time);
+    // console.log("Step 1 completed");
+    const storedData = localStorage.getItem("Astro Data");
+    // console.log("localStorage", storedData);
     if (storedData) {
       setData(JSON.parse(storedData)); //-------------
+      setSelectedUser(storedData?.selectedUser?.name);
     }
   }, []);
 
-  // Get locl storage data once saved
+  // step 2 set gochar details and setGochar() --------------------------------------------------------------------------------
   useEffect(() => {
-    const savedData = localStorage.getItem("Astro Data");
+    today != "" && thisTime != "" && fetchGocharData(today, thisTime, lat, lon);
+    // console.log("Step 2 completed");
+  }, [today, thisTime]);
 
-    if (savedData) {
-      const parsedData = JSON.parse(savedData);
-      setLocalData(parsedData?.chart?.dasha);
-      setSelectedUser(parsedData.selectedUser);
-    }
-  }, []);
+  // step 3 fetch data once selectes user in set with Modal event and set complete data object  ------------------------------------------------------------
   useEffect(() => {
-    fetchAstroData();
+    !data && selectedUser?.name && fetchAstroData(selectedUser, gochar);
+    data &&
+      selectedUser?.name != data?.currentUser?.name &&
+      fetchAstroData(selectedUser, gochar);
+    // console.log("Step 3 completed");
   }, [selectedUser]);
 
-  useEffect(() => {
-    setForLocalStorage(data);
-    fetchGocharData(data, today, thisTime, lat, lon);
-  }, [data]);
+  // step 4 set local storage one the data is set -------------------------------------------------------------------------------
 
   useEffect(() => {
-    // To SET data in LOCAL STORAGE ----------------------------------------------------------------------------
-    localStorage.setItem("Astro Data", JSON.stringify(forLocalStorage));
-  }, [forLocalStorage]);
+    // setForLocalStorage({ ...data, gochar });
+    // data && setSelectedUser(data?.selectedUser);
+    // localStorage.setItem("Astro Data", JSON.stringify(data));
+    // console.log(data);
+    // console.log("Step 4 completed");
+  }, [data]);
+
+  // Get locl storage data once saved
+  // useEffect(() => {
+  //   const savedData = localStorage.getItem("Astro Data");
+
+  //   if (savedData) {
+  //     const parsedData = JSON.parse(savedData);
+  //     // setLocalData(parsedData?.chart?.dasha);
+  //   }
+  // }, []);
+
+  // useEffect(() => {
+  //   // To SET data in LOCAL STORAGE ----------------------------------------------------------------------------
+  //   // console.log(forLocalStorage);
+  // }, [forLocalStorage]);
 
   // To UNSET data from LOCAL STORAGE ----------------------------------------------------------------------------
   const unsetClientData = () => {
@@ -192,26 +234,30 @@ const LandingPage = () => {
     setData(null);
   };
 
-  // // get all users ----------------------------------------------
-  // const getAllUsers = async () => {
-  //   const user = await import("../../users.json")
-  //     .then((res) => res.json)
-  //     .then((data) => console.log(data))
-  //     .catch((err) => console.error(err));
-  //   console.log(user);
-  // };
-  // console.log("selectedUser", selectedUser);
-  // console.log("forLocalStorage", forLocalStorage);
-  console.log(today, thisTime);
+  // console.log(selectedUser, data);
 
   return (
-    <div className="av-container">
-      <PageTitle />
-
-      {/* {error && <p className="error-text">{error}</p>} */}
+    <>
+      <PageTitle
+        selectedUser={data?.selectedUser}
+        currentDasha={data?.currentDasha}
+      />
 
       {/* Charts Section */}
-      {data && (
+      {selectedUser?.name == "" && error && (
+        <div className="chart-wrapper">
+          <p className="error-text">{error}</p>
+        </div>
+      )}
+      {selectedUser?.name == "" && !error && (
+        <div className="av-column">
+          <p>Today</p>
+          <h3>{data?.gochar?.chart?.panchang?.vaar}</h3>
+          <h3>{today}</h3>
+          <p>Select kundali or create new Kundali</p>
+        </div>
+      )}
+      {selectedUser?.name != "" && data?.chart && (
         <div className="chart-wrapper">
           <div className="av-column">
             <Chart
@@ -220,14 +266,14 @@ const LandingPage = () => {
               moonRashi={data?.chart?.moonLongitude}
               type="lagna"
             />
-            <div className="username">
+            {/* <div className="username">
               {`${selectedUser?.name} : `}
               <span>{`${selectedUser?.dob}, ${selectedUser?.time}`}</span>
             </div>
             <div className="username">
               Dasha:
               <span>{` ${data?.currentDasha?.dashaLord?.planet} - ${data?.currentDasha?.currentAntarDasha?.planet}: ${dateRearrange(data?.currentDasha?.currentAntarDasha?.start)} - ${dateRearrange(data?.currentDasha?.currentAntarDasha?.end)}`}</span>
-            </div>
+            </div> */}
           </div>
           <div className="av-column">
             {secondChart === "M" && (
@@ -274,26 +320,32 @@ const LandingPage = () => {
           </div>
         </div>
       )}
+
       <div className="controls">
         <ButtonPrimary
-          buttonText={loading ? "Generating..." : "Creat Chart"}
-          onClick={fetchAstroData}
+          buttonText={loading ? "Generating..." : "New Chart"}
+          onClick={() => getThisModal("New charts")}
+
+          // onClick={() => fetchAstroData(selectedUser, data?.currentUser)}
         />
 
         <ButtonPrimary
           buttonText="Select Chart"
-          onClick={() => setModalOpen(true)}
+          onClick={() => getThisModal("Select charts")}
         />
         <ButtonPrimary buttonText="Reset" onClick={unsetClientData} />
       </div>
 
-      {modalOpen && (
+      {modalOpen && modalType == "Select charts" && (
         <SelectUserModal
           setModalOpen={setModalOpen}
           onClick={setSelectedUser}
         />
       )}
-    </div>
+      {modalOpen && modalType == "New charts" && (
+        <ModalNewDetails setModalOpen={setModalOpen} />
+      )}
+    </>
   );
 };
 

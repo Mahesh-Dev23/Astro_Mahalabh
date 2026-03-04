@@ -1,16 +1,19 @@
 @import "../../main.css";
 
 .page-title {
-  display: grid;
+  display: flex;
+  flex-direction: row;
   justify-self: left;
+  align-items: center;
+  gap: 20px;
   width: 100% !important;
-  height: 40px !important;
+  height: 6vh !important;
   align-content: center !important;
   text-align: left !important;
   /* border-bottom: 4px solid var(--primary-color) !important;
   border-radius: 0 0 20px 20px !important; */
   color: var(--primary-color) !important;
-  font-weight: 600 !important;
+  /* font-weight: 600 !important; */
   font-style: normal !important;
   text-transform: capitalize !important;
   background-color: var(--bg-gray);

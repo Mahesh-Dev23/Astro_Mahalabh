@@ -7,7 +7,7 @@ import { dateRearrange } from "../../Modules/dateRearrange.js";
 const Dasha = () => {
   // Data setup
   const [localData, setLocalData] = useState({});
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(null);
   const [dasha, setDasha] = useState(0);
   // const [antDasha, setAntDasha] = useState(0);
   const [dashaStar, setDashaStar] = useState("");
@@ -18,9 +18,9 @@ const Dasha = () => {
 
     if (savedData) {
       const parsedData = JSON.parse(savedData);
-      setData(parsedData.chart.dasha);
+      setData(parsedData?.chart?.dasha);
       setLocalData(parsedData);
-      setDasha(parsedData.currentDasha?.dashaIndex);
+      setDasha(parsedData?.currentDasha?.dashaIndex);
       // console.log(parsedData.chart.dasha);
       // console.log(parsedData.currentDasha.dashaLord.planet);
     }
@@ -94,65 +94,70 @@ const Dasha = () => {
   //     antardashas: data[dasha]?.antardashas[antDasha],
   //   },
   // });
+  // console.log(localData);
 
   return (
-    <div className="av-container">
+    <>
       <PageTitle />
-      <div className="dasha-Wrapper">
-        <div className="dashaCard">
-          <div className="dashaTitle">
-            <div
-              className="dashaLord"
-              style={{ background: `var(--p${data[dasha]?.planet})` }}
-            >
-              {data[dasha]?.planet}
-            </div>
-            <div className="dashaTime">
-              {`${dateRearrange(data[dasha]?.start)} `} &#129030;
-              {` ${dateRearrange(data[dasha]?.end)}`}
-            </div>
-          </div>
-          <div className="antDashaList">
-            {data[dasha]?.antardashas.map((adPlanet, i) => (
+      {data && (
+        <div className="dasha-Wrapper">
+          <div className="dashaCard">
+            <div className="dashaTitle">
               <div
-                className="antarDashaRow"
-                style={{
-                  border:
-                    data[dasha]?.planet ==
-                      localData?.currentDasha?.dashaLord?.planet &&
-                    adPlanet.planet ==
-                      localData.currentDasha?.currentAntarDasha?.planet &&
-                    `2px solid var(--p${data[dasha]?.planet})`,
-                  background:
-                    data[dasha]?.planet ==
-                      localData?.currentDasha?.dashaLord?.planet &&
-                    adPlanet.planet ==
-                      localData.currentDasha?.currentAntarDasha?.planet &&
-                    `rgb(from var({--bg-card}) r g b / var(--no-opacity))`,
-                }}
+                className="dashaLord"
+                style={{ background: `var(--p${data[dasha]?.planet})` }}
               >
+                {data[dasha]?.planet}
+              </div>
+              <div className="dashaTime">
+                {`${dateRearrange(data[dasha]?.start)} `} &#129030;
+                {` ${dateRearrange(data[dasha]?.end)}`}
+              </div>
+            </div>
+            <div className="antDashaList">
+              {data[dasha]?.antardashas.map((adPlanet, i) => (
                 <div
-                  className="antarDashaLord"
+                  className="antarDashaRow"
                   style={{
-                    background: `var(--p${adPlanet.planet})`,
+                    border:
+                      data[dasha]?.planet ==
+                        localData?.currentDasha?.dashaLord?.planet &&
+                      adPlanet.planet ==
+                        localData.currentDasha?.currentAntarDasha?.planet &&
+                      `2px solid var(--p${data[dasha]?.planet})`,
+                    background:
+                      data[dasha]?.planet ==
+                        localData?.currentDasha?.dashaLord?.planet &&
+                      adPlanet.planet ==
+                        localData.currentDasha?.currentAntarDasha?.planet &&
+                      `rgb(from var({--bg-card}) r g b / var(--no-opacity))`,
                   }}
                 >
-                  {adPlanet.planet}
+                  <div
+                    className="antarDashaLord"
+                    style={{
+                      background: `var(--p${adPlanet.planet})`,
+                    }}
+                  >
+                    {adPlanet.planet}
+                  </div>
+                  <div className="antDashsDates">
+                    {`${dateRearrange(adPlanet.start)}  `} &#129030;
+                    {` ${dateRearrange(adPlanet.end)}`}
+                  </div>
                 </div>
-                <div className="antDashsDates">
-                  {`${dateRearrange(adPlanet.start)}  `} &#129030;
-                  {` ${dateRearrange(adPlanet.end)}`}
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
-      </div>
+      )}
       <div
         className="controls"
-        style={{ borderTop: `1px solid var(--p${data[dasha]?.planet})` }}
+        style={{
+          borderTop: `1px solid var(--p${data && data[dasha]?.planet})`,
+        }}
       >
-        {data.map((p, i) => (
+        {data?.map((p, i) => (
           <div
             key={p.planet}
             onClick={() => setDasha(i)}
@@ -174,7 +179,7 @@ const Dasha = () => {
           </div>
         ))}
       </div>
-    </div>
+    </>
   );
 };
 

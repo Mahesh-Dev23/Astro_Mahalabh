@@ -21,11 +21,10 @@ function App() {
     <BrowserRouter basename="/Astro_Mahalabh">
       <div className="app-container">
         <Header />
-
         <main className="pages">
           <Routes>
-            <Route path="/" element={<Navigate to="/lagna" />} />
-            <Route path="/lagna" element={<LandingPage />} />
+            <Route path="/" element={<Navigate to="/kundali" />} />
+            <Route path="/kundali" element={<LandingPage />} />
             <Route path="/gochar" element={<Gochar />} />
             <Route path="/gemini" element={<Gemini />} />
             <Route path="/match" element={<Match />} />
@@ -40,7 +39,6 @@ function App() {
             <Route path="*" element={<Navigate to="/404" />} />
           </Routes>
         </main>
-
         <Footer />
       </div>
     </BrowserRouter>

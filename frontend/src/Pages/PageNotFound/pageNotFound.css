@@ -1,12 +1,20 @@
 @import "../../main.css";
 
 .pageNotFound {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-    background-color: #f0f0f0 !important;
-    min-height: 90dvh !important;
+  width: 50%;
+  height: 300px;
+  padding: 50px;
+  margin-top: 20vh;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  background-color: var(--gray) !important;
+  /* min-height: 90dvh !important; */
+  border: 1px solid var(--gold);
+  border-radius: 20px;
+  align-self: center;
+  justify-self: center;
 }

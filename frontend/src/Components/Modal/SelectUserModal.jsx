@@ -32,7 +32,7 @@ const SelectUserModal = ({ setModalOpen, onClick }) => {
       className="modal-overlay av-container"
       onClick={() => setModalOpen(false)}
     >
-      <div> Get Users</div>
+      {/* <div> Get Users</div> */}
       <div className="chart-wrapper">
         {names &&
           names.map((name) => (

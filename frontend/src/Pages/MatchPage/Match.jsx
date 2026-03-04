@@ -17,7 +17,7 @@ const Match = () => {
   console.log(data);
 
   return (
-    <div className="av-container">
+    <>
       <PageTitle />
       <div className="chart-wrapper">
         <div className="match-column">
@@ -81,7 +81,7 @@ const Match = () => {
         </div> */}
         <div className="match-column">1</div>
       </div>
-    </div>
+    </>
   );
 };
 

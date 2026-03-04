@@ -10,18 +10,17 @@ const logo_title = "Astro Mahalabh";
 
 // Add your navigation tabs with their URL addresses here
 const navigationTabs = {
-  lagna: "/lagna",
+  kundali: "/kundali",
   gochar: "/gochar",
   sarvashtak: "/sarvashtak",
   gemini: "/gemini",
   match: "/match",
   yogs: "/yogs",
   dasha: "/dasha",
-  panchang: "/panchang"
-}
+  panchang: "/panchang",
+};
 
 const Header = () => {
-
   const location = useLocation();
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -33,19 +32,18 @@ const Header = () => {
         </div>
 
         <div className="nav-buttons">
-          {
-            Object.keys(navigationTabs).map((tab, index) => {
-              const isActive = location.pathname === navigationTabs[tab];
+          {Object.keys(navigationTabs).map((tab, index) => {
+            const isActive = location.pathname === navigationTabs[tab];
 
-              return (
-                <ButtonPrimary
-                  key={index}
-                  buttonText={tab}
-                  url={navigationTabs[tab]}
-                  className={isActive ? "active-tab" : ""}
-                />
-              );
-            })}
+            return (
+              <ButtonPrimary
+                key={index}
+                buttonText={tab}
+                url={navigationTabs[tab]}
+                className={isActive ? "active-tab" : ""}
+              />
+            );
+          })}
 
           <ButtonPrimary
             buttonText="New"
@@ -59,13 +57,9 @@ const Header = () => {
         </div>
       </div>
 
-      {
-        modalOpen && (
-          <ModalNewDetails setModalOpen={setModalOpen} />
-        )
-      }
+      {modalOpen && <ModalNewDetails setModalOpen={setModalOpen} />}
     </>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

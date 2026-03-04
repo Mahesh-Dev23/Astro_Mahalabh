@@ -52,7 +52,7 @@ const NorthIndianSAVChart = ({
   // ];
 
   return (
-    <div>
+    <>
       <svg
         width="400"
         height="400"
@@ -143,7 +143,7 @@ const NorthIndianSAVChart = ({
           {getRashiForHouse(1)}
         </text> */}
       </svg>
-    </div>
+    </>
     // <div
     //   style={{
     //     width: "300",
