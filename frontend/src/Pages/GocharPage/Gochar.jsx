@@ -6,13 +6,13 @@ import ButtonPrimary from "../../Components/Buttons/ButtonPrimary.jsx";
 
 const Gochar = () => {
   // Data setup
-  const [data, setData] = useState({});
+  const [data, setData] = useState(null);
   useEffect(() => {
-    const savedData = localStorage.getItem("Astro Data");
+    const savedData = localStorage.getItem("Gochar Data");
 
     if (savedData) {
       const parsedData = JSON.parse(savedData);
-      setData(parsedData?.gochar);
+      setData(parsedData);
     }
   }, []);
 

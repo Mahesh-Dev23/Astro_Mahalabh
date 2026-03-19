@@ -7,6 +7,7 @@ import Footer from "./Components/Footer/Footer.jsx";
 
 // Pages
 import LandingPage from "./Pages/LandingPage/LandingPage.jsx";
+import Kundali from "./Pages/LandingPage/Kundali.jsx";
 import Gochar from "./Pages/GocharPage/Gochar.jsx";
 import Sarvashtak from "./Pages/SarvashtakPage/Sarvashtak.jsx";
 import Gemini from "./Pages/GeminiPage/Gemini.jsx";
@@ -19,12 +20,13 @@ import PageNotFound from "./Pages/PageNotFound/PageNotFound.jsx";
 function App() {
   return (
     <BrowserRouter basename="/Astro_Mahalabh">
-      <div className="app-container">
+      <div className="app-container" id="main">
         <Header />
         <main className="pages">
           <Routes>
             <Route path="/" element={<Navigate to="/kundali" />} />
             <Route path="/kundali" element={<LandingPage />} />
+            {/* <Route path="/kundali" element={<Kundali />} /> */}
             <Route path="/gochar" element={<Gochar />} />
             <Route path="/gemini" element={<Gemini />} />
             <Route path="/match" element={<Match />} />

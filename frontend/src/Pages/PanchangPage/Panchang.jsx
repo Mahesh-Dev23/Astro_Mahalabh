@@ -6,35 +6,72 @@ const Panchang = () => {
   // Data setup
   const [data, setData] = useState(null);
   const [objectData, setObjectData] = useState([]);
+
+  const [dataKeys, setDataKeys] = useState([]);
+  const [sectionKeys, setSectionKeys] = useState([]);
   useEffect(() => {
     const savedData = localStorage.getItem("Astro Data");
 
     if (savedData) {
       const parsedData = JSON.parse(savedData);
-
+      console.log(parsedData?.chart?.panchang);
       setData(parsedData?.chart?.panchang);
     }
   }, []);
   useEffect(() => {
     // data?.chart?.panchan && setObjectData(Object.keys(data?.chart?.panchang));
   }, [data]);
+  useEffect(() => {
+    data && setDataKeys(Object.keys(data));
+  }, [data]);
 
-  console.log(data?.chart?.panchang);
+  useEffect(() => {
+    let sectionArray = [];
+    dataKeys.map((sec) => sectionArray.push(Object.keys(data[sec])));
+    // console.log(sectionArray);
+    setSectionKeys(sectionArray);
+  }, [dataKeys]);
+
+  // console.log(data?.chart);
 
   return (
     <>
       <PageTitle />
-      {data && (
+      {data == null ? (
+        <></>
+      ) : (
         <div className="chart-wrapper">
-          <div className="planetList">
-            {data &&
-              data?.chart?.panchang.map((object) => (
-                <div className="panchangRow">
-                  <div className="panchangSubTitle">{object}</div>
-                  <div className="panchangSubValue">{data[object]}</div>
-                </div>
-              ))}
-          </div>
+          {data &&
+            dataKeys &&
+            sectionKeys?.map((sec, i) => (
+              <div className="planetList">
+                <div className="panchangSectionTitle">{`${dataKeys[i]}`}</div>
+                {sec.map((s, index) => (
+                  <div className="panchangRow">
+                    <div className="panchangSubTitle">{`${s}`}</div>
+
+                    <div className="panchangSubValue">
+                      {typeof data[dataKeys[i]][s] != "object" ? (
+                        ` ${data[dataKeys[i]][s]}`
+                      ) : (
+                        <>
+                          {data &&
+                            dataKeys &&
+                            Object.keys(data && data[dataKeys[i]][s])?.map(
+                              (ky) => (
+                                <div className="panchangSubValue">
+                                  {<span>{`${ky}`}</span>}
+                                  {`: ${data[dataKeys[i]][s][ky]}`}
+                                </div>
+                              ),
+                            )}
+                        </>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ))}
         </div>
       )}
     </>

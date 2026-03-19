@@ -26,5 +26,47 @@
     "place": "Mumbai",
     "lat": "19.07",
     "lon": "72.87"
+  },
+  "Sunil Narvekar": {
+    "dob": "1973-12-23",
+    "time": "03:20",
+    "place": "Mumbai",
+    "lat": "19.07",
+    "lon": "72.87"
+  },
+  "Shyamal Narvekar": {
+    "dob": "1975-07-20",
+    "time": "05:50",
+    "place": "Mumbai",
+    "lat": "19.07",
+    "lon": "72.87"
+  },
+  "Bhargavi Pednekar": {
+    "dob": "2002-06-16",
+    "time": "13:55",
+    "place": "Mumbai",
+    "lat": "19.07",
+    "lon": "72.87"
+  },
+  "Rajesh Pednekar": {
+    "dob": "1968-07-04",
+    "time": "15:10",
+    "place": "Mumbai",
+    "lat": "19.07",
+    "lon": "72.87"
+  },
+  "Ruchi Pednekar": {
+    "dob": "1973-12-16",
+    "time": "15:35",
+    "place": "Mumbai",
+    "lat": "19.07",
+    "lon": "72.87"
+  },
+  "Manoj Pansare": {
+    "dob": "1971-06-24",
+    "time": "00:02",
+    "place": "Mumbai",
+    "lat": "19.07",
+    "lon": "72.87"
   }
 }

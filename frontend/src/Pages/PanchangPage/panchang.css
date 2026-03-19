@@ -3,7 +3,7 @@
 .panchangRow {
   width: auto;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   gap: 1px;
   /* border-bottom: 1px solid var(--pKetu); */
   padding-right: 10px;
@@ -13,10 +13,20 @@
   border-radius: 5px;
   padding: 5px 10px;
 }
-.panchangSubTitle {
+.panchangSectionTitle {
   color: var(--text-main);
   width: 110px;
+  text-transform: capitalize;
+  font-weight: bold;
 }
-.panchangSubValue {
+.panchangSubTitle,
+.panchangSubValue span {
+  color: var(--text-main);
+  width: 110px;
+  text-transform: capitalize;
+  font-size: 12px;
+}
+.panchangSubValue,
+.panchangSubValue span div {
   color: var(--primary-color);
 }

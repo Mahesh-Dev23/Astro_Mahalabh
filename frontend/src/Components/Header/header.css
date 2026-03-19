@@ -3,14 +3,14 @@
 .navbar {
   height: 7vh;
   display: flex;
-  /* grid-template-columns: 10% 75% 15%; */
-  justify-content: start;
+
+  /* justify-content: start;
   align-items: top;
-  align-self: stretch;
+  align-self: stretch; */
   background-color: var(--bg-gray) !important;
-  /* height: 80px !important; */
+
   padding: 0 10px !important;
-  border-bottom: 2px solid var(--gold) !important;
+  border-bottom: 1px solid var(--gold) !important;
   gap: 10px;
 
   /* Animation */
@@ -21,19 +21,21 @@
 .logo-container {
   height: 100% !important;
   width: 100% !important;
-  align-content: center;
+  align-content: start;
   justify-self: right;
-  padding-top: 5px;
+  font-size: 14px !important;
+  color: var(--primary-color) !important;
+  /* padding-top: 5px; */
 }
 
 .logo {
-  width: 100% !important;
-  font-size: 20px !important;
+  width: 40% !important;
+  font-size: 14px !important;
   color: var(--primary-color) !important;
-  font-style: italic !important;
-  border-radius: 40px;
+  /* font-style: italic !important; */
+  /* border-radius: 40px; */
   /* border: 1.6px solid var(--primary-color); */
-  padding: 4px !important;
+  /* padding: 4px !important; */
   text-align: center;
   cursor: grab !important;
 
@@ -49,10 +51,11 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
+  align-items: start;
   width: 100% !important;
   height: 100% !important;
   gap: 2px;
+  padding: 0;
 
   /* Animation */
   opacity: 0;

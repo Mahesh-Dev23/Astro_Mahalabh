@@ -5,11 +5,15 @@ import ButtonPrimary from "../Buttons/ButtonPrimary";
 // Dynmaic places for select dropdown
 const places = ["Mumbai", "Delhi", "Ahmedabad", "Bangalore"];
 
-const ModalNewDetails = ({ setModalOpen }) => {
+const ModalNewDetails = ({ setModalOpen, onClick }) => {
   const [formData, setFormData] = useState({
     name: "",
     dob: "",
-    place: "",
+    h: "00",
+    m: "00",
+    // place: "",
+    // refer: "",
+    // family: [],
   });
 
   const [error, setError] = useState("");
@@ -46,11 +50,11 @@ const ModalNewDetails = ({ setModalOpen }) => {
       return;
     }
 
-    // Place validation
-    if (!formData.place) {
-      setError("Please select a place");
-      return;
-    }
+    // // Place validation
+    // if (!formData.place) {
+    //   setError("Please select a place");
+    //   return;
+    // }
 
     // If everything valid
     setError("");
@@ -58,12 +62,16 @@ const ModalNewDetails = ({ setModalOpen }) => {
     const payload = {
       name: formData.name.trim(),
       dob: formData.dob,
-      place: formData.place,
-      createdAt: new Date().toISOString(),
+      time: `${formData.h}:${formData.m}:00`,
+      // place: formData.place,
+      // createdAt: new Date().toISOString(),
+      // refer: "",
+      // family: [],
     };
 
-    console.log("Final Payload:", payload);
+    // console.log("Final Payload:", payload);
 
+    onClick(payload);
     setModalOpen(false);
   };
 
@@ -89,8 +97,23 @@ const ModalNewDetails = ({ setModalOpen }) => {
             value={formData.dob}
             onChange={handleChange}
           />
+          {/* TIme */}
+          <input
+            type="text"
+            name="h"
+            className="modal-input"
+            value={formData.h}
+            onChange={handleChange}
+          />
+          <input
+            type="text"
+            name="m"
+            className="modal-input"
+            value={formData.m}
+            onChange={handleChange}
+          />
 
-          {/* Place Select */}
+          {/* Place Select
           <select
             name="place"
             className="modal-input"
@@ -104,7 +127,31 @@ const ModalNewDetails = ({ setModalOpen }) => {
                 {city}
               </option>
             ))}
-          </select>
+          </select> */}
+          {/* Reference */}
+          {/* <input
+            type="text"
+            name="refer"
+            placeholder="Refernce"
+            className="modal-input"
+            value={formData.refer}
+            onChange={handleChange}
+          /> */}
+          {/* family */}
+          {/* <select
+            name="family"
+            className="modal-input"
+            value={formData.family}
+            onChange={handleChange}
+          >
+            <option value="">Select Names</option>
+
+            {places.map((city, index) => (
+              <option key={index} value={city}>
+                {city}
+              </option>
+            ))}
+          </select> */}
         </div>
         <button className="modal-close" onClick={() => setModalOpen(false)}>
           &#10006;

@@ -110,10 +110,10 @@ function Ashtakvarg({ planets, lagna }) {
     setData(finalData);
   }, [planets, lagna]);
 
-  //   console.log("ashtakvarag ", data);
+  console.log("ashtakvarag ", data);
   return (
     <>
-      <AshtakavargaDashboard avData={data} />
+      <AshtakavargaDashboard avData={data} lagna={lagna} />
     </>
   );
 }

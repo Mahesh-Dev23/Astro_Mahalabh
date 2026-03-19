@@ -49,7 +49,7 @@ const Chart = ({ lagnaRashi = 1, planets = [], moonRashi, type }) => {
         width="400"
         height="400"
         viewBox="0 0 400 400"
-        className="border-2 border-gray-800 bg-white"
+        // className="border-2 border-gray-800 bg-white"
       >
         {/* Outer Border */}
         <rect
@@ -57,7 +57,7 @@ const Chart = ({ lagnaRashi = 1, planets = [], moonRashi, type }) => {
           y="0"
           width="400"
           height="400"
-          fill={`var(--bg-light)`}
+          fill={`rgb(from var(--bg-light) r g b / var(--opacity-level))`}
           stroke={`var(--gold)`}
           strokeWidth="1"
         />

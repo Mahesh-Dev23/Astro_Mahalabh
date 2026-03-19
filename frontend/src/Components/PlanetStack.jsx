@@ -51,19 +51,14 @@ const PlanetStack = ({ house, pList, type }) => {
             fill: `var(--p${planet.name})`,
             fontFamily: "sans-serif",
             height: "30px",
+            fontWeight: "600",
 
             // lineHeight: 20,
           }}
         >
           {/* {`${planet.name.substring(0, 2)} ${type == "nav" ? "" : planet.degreeInRashi.toFixed(2)}`} */}
-          {`${planet.name.substring(0, 2)}`}
-
-          {/* {planet.isRetro && (
-            <tspan fill="var(--retro-color)" fontSize="9">
-              {" "}
-              (Rx)
-            </tspan>
-          )} */}
+          {planet.isRetro && `◀ `} {`${planet.name.substring(0, 2)}`}
+          {planet.isCombust && ` ■`}
         </text>
       ))}
     </g>

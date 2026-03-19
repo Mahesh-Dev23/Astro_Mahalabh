@@ -95,7 +95,7 @@ const Gemini = () => {
                     background: `var(--p${planetList[i]?.name})`,
                   }}
                 >
-                  {`${planetList[i]?.name} ${planetList[i]?.degreeInRashi.toFixed(2)}`}
+                  {`${planetList[i]?.name} ${planetList[i]?.degreeInRashi}`}
                 </div>
               </div>
             ))}

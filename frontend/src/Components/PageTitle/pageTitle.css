@@ -5,6 +5,7 @@
   flex-direction: row;
   justify-self: left;
   align-items: center;
+  justify-content: space-between;
   gap: 20px;
   width: 100% !important;
   height: 6vh !important;
@@ -12,10 +13,23 @@
   text-align: left !important;
   /* border-bottom: 4px solid var(--primary-color) !important;
   border-radius: 0 0 20px 20px !important; */
-  color: var(--primary-color) !important;
+  color: var(--text-main) !important;
+  font-size: 14px;
   /* font-weight: 600 !important; */
   font-style: normal !important;
   text-transform: capitalize !important;
   background-color: var(--bg-gray);
-  padding-left: 20px;
+  padding: 0 20px;
+  /* border: 1px solid red; */
+}
+
+.currentTime {
+  font-size: 14px;
+  color: var(--primary-color);
+  text-align: center;
+  font-weight: 600;
+  background: var(--gold);
+  padding: 3px 6px;
+  border-radius: 5px;
+  justify-self: end;
 }

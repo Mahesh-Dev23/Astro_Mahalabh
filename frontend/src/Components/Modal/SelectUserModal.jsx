@@ -28,12 +28,9 @@ const SelectUserModal = ({ setModalOpen, onClick }) => {
   };
   // console.log(data);
   return (
-    <div
-      className="modal-overlay av-container"
-      onClick={() => setModalOpen(false)}
-    >
+    <div className="modal-overlay " onClick={() => setModalOpen(false)}>
       {/* <div> Get Users</div> */}
-      <div className="chart-wrapper">
+      <div className="chart-wrapper" style={{ flexWrap: "wrap" }}>
         {names &&
           names.map((name) => (
             <div key={name.trim(" ")}>

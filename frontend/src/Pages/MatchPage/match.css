@@ -1,1 +1,35 @@
 @import "../../main.css";
+
+.match-column {
+  width: 50%;
+  height: 100%;
+  align-self: stretch;
+  justify-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  /* align-items: start; */
+  /* border: 1px solid red; */
+  padding: 0;
+  /* gap: 10px; */
+}
+
+.matchRow {
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  /* border-bottom: 1px solid var(--pKetu); */
+  padding-right: 10px;
+  padding-bottom: 0;
+  /* background-color: var(--bg-card), var(--opacity-level); */
+  background-color: rgb(from var(--bg-light) r g b / var(--opacity-level));
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+.matchTitle {
+  font-weight: bold;
+  color: var(--text-main) !important;
+  font-size: 14px;
+}

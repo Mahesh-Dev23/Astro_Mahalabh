@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "../../main.css";
 import NorthIndianSAVChart from "../NorthIndianSAVChart"; // Your existing component
 
-const AshtakavargaDashboard = ({ avData }) => {
+const AshtakavargaDashboard = ({ avData, lagna }) => {
   // 'total' represents SAV, others (sun, moon, etc.) represent BAV
   const [activeView, setActiveView] = useState("total");
   const [activeColor, setActiveColor] = useState("Total");
@@ -40,6 +40,7 @@ const AshtakavargaDashboard = ({ avData }) => {
         : setActiveColor(`p${stateColor}`);
   }, [activeView, avData]);
   // console.log("activeView ", activeView, `var(--${activeColor})`);
+  console.log("Sav Asc", avData);
 
   return (
     <>
@@ -50,7 +51,7 @@ const AshtakavargaDashboard = ({ avData }) => {
       >
         <NorthIndianSAVChart
           points={avData?.[activeView]}
-          ascendantSign={avData?.ascendant}
+          ascendantSign={lagna}
           title="Sarvashtakavarga"
           color={activeColor}
         />

@@ -2,7 +2,8 @@ import "./pageTitle.css";
 import { useLocation } from "react-router-dom";
 import { dateRearrange } from "../../Modules/dateRearrange";
 
-const PageTitle = ({ selectedUser, currentDasha }) => {
+const PageTitle = ({ selectedUser, currentDasha, time }) => {
+  // console.log(time);
   const location = useLocation();
   const pathTitle = location.pathname.split("/").pop();
 
@@ -14,13 +15,12 @@ const PageTitle = ({ selectedUser, currentDasha }) => {
           <div className="username">
             {`${selectedUser?.name} : `}
             <span>{`${dateRearrange(selectedUser?.dob)}, ${selectedUser?.time}`}</span>
-          </div>
-          <div className="username">
-            Dasha:
+            {"  Dasha:"}
             <span>{` ${currentDasha?.dashaLord?.planet} - ${currentDasha?.currentAntarDasha?.planet}: ${dateRearrange(currentDasha?.currentAntarDasha?.start)} - ${dateRearrange(currentDasha?.currentAntarDasha?.end)}`}</span>
           </div>
         </>
       )}
+      <div className="currentTime">{time}</div>
     </div>
   );
 };

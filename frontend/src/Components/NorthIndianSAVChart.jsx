@@ -1,7 +1,7 @@
 import "../main.css";
 const NorthIndianSAVChart = ({
   points = [], // The 12-length array (SAV or BAV)
-  ascendantSign = 1, // The Rashi number for the 1st house
+  ascendantSign, // The Rashi number for the 1st house
   title = "Sarvashtakavarga",
   color,
 }) => {
@@ -16,7 +16,7 @@ const NorthIndianSAVChart = ({
   const getBgColor = (val) => {
     if (val === 0) return "transparent";
     if (val >= 5) return "rgba(76, 175, 80, 1)"; // Green tint
-    if (val < 3) return "rgba(244, 67, 54, 1)"; // Red tint
+    if (val < 4) return "rgba(244, 67, 54, 1)"; // Red tint
     return "#1a237e";
   };
 
@@ -64,7 +64,7 @@ const NorthIndianSAVChart = ({
           y="0"
           width="400"
           height="400"
-          fill={`var(--background)`}
+          fill={`rgb(from var(--bg-light) r g b / var(--opacity-level))`}
           stroke={`var(--${color})`}
           strokeWidth="1"
         />

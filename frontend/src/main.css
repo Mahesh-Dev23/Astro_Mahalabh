@@ -4,7 +4,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Inter", sans-serif !important;
+  font-family: "Segoe UI", sans-serif !important;
 }
 
 :root {
@@ -13,9 +13,9 @@
   --background: #fff9f2;
   --bg-card: #ffffff;
   --bg-main: #e8e0b6;
-  --bg-light: #fff6c9;
-  --bg-gray: #d7cfa8;
-  --gold: #caa800;
+  --bg-light: #fcf5d3;
+  --bg-gray: #e3d9b1;
+  --gold: #dcc053;
   --bg-active: #f8faff;
   --text-main: #1f2937;
   --text-muted: #a6a6a6;
@@ -26,13 +26,14 @@
   --transit-color: #3b82f6;
   --retro-color: #ef4444;
   --success: #10b981;
-  --pSun: #ff8c00;
-  --pMoon: #0090dd;
-  --pMars: #d11500;
-  --pMercury: #009708;
-  --pJupiter: #ebbc00;
-  --pVenus: #ff1d74;
-  --pSaturn: #000453;
+  --pSun: #ef982f;
+  --pMoon: #2f98d1;
+  --pMars: #d23220;
+  --pMercury: #1c9722;
+  --pJupiter: #d7b239; /*#c3a633*/
+  /* --pJupiter: #b99504; */
+  --pVenus: #d63573;
+  --pSaturn: #3c167a;
   --pRahu: #3a3a39;
   --pKetu: #6b7280;
   --pUranus: #6b7280;
@@ -53,6 +54,8 @@ body {
   height: 100% !important;
   font-family: "Inter", sans-serif !important;
   background: var(--bg-main);
+  padding: 0;
+  margin: 0;
   /* overflow-x: hidden !important; */
 }
 .app-container {
@@ -133,7 +136,7 @@ button {
 input,
 select {
   font-family: "Inter", sans-serif !important;
-  color: var(--accent-color) !important;
+  color: var(--gold) !important;
   border: 1px solid var(--primary-color) !important;
   background-color: rgb(from var(--bg-card) r g b / var(--opacity-level));
   font-size: 16px !important;
@@ -152,11 +155,11 @@ select {
 }
 
 input::placeholder {
-  color: var(--accent-color) !important;
+  color: var(--gold) !important;
 }
 
 select::placeholder {
-  color: var(--accent-color) !important;
+  color: var(--primary-color) !important;
 }
 
 input:focus {
@@ -402,21 +405,19 @@ select:focus {
   display: flex;
   flex-direction: row;
   gap: 1px;
-  border-bottom: 1px solid var(--pKetu);
+  /* border-bottom: 1px solid var(--pKetu); */
   padding-right: 10px;
   padding-bottom: 0;
   /* background-color: var(--bg-card), var(--opacity-level); */
-  background-color: rgb(from var(--bg-card) r g b / var(--opacity-level));
+  background-color: rgb(from var(--bg-light) r g b / var(--opacity-level));
+  border-radius: 5px;
 }
 
 .pname {
-  /* width: 70px;
-  padding: 0 5px;
-  color: var(--text-main); */
-  width: 100px;
-  border-radius: 5px 5px 0 0;
+  width: 150px;
+  border-radius: 5px;
   color: var(--bg-card);
-  padding: 8px;
+  padding: 12px;
   text-align: center;
 }
 
@@ -428,20 +429,20 @@ select:focus {
 
 .pnakshatra {
   width: auto;
-  padding-top: 8px;
+  padding: 12px;
   color: var(--text-muted);
   display: flex;
   flex-direction: row;
 }
 .nPada {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   margin-left: 10px;
   margin-right: 10px;
   border-radius: 10px;
   font-size: 12px;
   font-weight: bold;
-  padding: 2px 0;
+  padding: 1px 0;
   color: var(--bg-active);
   text-align: center;
 }
@@ -470,29 +471,18 @@ select:focus {
 }
 
 .housenode {
-  fill: var(--primary-color);
+  fill: var(--gold);
+  font-size: 14px;
+  font-weight: bold;
 }
 
-.match-column {
-  width: 50%;
-  height: 100%;
-  align-self: stretch;
-  justify-self: stretch;
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  /* align-items: start; */
-  border: 1px solid red;
-  padding: 0;
-  /* gap: 10px; */
-}
 .username {
-  font-size: 16px;
+  font-size: 14px;
   color: var(--primary-color);
   text-align: center;
 }
 .username span {
-  font-size: 16px;
+  font-size: 14px;
   color: var(--text-main);
   text-align: center;
 }
@@ -543,12 +533,13 @@ select:focus {
   /* border: 1px solid green; */
   min-height: 74vh;
   /* width: max-content; */
-  justify-self: center;
+
   align-self: stretch;
   display: flex;
   flex-direction: row;
   gap: 20px;
   justify-content: center;
+  align-items: start;
 
   padding: 20px;
 }
@@ -584,4 +575,14 @@ select:focus {
 .reportSubValue {
   color: var(--primary-color);
   padding-right: 5px;
+}
+.highlight {
+  font-size: 14px;
+  color: var(--primary-color);
+  text-align: center;
+  font-weight: 600;
+  background: var(--gold);
+  padding: 3px 6px;
+  border-radius: 5px;
+  justify-self: end;
 }

@@ -2,12 +2,13 @@
 
 .search-box {
   height: 40px !important;
+  max-width: 250px;
   /* min-width: 100px !important; */
   padding: 14px;
   display: flex;
   justify-self: center !important;
-  background-color: rgb(from var(--bg-card) r g b / var(--opacity-level));
-  color: var(--bg-main);
+  background-color: rgb(from var(--bg-light) r g b / var(--opacity-level));
+  color: var(--gold);
 }
 
 /* Responsive - Laptop screens  ------------------------------------------------------------- */
