@@ -44,7 +44,7 @@ export function getNavamshaSign(lagnaDegree, planets) {
     return {
       name: p.name,
       rashi: getD9Sign(p.longitude),
-      degreeInRashi: p.degreeInRashi,
+      degree: p.degree,
       //   rashi: Math.floor(degree / 30) + 1,
       //   degreeInRashi: degree % 30,
       //   longitude: degree,

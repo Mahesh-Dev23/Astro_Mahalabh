@@ -29,7 +29,15 @@ export async function getPanchang({ date, time, tz, lat, lon }) {
     const swe = new swisseph(); // Await initialization
 
     await swe.initSwissEph();
-    swe.set_sid_mode(swe.SE_SIDM_LAHIRI, 0, 0);
+    swe.set_sid_mode(swe.SE_SIDM_LAHIRI, 0, 0); // most accurate
+    // swe.set_sid_mode(swe.SE_SIDM_KRISHNAMURTI, 0, 0);
+    swe.set_topo(lon, lat, 0);
+
+    const flags =
+      swe.SEFLG_SWIEPH | // Swiss Ephemeris
+      swe.SEFLG_SIDEREAL | // VERY IMPORTANT
+      swe.SEFLG_SPEED |
+      swe.SEFLG_TOPOCTR;
 
     return new Promise((resolve) => {
       setTimeout(() => {

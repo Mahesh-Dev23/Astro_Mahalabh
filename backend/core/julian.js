@@ -15,7 +15,8 @@ export function getJulianDay(swe, date, time, timezone) {
   const ut = Number(localHours) - Number(timezone);
 
   // console.log("Julian.js", localHours, timezone, ut);
-  const jd = swe.julday(y, m, d, ut, swe.SE_GREG_CAL);
+  // const jd = swe.julday(y, m, d, ut, swe.SE_GREG_CAL);//
+  const jd = swe.julday(y, m, d, ut);
 
   return jd;
 }

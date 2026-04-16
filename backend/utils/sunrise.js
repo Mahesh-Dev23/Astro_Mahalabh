@@ -4,7 +4,7 @@ export async function getSunriseSunset({ lat, lon, sunLon }) {
   const rad = Math.PI / 180;
   const deg = 180 / Math.PI;
 
-  const obliq = 23.4397 * rad;
+  const obliq = 23.4397 * rad; // 23.4392911 * rad;
   const lambda = sunLon * rad;
 
   // Sun declination

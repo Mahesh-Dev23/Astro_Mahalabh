@@ -4,7 +4,7 @@ export function getRashi(longitude) {
   // console.log(RASHI_NAMES[index]);
 
   return {
-    name: RASHI_NAMES[index],
+    name: RASHI_NAMES[index - 1],
     degree: longitude % 30,
     rashi: index == 0 ? 12 : index,
   };
