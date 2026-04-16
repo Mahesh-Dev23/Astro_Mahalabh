@@ -40,7 +40,7 @@ const AshtakavargaDashboard = ({ avData, lagna }) => {
         : setActiveColor(`p${stateColor}`);
   }, [activeView, avData]);
   // console.log("activeView ", activeView, `var(--${activeColor})`);
-  console.log("Sav Asc", avData);
+  // console.log("Sav Asc", avData);
 
   return (
     <>

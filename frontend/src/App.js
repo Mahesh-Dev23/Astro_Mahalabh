@@ -16,6 +16,8 @@ import Yogs from "./Pages/YogsPage/Yogs.jsx";
 import Dasha from "./Pages/DashaPage/Dasha.jsx";
 import Panchang from "./Pages/PanchangPage/Panchang.jsx";
 import PageNotFound from "./Pages/PageNotFound/PageNotFound.jsx";
+import { Talika } from "./Pages/TalikaPage/Talika.jsx";
+import Analysis from "./Pages/Analysis/Analysis.jsx";
 
 function App() {
   return (
@@ -34,6 +36,8 @@ function App() {
             <Route path="/dasha" element={<Dasha />} />
             <Route path="/panchang" element={<Panchang />} />
             <Route path="/sarvashtak" element={<Sarvashtak />} />
+            <Route path="/talika" element={<Talika />} />
+            <Route path="/analysis" element={<Analysis />} />
 
             {/* <Route path="/search/:search-elements" element={<Search />} /> */}
 

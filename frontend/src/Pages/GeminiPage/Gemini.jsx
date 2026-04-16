@@ -8,6 +8,7 @@ import "../../main.css";
 const Gemini = () => {
   // Data setup
   const [data, setData] = useState(null);
+  const [gochar, setGochar] = useState(null);
   const [planetList, setPlanetList] = useState([]);
   const [yuti, setYuti] = useState([]);
   const karakGemini = [
@@ -30,10 +31,16 @@ const Gemini = () => {
         if (i < 7) return p;
       });
       sevenPlanets?.sort(function (a, b) {
-        return b.degreeInRashi - a.degreeInRashi;
+        return b.degree - a.degree;
       });
       setPlanetList(sevenPlanets);
       // console.log("parsedData ", sevenPlanets);
+    }
+    const gocharData = localStorage.getItem("Gochar Data");
+
+    if (gocharData) {
+      const parsedData = JSON.parse(gocharData);
+      setGochar(parsedData);
     }
   }, []);
   // console.log("planetList", planetList);
@@ -41,33 +48,33 @@ const Gemini = () => {
     // console.log("sevenPlanets ", planetList);
     let yutiInRashi = [];
     planetList?.map((p) => yutiInRashi.push(p.rashi));
-    // for (let x = 0; x < planetList.length; x++) {
-    //   // planetList.map((p) => p.rashi == x + 1 && yutiInRashi.push(p.rashi));
-    //   planetList.map((p) => yutiInRashi.push(p.rashi));
-    // }
+
     // console.log(yutiInRashi);// ---------------
     let karakYuti = [];
     for (let y = 0; y < yutiInRashi.length; y++) {
       // console.log(yutiInRashi[y], planetList[y].rashi);
-      // planetList.map((p) => p.rashi == x + 1 && yutiInRashi.push(p.rashi));
+
       for (let z = y + 1; z < yutiInRashi.length; z++) {
         // yutiInRashi[y] == yutiInRashi[z + 1] &&
         //   console.log(yutiInRashi[y], yutiInRashi[z]);
         yutiInRashi[y] == yutiInRashi[z] && karakYuti.push([y, z]);
         // console.log("sameRashi ", yutiInRashi[y], yutiInRashi[z]);
         // console.log("sameRashi ", y, z);
-        // setYuti(...yuti, [y, z]);
       }
     }
     // console.log("karakYuti", karakYuti);
     setYuti(karakYuti);
   }, [planetList]);
 
-  // console.log(yuti);
+  // console.log(data);
 
   return (
     <>
-      <PageTitle />
+      <PageTitle
+        selectedUser={data?.selectedUser}
+        currentDasha={data?.currentDasha}
+        time={gochar?.chart?.currentTime}
+      />
       <div className="chart-wrapper">
         <div className="geminiStack">
           {planetList?.length > 0 &&
@@ -95,7 +102,7 @@ const Gemini = () => {
                     background: `var(--p${planetList[i]?.name})`,
                   }}
                 >
-                  {`${planetList[i]?.name} ${planetList[i]?.degreeInRashi}`}
+                  {`${planetList[i]?.name} ${planetList[i]?.degree.toFixed(2)}`}
                 </div>
               </div>
             ))}

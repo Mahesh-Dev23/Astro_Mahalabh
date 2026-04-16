@@ -21,6 +21,7 @@ const SelectUserModal = ({ setModalOpen, onClick }) => {
   useEffect(() => {
     data && setNames(Object.keys(data));
   }, [data]);
+  // console.log(names?.length);
 
   const getuser = (e) => {
     // console.log({ name: e, ...data[e] });

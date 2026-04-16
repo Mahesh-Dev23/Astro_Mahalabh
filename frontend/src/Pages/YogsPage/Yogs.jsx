@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import "./yogs.css";
 import PageTitle from "../../Components/PageTitle/PageTitle.jsx";
-import { getYogas } from "./yogas.js";
-import { getDoshas } from "./doshas.js";
+import Chart from "../../Components/Chart.jsx";
 
 const Yogs = () => {
   // Data setup
   const [data, setData] = useState(null);
+  const [gochar, setGochar] = useState(null);
   const [yogas, setYogas] = useState([]);
   const [doshas, setDoshas] = useState([]);
   useEffect(() => {
@@ -19,26 +19,85 @@ const Yogs = () => {
   }, []);
 
   useEffect(() => {
-    // data && setYogas(data.chart.planets, data.chart.lagna);
-    data && setYogas(getYogas(data.chart.planets, data.chart.lagna));
-    data && setDoshas(getDoshas(data.chart.planets, data.chart.lagna));
+    data && setYogas(data.report.yogas);
+    data && setDoshas(data.report.doshas);
   }, [data]);
 
-  console.log(yogas);
+  // console.log(yogas);
 
   return (
     <div>
-      <PageTitle />
+      <PageTitle
+        selectedUser={data?.selectedUser}
+        currentDasha={data?.currentDasha}
+        time={gochar?.chart?.currentTime}
+      />
       <div className="chart-wrapper">
         <div className="yogaStack">
           <div className="yogTitle">Yogas</div>
-          {yogas.length > 0 &&
-            yogas.map((y) => <div className="yogaCard">{y}</div>)}
+          <div className="yogaPoints-Wrapper">
+            {yogas?.length > 0 &&
+              yogas.map((y) => (
+                <div className="yogaCard">
+                  {Object.keys(y).toString().replaceAll("_", " ")}
+                  {` : `}
+                  {Object.values(y)}
+                </div>
+              ))}
+          </div>
+        </div>
+        <div className="yogaStack">
+          <div className="yogTitle">Lagna and Sun</div>
+          <Chart
+            lagnaRashi={data?.chart?.lagna}
+            planets={data?.chart?.planets}
+            moonRashi={data?.chart?.moonLongitude}
+            lagna={data?.chart?.lagna}
+            type="lagna"
+          />
+          {data?.report?.lagna?.sun !== "" &&
+            data?.report?.lagna?.lagnLordYuti !== "" &&
+            data?.report?.lagna?.weakLagna !== "" &&
+            data?.report?.lagna?.lagnaStarStat !== "" && (
+              <div className="yogaPoints-Wrapper">
+                {data?.report?.lagna?.sun !== "" && (
+                  <div className="yogaCard">{data?.report?.lagna?.sun}</div>
+                )}
+
+                {data?.report?.lagna?.lagnLordYuti !== "" && (
+                  <div className="yogaCard">
+                    {data?.report?.lagna?.lagnLordYuti}{" "}
+                  </div>
+                )}
+
+                {data?.report?.lagna?.weakLagna !== "" && (
+                  <div className="yogaCard">
+                    {" "}
+                    {data?.report?.lagna?.weakLagna}{" "}
+                  </div>
+                )}
+
+                {data?.report?.lagna?.lagnaStarStat !== "" && (
+                  <div className="yogaCard">
+                    {" "}
+                    {data?.report?.lagna?.lagnaStarStat}{" "}
+                  </div>
+                )}
+              </div>
+            )}
         </div>
         <div className="yogaStack">
           <div className="yogTitle">Doshas</div>
-          {yogas.length > 0 &&
-            doshas.map((d) => <div className="yogaCard">{d}</div>)}
+          <div className="yogaPoints-Wrapper">
+            {yogas.length > 0 &&
+              doshas.map((d) => (
+                <div className="yogaCard">
+                  {Object.keys(d).toString().replaceAll("_", " ")}
+                  {` : `}
+                  {Object.values(d)}
+                </div>
+              ))}
+          </div>
         </div>
       </div>
     </div>

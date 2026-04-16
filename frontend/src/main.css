@@ -8,14 +8,14 @@
 }
 
 :root {
-  --primary-color: #633a02;
+  --primary-color: #4d4d4d;
   --accent-color: #ff8c00;
-  --background: #fff9f2;
+  /* --background: #f5f5ec; */
   --bg-card: #ffffff;
-  --bg-main: #e8e0b6;
-  --bg-light: #fcf5d3;
-  --bg-gray: #e3d9b1;
-  --gold: #dcc053;
+  --bg-main: #f5f5ec;
+  --bg-light: #fffcf8;
+  --bg-gray: #ede8e0;
+  --gold: #8b8985;
   --bg-active: #f8faff;
   --text-main: #1f2937;
   --text-muted: #a6a6a6;
@@ -389,36 +389,79 @@ select:focus {
   display: flex;
   gap: 20px;
 }
-
-.planetList {
-  width: auto;
+.planet_Wrapper {
+  width: 100%;
+  justify-self: center;
   display: flex;
   flex-direction: column;
-  padding: 0 10px;
+  align-items: center;
+  /* justify-items: center; */
+  padding: 0;
   gap: 5px;
+  /* border: 1px solid green; */
+}
+
+.planetList {
+  width: max-content;
+  display: flex;
+  flex-direction: row;
+  /* padding: 0 10px; */
+  gap: 5px;
+  justify-content: center;
+  /* justify-items: center; */
+  /* flex-wrap: wrap; */
   /* border: 1px solid red; */
   /* background: var(--bg-card); */
 }
 
 .planetRow {
-  width: auto;
+  width: 100%;
+  justify-self: center;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   gap: 1px;
-  /* border-bottom: 1px solid var(--pKetu); */
-  padding-right: 10px;
-  padding-bottom: 0;
-  /* background-color: var(--bg-card), var(--opacity-level); */
+  padding: 0;
   background-color: rgb(from var(--bg-light) r g b / var(--opacity-level));
-  border-radius: 5px;
+  border-radius: 10px;
+  font-size: 14px;
+  align-items: center;
+  padding-bottom: 10px;
+  /* border: 1px solid red; */
 }
-
-.pname {
-  width: 150px;
-  border-radius: 5px;
+.planetRow span {
+  padding: 0 2px;
+}
+.planetRow div {
+  padding: 5px 20px;
+}
+.planetName {
+  height: 40px;
+  width: 100%;
   color: var(--bg-card);
-  padding: 12px;
+  display: flex;
   text-align: center;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px 10px 0 0;
+  /* padding: 20px; */
+  font-size: 16px;
+  font-weight: bold;
+}
+.pname {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  color: var(--bg-card);
+  display: flex;
+  /* padding: 12px; */
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  cursor: pointer;
+}
+.planetName span {
+  font-weight: normal;
 }
 
 .pdeg {
@@ -437,8 +480,8 @@ select:focus {
 .nPada {
   width: 20px;
   height: 20px;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 2px;
+  margin-right: 2px;
   border-radius: 10px;
   font-size: 12px;
   font-weight: bold;
@@ -472,8 +515,12 @@ select:focus {
 
 .housenode {
   fill: var(--gold);
-  font-size: 14px;
-  font-weight: bold;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 12px;
+}
+.housenode tspan {
+  fill: var(--pMercury);
 }
 
 .username {
@@ -531,7 +578,7 @@ select:focus {
 }
 .chart-wrapper {
   /* border: 1px solid green; */
-  min-height: 74vh;
+  min-height: 68vh;
   /* width: max-content; */
 
   align-self: stretch;
@@ -550,6 +597,64 @@ select:focus {
   align-items: center;
   text-align: center;
   justify-content: center;
+}
+.chart {
+  padding: 10px;
+  background: rgb(from var(--bg-light) r g b / var(--opacity-level));
+  /* border-radius: 10px; */
+  display: flex;
+  justify-content: center;
+}
+.report-wrapper {
+  /* border: 1px solid green; */
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  justify-content: center;
+  align-items: start;
+
+  padding: 5px 20px;
+}
+.repotDisplay {
+  /* border: 1px solid red; */
+  width: 100%;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+.report-column {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  /* background-color: rgb(from var(--bg-light) r g b / var(--opacity-level)); */
+  border-radius: 10px;
+  /* border: 1px solid blue; */
+}
+.report-section {
+  /* border: 1px solid green; */
+  width: 100%;
+  /* min-height: 40%; */
+  padding: 10px;
+  background-color: rgb(from var(--bg-light) r g b / var(--opacity-level));
+  border-radius: 10px;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.report-highlight {
+  font-size: 16px;
+  color: var(--primary-color);
+  text-align: center;
+  font-weight: 500;
+}
+.reportTitle {
+  font-weight: 600;
+  color: var(--text-main) !important;
+  font-size: 12px;
 }
 
 .reportRow {
@@ -585,4 +690,49 @@ select:focus {
   padding: 3px 6px;
   border-radius: 5px;
   justify-self: end;
+}
+.analysisDisplay {
+  display: flex;
+  flex-direction: column;
+}
+.analysisList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+.analysisPanel {
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  /* gap: 5px; */
+  padding: 12px 5px;
+  background: rgb(from var(--bg-light) r g b / var(--opacity-level));
+  border-radius: 5px;
+}
+.analysisRow {
+  width: 350px;
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  /* border: 1px solid red; */
+  padding: 5px;
+  font-size: 14px;
+  color: var(--pKetu);
+  /* background-color: rgb(from var(--bg-light) r g b / var(--opacity-level)); */
+  /* border-radius: 5px; */
+}
+.anaChartNum {
+  display: flex;
+  flex-direction: row;
+  gap: 7px;
+  color: var(--pKetu);
+}
+.anaChartNum span {
+  font-size: 16px;
+}
+.analagna {
+  padding: 0 3px;
+  color: var(--bg-light);
+  border-radius: 3px;
 }

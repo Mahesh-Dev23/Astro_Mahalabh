@@ -10,6 +10,9 @@ import Chart from "../../Components/Chart.jsx";
 import PlanetsList from "../../Components/PlanetsList.jsx";
 import { isSingleDigit } from "../../Modules/checkSingleDigit.js";
 import { getCurrentDahsa } from "../../Modules/getCurrenDash.js";
+import { getReport } from "../../Modules/report/getReport.js";
+import { dateRearrange } from "../../Modules/dateRearrange.js";
+import { postAstroData } from "../../Modules/postAstroData.js";
 
 const LandingPage = () => {
   const user = {
@@ -23,12 +26,11 @@ const LandingPage = () => {
   const [local, setLocal] = useState(false);
   const [data, setData] = useState(null);
   const [gochar, setGochar] = useState(null);
-  const [selectedUser, setSelectedUser] = useState(null);
+
   const [secondChart, setSecondChart] = useState("N");
   const [modalOpen, setModalOpen] = useState(false);
   const [modalType, setModalType] = useState("");
   const [today, setToday] = useState("");
-  const [thisTime, setThistime] = useState("");
 
   useEffect(() => {
     let storedData = localStorage.getItem("Astro Data");
@@ -42,7 +44,7 @@ const LandingPage = () => {
     const time = `${date.getHours()}:${date.getMinutes()}`;
 
     setToday(day);
-    setThistime(time);
+    // setThistime(time);
     const gochar = {
       name: "Gochar",
       dob: day,
@@ -52,25 +54,32 @@ const LandingPage = () => {
       tz: 5.5,
     };
     fetchAstroData(gochar).then((res) => {
-      localStorage.setItem("Gochar Data", JSON.stringify(res));
+      const currentDasha = getCurrentDahsa(res.chart.dasha);
+      const report = getReport(res, user.dob);
+      localStorage.setItem(
+        "Gochar Data",
+        JSON.stringify({ ...res, currentDasha, selectedUser: user, report }),
+      );
       setGochar(res);
     });
   }, []);
 
   // set Selected user ---------------------------------
   const setUser = (user) => {
-    // console.log(user);
+    console.log(user);
     // console.log("1 Local is ", local);
-    setSelectedUser(user);
+    // setSelectedUser(user);
 
     fetchAstroData(user).then((res) => {
       const currentDasha = getCurrentDahsa(res.chart.dasha);
-      console.log("currentDasha", currentDasha);
+      // console.log("currentDasha", currentDasha);
+      const report = getReport(res, user.dob);
       localStorage.setItem(
         "Astro Data",
-        JSON.stringify({ ...res, currentDasha }),
+        JSON.stringify({ ...res, currentDasha, selectedUser: user, report }),
       );
-      setData({ ...res, currentDasha });
+      setData({ ...res, currentDasha, selectedUser: user, report });
+      postAstroData({ [user.name]: res });
     });
     setLocal(true);
   };
@@ -109,14 +118,11 @@ const LandingPage = () => {
     // Refresh once data is set
   }, [data]);
 
-  data && console.log(data);
+  // data && console.log(data?.report?.planets);
+  // data?.report?.doshas?.map((d) => console.log(Object.keys(d)));
   return (
     <>
-      <PageTitle
-        selectedUser={data?.selectedUser}
-        currentDasha={data?.currentDasha}
-        time={gochar?.chart?.currentTime}
-      />
+      <PageTitle time={gochar?.chart?.currentTime} />
       {!data ? (
         <div className="av-column">
           <p>Today</p>
@@ -126,59 +132,134 @@ const LandingPage = () => {
           {local}
         </div>
       ) : (
-        <div className="chart-wrapper">
-          <div className="av-column">
-            <Chart
-              lagnaRashi={data?.chart?.lagna}
-              planets={data?.chart?.planets}
-              moonRashi={data?.chart?.moonLongitude}
-              type="lagna"
-            />
-          </div>
-          <div className="av-column">
-            {secondChart === "M" && (
+        <>
+          <div className="chart-wrapper">
+            <div className="av-column">
               <Chart
-                lagnaRashi={data?.chart?.planets[1].rashi}
+                lagnaRashi={data?.chart?.lagna}
                 planets={data?.chart?.planets}
-                type="nav"
-              />
-            )}
-            {secondChart === "N" && (
-              <Chart
-                lagnaRashi={data?.chart?.navmanshaLagna}
-                planets={data?.chart?.navmanshaPlanets}
-                type="nav"
-              />
-            )}
-            {secondChart === "G" && (
-              <Chart
-                lagnaRashi={gochar?.chart?.lagna}
-                planets={gochar?.chart?.planets}
-                type="nav"
-              />
-            )}
-            <div className="controls2">
-              <ButtonRound
-                buttonText="M"
-                active={secondChart}
-                onClick={(e) => getSecondChart(e)}
-              />
-              <ButtonRound
-                buttonText="N"
-                active={secondChart}
-                onClick={(e) => setSecondChart(e)}
-              />
-              <ButtonRound
-                buttonText="G"
-                active={secondChart}
-                onClick={(e) => setSecondChart(e)}
+                moonRashi={data?.chart?.moonLongitude}
+                lagna={data?.chart?.lagna}
+                type="lagna"
               />
             </div>
+            <div className="av-column">
+              {secondChart === "M" && (
+                <Chart
+                  lagnaRashi={data?.chart?.planets[1].rashi}
+                  planets={data?.chart?.planets}
+                  lagna={data?.chart?.lagna}
+                  type="nav"
+                />
+              )}
+              {secondChart === "N" && (
+                <Chart
+                  lagnaRashi={data?.chart?.navmanshaLagna}
+                  planets={data?.chart?.navmanshaPlanets}
+                  lagna={data?.chart?.lagna}
+                  type="nav"
+                />
+              )}
+              {secondChart === "G" && (
+                <Chart
+                  lagnaRashi={gochar?.chart?.lagna}
+                  planets={gochar?.chart?.planets}
+                  lagna={data?.chart?.lagna}
+                  type="nav"
+                />
+              )}
+              <div className="controls2">
+                <ButtonRound
+                  buttonText="M"
+                  active={secondChart}
+                  onClick={(e) => getSecondChart(e)}
+                />
+                <ButtonRound
+                  buttonText="N"
+                  active={secondChart}
+                  onClick={(e) => setSecondChart(e)}
+                />
+                <ButtonRound
+                  buttonText="G"
+                  active={secondChart}
+                  onClick={(e) => setSecondChart(e)}
+                />
+              </div>
+            </div>
+            <div className="repotDisplay">
+              {/* Personal details ------------------------------------------------------------ */}
+              <div className="report-column">
+                <div className="report-section">
+                  <div>
+                    <div className="reportTitle">Person</div>
+                    <span className="report-highlight">{`${data?.selectedUser?.name} `}</span>
+                    : age{" "}
+                    <span className="report-highlight">{`${data?.report?.age}`}</span>
+                  </div>
+                  <div>
+                    Dob:
+                    <span className="report-highlight">{` ${dateRearrange(data?.selectedUser?.dob)},`}</span>{" "}
+                    Time:{" "}
+                    <span className="report-highlight">{`${data?.selectedUser?.time}`}</span>
+                  </div>
+                </div>
+                <div className="report-section">
+                  <div className="reportTitle">Dasha</div>
+                  <div>{` ${data?.currentDasha?.dashaLord?.planet} - ${data?.currentDasha?.currentAntarDasha?.planet}`}</div>
+                  <div>{` ${dateRearrange(data?.currentDasha?.currentAntarDasha?.start)} - ${dateRearrange(data?.currentDasha?.currentAntarDasha?.end)}`}</div>
+                </div>
+                {/* Planet Details ------------------------------------------------------------ */}
+                <div className="report-column">
+                  {/* <div className="reportTitle">Planets</div> */}
+                  <PlanetsList planets={data?.report?.planets} />
+                </div>
+              </div>
+              {/* Sun and lagna Details ------------------------------------------------------------ */}
+              <div className="report-column">
+                {/* <div className="report-section">
+                  <div className="reportTitle">Sun</div>
+                  {data?.report?.lagna?.sun !== "" && (
+                    <div>{data?.report?.lagna?.sun}</div>
+                  )}
+                </div> */}
+                <div className="report-section">
+                  <div className="reportTitle">Lagna</div>
+                  <div>
+                    {" "}
+                    Lagna Degree{" "}
+                    <span className="report-highlight">{`${data?.chart?.lagnaDegree} `}</span>
+                  </div>
+                  {data?.report?.lagna && (
+                    <>
+                      <div>{data?.report?.lagna?.lagnLordYuti}</div>
+                      <div>{data?.report?.lagna?.weakLagna}</div>
+                      <div>{data?.report?.lagna?.lagnaStarStat}</div>
+                    </>
+                  )}
+                </div>
+                {/* Yogas and Doshas Details ------------------------------------------------------------ */}
+                <div className="report-section">
+                  <div className="reportTitle">Yogs</div>
+                  {data?.report?.yogas?.length > 0 &&
+                    data?.report?.yogas?.map((y) => (
+                      <div>
+                        {Object.keys(y).toString().replaceAll("_", " ")}
+                      </div>
+                    ))}
+                </div>
+                <div className="report-section">
+                  <div className="reportTitle">Dosh</div>
+                  {data?.report?.doshas?.length > 0 &&
+                    data?.report?.doshas?.map((d) => (
+                      <div>
+                        {Object.keys(d).toString().replaceAll("_", " ")}
+                      </div>
+                    ))}
+                </div>
+              </div>
+            </div>
           </div>
-          <div>
-            <PlanetsList planets={data?.chart?.planets} />
-          </div>
-        </div>
+        </>
       )}
 
       <div className="controls">
@@ -194,10 +275,10 @@ const LandingPage = () => {
         <ButtonPrimary buttonText="Reset" onClick={unsetClientData} />
       </div>
 
-      {modalOpen && modalType == "Select charts" && (
+      {modalOpen && modalType === "Select charts" && (
         <SelectUserModal setModalOpen={setModalOpen} onClick={setUser} />
       )}
-      {modalOpen && modalType == "New charts" && (
+      {modalOpen && modalType === "New charts" && (
         <ModalNewDetails setModalOpen={setModalOpen} />
       )}
     </>

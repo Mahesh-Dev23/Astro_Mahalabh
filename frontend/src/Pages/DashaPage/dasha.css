@@ -16,15 +16,28 @@
 }
 .dashaCard {
   width: auto;
-  min-width: 300px;
+  width: max-content;
   display: flex;
-  flex-direction: column;
-  padding: 5px;
+  flex-direction: row;
+  /* padding: 5px; */
   border-radius: 5px;
   /* border: 1px solid red; */
   /* box-shadow: 0px 0px 2px var(--accent-color); */
   /* background: var(--bg-card); */
   gap: 10px;
+}
+.dashaButtonStack {
+  display: flex;
+  flex-direction: column;
+  /* border: 1px solid pink; */
+  gap: 5px;
+}
+.dashaButton {
+  padding: 5px 15px;
+  cursor: pointer;
+  background-color: var(--bg-light);
+  color: var(--primary-color);
+  border-radius: 5px;
 }
 
 .dashaTitle {
@@ -34,7 +47,7 @@
   border-radius: 5px;
   overflow: hidden;
   height: fit-content;
-  width: 100%;
+  /* width: 100%; */
   /* justify-content: center; */
 }
 .dashaLord {
@@ -54,31 +67,71 @@
 .antDashaList {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  /* gap: 5px; */
+  background-color: var(--bg-light);
 }
 .antarDashaRow {
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 10px;
+  flex-direction: column;
+  align-items: left;
+  /* gap: 10px; */
   padding: 0;
-  padding-right: 10px;
+  /* padding-right: 10px; */
+  padding: 10px 5px;
+  font-size: 14px;
   /* padding-bottom: 0; */
-  /* border-bottom: 1px solid var(--text-muted); */
+  border: 1px solid var(--text-muted);
   background-color: rgb(from var(--bg-light) r g b / var(--opacity-level));
   border-radius: 5px;
 }
 .antarDashaLord {
-  width: 80px;
-  border-radius: 5px;
-  color: var(--bg-card);
-  padding: 10px 5px;
-  text-align: center;
+  width: max-content;
+  /* border-radius: 5px; */
+  /* color: var(--bg-card); */
+  /* color: var(--primary-color); */
+  /* padding: 10px 5px; */
+  text-align: left;
+  /* border: 1px solid red; */
 }
 .antDashsDates {
-  padding-top: 5px;
+  /* border: 1px solid red; */
+  /* padding-top: 5px; */
+  /* color: var(--primary-color); */
 }
 /* .dashaList {
   width: 300px;
   height: 40px;
 } */
+.pdList {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  /* background-color: var(--bg-light); */
+}
+.pdRow {
+  font-size: 14px;
+  background-color: rgb(from var(--bg-light) r g b / var(--opacity-level));
+  padding: 5px 10px;
+  color: var(--primary-color);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.pdGochar {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  padding-top: 10px;
+}
+.pdGochar span {
+  font-size: 14px;
+  background-color: rgb(from var(--bg-light) r g b / var(--opacity-level));
+  padding: 5px 10px;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.pdGochar span:hover {
+  background-color: var(--primary-color) !important;
+  color: white !important;
+}

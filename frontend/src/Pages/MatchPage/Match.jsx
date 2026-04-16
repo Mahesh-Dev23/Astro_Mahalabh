@@ -7,13 +7,16 @@ import ButtonPrimary from "../../Components/Buttons/ButtonPrimary.jsx";
 import { fetchAstroData } from "../../Modules/fetchAstroData.js";
 import { getCurrentDahsa } from "../../Modules/getCurrenDash.js";
 import { gunaMilan } from "../../Modules/matchmaking/gunaMilan.js";
+import SelectUserModal from "../../Components/Modal/SelectUserModal.jsx";
 
 const Match = () => {
   // Data setup
   const [data, setData] = useState(null);
+  const [gochar, setGochar] = useState(null);
   const [partner, setPartner] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [match, setMatch] = useState(null);
+  const [modalType, setModalType] = useState("");
   useEffect(() => {
     const savedData = localStorage.getItem("Astro Data");
 
@@ -21,15 +24,18 @@ const Match = () => {
       const parsedData = JSON.parse(savedData);
       setData(parsedData);
     }
+
+    const gocharData = localStorage.getItem("Gochar Data");
+
+    if (gocharData) {
+      const parsedData = JSON.parse(gocharData);
+      setGochar(parsedData);
+    }
   }, []);
-  // select which modal to open
-  const getThisModal = () => {
-    setModalOpen(true);
-  };
 
   // set Selected user ---------------------------------
   const setUser = (user) => {
-    console.log("match", user);
+    // console.log("match", user);
     let nerPartner = {
       name: user.name,
       dob: user.dob,
@@ -38,7 +44,7 @@ const Match = () => {
       lon: "72.87",
       tz: 5.5,
     };
-    console.log(nerPartner);
+    // console.log(nerPartner);
 
     fetchAstroData(nerPartner).then((res) => {
       const currentDasha = getCurrentDahsa(res.chart.dasha);
@@ -59,11 +65,33 @@ const Match = () => {
     // console.log(match);
   }, [match]);
 
+  // set modal type false
+  useEffect(() => {
+    modalOpen === false && setModalType("");
+  }, [modalOpen]);
+
+  // select which modal to open
+  const getThisModal = (modalType) => {
+    console.log(modalType);
+    setModalType(modalType);
+    setModalOpen(true);
+  };
+
+  // To UNSET data from LOCAL STORAGE ----------------------------------------------------------------------------
+  const unsetClientData = () => {
+    // localStorage.removeItem("Astro Data");
+    setPartner(null);
+  };
+
   // console.log(partner);
 
   return (
     <>
-      <PageTitle />
+      <PageTitle
+        selectedUser={data?.selectedUser}
+        currentDasha={data?.currentDasha}
+        time={gochar?.chart?.currentTime}
+      />
       <div className="chart-wrapper">
         <div className="match-column">
           <Chart
@@ -85,22 +113,34 @@ const Match = () => {
         </div>
         <div className="match-column">
           {partner ? (
-            <Chart
-              lagnaRashi={partner?.chart?.lagna}
-              planets={partner?.chart?.planets}
-              moonRashi={partner?.chart?.moonLongitude}
-              type="lagna"
-            />
+            <>
+              <Chart
+                lagnaRashi={partner?.chart?.lagna}
+                planets={partner?.chart?.planets}
+                moonRashi={partner?.chart?.moonLongitude}
+                type="lagna"
+              />
+              <ButtonPrimary buttonText="Reset" onClick={unsetClientData} />
+            </>
           ) : (
-            <ButtonPrimary
-              buttonText={"Create Partner's Chart"}
-              onClick={() => setModalOpen(true)}
-            />
+            <>
+              <ButtonPrimary
+                buttonText={"Create Partner's Chart"}
+                onClick={() => getThisModal("New charts")}
+              />
+              <ButtonPrimary
+                buttonText="Select Chart"
+                onClick={() => getThisModal("Select charts")}
+              />
+            </>
           )}
         </div>
       </div>
-      {modalOpen && (
+      {modalOpen && modalType == "New charts" && (
         <ModalNewDetails setModalOpen={setModalOpen} onClick={setUser} />
+      )}
+      {modalOpen && modalType == "Select charts" && (
+        <SelectUserModal setModalOpen={setModalOpen} onClick={setUser} />
       )}
     </>
   );

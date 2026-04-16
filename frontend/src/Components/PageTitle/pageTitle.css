@@ -18,14 +18,14 @@
   /* font-weight: 600 !important; */
   font-style: normal !important;
   text-transform: capitalize !important;
-  background-color: var(--bg-gray);
+  background-color: var(--bg-main);
   padding: 0 20px;
   /* border: 1px solid red; */
 }
 
 .currentTime {
   font-size: 14px;
-  color: var(--primary-color);
+  color: var(--bg-light);
   text-align: center;
   font-weight: 600;
   background: var(--gold);

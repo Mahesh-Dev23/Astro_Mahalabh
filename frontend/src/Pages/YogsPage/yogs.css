@@ -15,14 +15,25 @@
   align-items: center;
   justify-content: stretch;
   padding: 15px;
+  width: calc(50% - 5px);
   /* padding-right: 10px; */
   /* padding-bottom: 0; */
   /* border-bottom: 1px solid var(--text-muted); */
   background-color: rgb(from var(--bg-light) r g b / var(--opacity-level));
-  border-radius: 5px;
+  border-radius: 10px;
+  font-size: 14px;
 }
 .yogTitle {
   font-weight: bold;
   color: var(--text-main) !important;
   font-size: 14px;
+}
+.yogaPoints-Wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /* border: 1px solid red; */
+  justify-content: space-between;
+  gap: 10px;
 }

@@ -1,7 +1,33 @@
 @import "../../main.css";
-
+.panchang-wrapper {
+  /* border: 1px solid green; */
+  height: 80vh;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: space-between;
+  padding: 20px;
+}
+.panchangSection {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  /* border: 1px solid green; */
+  gap: 10px;
+}
+.panchangList {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 5px;
+  justify-content: start;
+  /* border-bottom: 1px solid var(--pKetu); */
+  /* border: 1px solid green; */
+}
 .panchangRow {
-  width: auto;
+  width: 49%;
   display: flex;
   flex-direction: column;
   gap: 1px;

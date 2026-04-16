@@ -20,6 +20,8 @@ const navigationTabs = {
   yogs: "/yogs",
   dasha: "/dasha",
   panchang: "/panchang",
+  talika: "/talika",
+  analysis: "/analysis",
 };
 
 const Header = () => {

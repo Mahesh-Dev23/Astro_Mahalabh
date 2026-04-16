@@ -7,6 +7,7 @@ import ButtonPrimary from "../../Components/Buttons/ButtonPrimary.jsx";
 const Gochar = () => {
   // Data setup
   const [data, setData] = useState(null);
+  const [user, setUser] = useState(null);
   useEffect(() => {
     const savedData = localStorage.getItem("Gochar Data");
 
@@ -14,13 +15,25 @@ const Gochar = () => {
       const parsedData = JSON.parse(savedData);
       setData(parsedData);
     }
+
+    const mainData = localStorage.getItem("Astro Data");
+
+    if (mainData) {
+      const parsedData = JSON.parse(mainData);
+      setUser(parsedData);
+    }
   }, []);
 
-  // console.log(data?.chart?.planets);
+  // console.log(user);
+  // console.log(data);
 
   return (
     <>
-      <PageTitle />
+      <PageTitle
+        selectedUser={user?.selectedUser}
+        currentDasha={user?.currentDasha}
+        time={data?.chart?.currentTime}
+      />
       {data && (
         <div className="chart-wrapper">
           <Chart
@@ -42,7 +55,7 @@ const Gochar = () => {
             </div> */}
           </div>
 
-          <PlanetsList planets={data?.chart?.planets} />
+          <PlanetsList planets={data?.report?.planets} />
         </div>
       )}
       {/* <div className="controls">

@@ -1,0 +1,242 @@
+{
+  "Mahesh Narvekar": {
+    "dob": "1971-09-23",
+    "time": "12:35",
+    "place": "Mumbai",
+    "lat": "19.072",
+    "lon": "72.882",
+    "stars": [
+      { "degree": 6.09, "deg": 6.09 },
+      { "degree": 16.12, "deg": 16.12 },
+      { "degree": 19.4, "deg": 19.41 },
+      { "degree": 23.41, "deg": 23.41 },
+      { "degree": 8.14, "deg": 8.14 },
+      { "degree": 13.19, "deg": 13.19 },
+      { "degree": 13.05, "deg": 13.05 }
+    ]
+  },
+  "Salil Narvekar": {
+    "dob": "2002-06-11",
+    "time": "08:45",
+    "place": "Mumbai",
+    "lat": "19.07",
+    "lon": "72.87",
+    "stars": [
+      { "degree": 26.1, "deg": 26.11 },
+      { "degree": 27.54, "deg": 27.82 },
+      { "degree": 15.04, "deg": 14.81 },
+      { "degree": 7.42, "deg": 7.43 },
+      { "degree": 24.46, "deg": 24.7 },
+      { "degree": 1.46, "deg": 1.64 },
+      { "degree": 24.46, "deg": 24.78 }
+    ]
+  },
+  "Vinit Narvekar": {
+    "dob": "2008-02-28",
+    "time": "09:15",
+    "place": "Mumbai",
+    "lat": "19.07",
+    "lon": "72.87",
+    "stars": [
+      { "degree": 14.58, "deg": 14.9 },
+      { "degree": 4.58, "deg": 4.64 },
+      { "degree": 4.26, "deg": 4.19 },
+      { "degree": 18.17, "deg": 17.99 },
+      { "degree": 21.2, "deg": 21.23 },
+      { "degree": 19.0, "deg": 18.85 },
+      { "degree": 10.5, "deg": 10.89 }
+    ]
+  },
+  "Mithil Karambe": {
+    "dob": "2006-10-09",
+    "time": "10:10",
+    "place": "Mumbai",
+    "lat": "19.07",
+    "lon": "72.87",
+    "stars": [
+      { "degree": 21.53, "deg": 21.75 },
+      { "degree": 21.59, "deg": 20.58 },
+      { "degree": 26.25, "deg": 26.09 },
+      { "degree": 15.26, "deg": 15.06 },
+      { "degree": 26.12, "deg": 26.08 },
+      { "degree": 17.07, "deg": 16.88 },
+      { "degree": 28.12, "deg": 28.21 }
+    ]
+  },
+  "Sunil Narvekar": {
+    "dob": "1973-12-23",
+    "time": "03:20",
+    "place": "Mumbai",
+    "lat": "19.07",
+    "lon": "72.87",
+    "stars": [
+      { "degree": 7.26, "deg": 7.37 },
+      { "degree": 18.45, "deg": 18.67 },
+      { "degree": 6.03, "deg": 5.82 },
+      { "degree": 27.37, "deg": 27.34 },
+      { "degree": 18.59, "deg": 18.91 },
+      { "degree": 15.27, "deg": 15.31 },
+      { "degree": 7.47, "deg": 7.79 }
+    ]
+  },
+  "Shyamal Narvekar": {
+    "dob": "1975-07-20",
+    "time": "05:50",
+    "place": "Mumbai",
+    "lat": "19.07",
+    "lon": "72.87",
+    "stars": [
+      { "degree": 3.1, "deg": 3.13 },
+      { "degree": 25.3, "deg": 25.42 },
+      { "degree": 19.37, "deg": 19.37 },
+      { "degree": 19.3, "deg": 19.23 },
+      { "degree": 0.06, "deg": 0.04 },
+      { "degree": 13.13, "deg": 13.11 },
+      { "degree": 29.37, "deg": 29.55 }
+    ]
+  },
+  "Megha Narvekar": {
+    "dob": "1975-08-08",
+    "time": "06:04",
+    "place": "Mumbai",
+    "lat": "19.07",
+    "lon": "72.87",
+    "stars": [
+      { "degree": 21.21, "deg": 21.3 },
+      { "degree": 28.44, "deg": 28.65 },
+      { "degree": 2.1, "deg": 1.92 },
+      { "degree": 28.25, "deg": 28.16 },
+      { "degree": 1.06, "deg": 1.04 },
+      { "degree": 18.07, "deg": 18.01 },
+      { "degree": 1.58, "deg": 1.98 }
+    ]
+  },
+  "Indrayani Narvekar": {
+    "dob": "1979-01-01",
+    "time": "5:15",
+    "place": "Mumbai",
+    "lat": "19.07",
+    "lon": "72.87",
+    "stars": [
+      { "degree": 0, "deg": 16.55 },
+      { "degree": 0, "deg": 20.01 },
+      { "degree": 0, "deg": 21.03 },
+      { "degree": 0, "deg": 25.54 },
+      { "degree": 0, "deg": 13.34 },
+      { "degree": 0, "deg": 0.88 },
+      { "degree": 0, "deg": 20.33 }
+    ]
+  },
+  "Bhargavi Pednekar": {
+    "dob": "2002-06-16",
+    "time": "13:55",
+    "place": "Mumbai",
+    "lat": "19.07",
+    "lon": "72.87",
+    "stars": [
+      { "degree": 1.09, "deg": 1.09 },
+      { "degree": 9.03, "deg": 8.97 },
+      { "degree": 18.28, "deg": 18.21 },
+      { "degree": 9.42, "deg": 9.43 },
+      { "degree": 25.52, "deg": 25.8 },
+      { "degree": 7.53, "deg": 7.76 },
+      { "degree": 25.27, "deg": 25.46 }
+    ]
+  },
+  "Rajesh Pednekar": {
+    "dob": "1968-07-04",
+    "time": "15:10",
+    "place": "Vasco-Goa",
+    "lat": "15.386033",
+    "lon": "73.844040",
+    "stars": [
+      { "degree": 19.03 },
+      { "degree": 0.19 },
+      { "degree": 15.24 },
+      { "degree": 0.32 },
+      { "degree": 9.31 },
+      { "degree": 22.54 },
+      { "degree": 1.09 }
+    ]
+  },
+  "Ruchi Pednekar": {
+    "dob": "1973-12-16",
+    "time": "15:35",
+    "place": "Mumbai",
+    "lat": "19.07",
+    "lon": "72.87",
+    "stars": [
+      { "degree": 0.49 },
+      { "degree": 27.06 },
+      { "degree": 4.2 },
+      { "degree": 17.42 },
+      { "degree": 17.4 },
+      { "degree": 12.13 },
+      { "degree": 8.19 }
+    ]
+  },
+  "Manoj Pansare": {
+    "dob": "1971-06-24",
+    "time": "00:02",
+    "place": "Mumbai",
+    "lat": "19.07",
+    "lon": "72.87",
+    "stars": [
+      { "degree": 8.1 },
+      { "degree": 18.49 },
+      { "degree": 26.38 },
+      { "degree": 11.06 },
+      { "degree": 4.35 },
+      { "degree": 20.3 },
+      { "degree": 7.11 }
+    ]
+  },
+  "Sunila Deodhar": {
+    "dob": "1975-09-06",
+    "time": "05:30",
+    "place": "Mumbai",
+    "lat": "19.07",
+    "lon": "72.87",
+    "stars": [
+      { "degree": 19.16 },
+      { "degree": 22.04 },
+      { "degree": 19.19 },
+      { "degree": 14.49 },
+      { "degree": 0.21 },
+      { "degree": 4.46 },
+      { "degree": 5.26 }
+    ]
+  },
+  "Nitin Pingale": {
+    "dob": "1971-01-06",
+    "time": "03:30",
+    "place": "Mumbai",
+    "lat": "19.07",
+    "lon": "72.87",
+    "stars": [
+      { "degree": 21.28 },
+      { "degree": 13.23 },
+      { "degree": 25.43 },
+      { "degree": 4.45 },
+      { "degree": 5.04 },
+      { "degree": 5.32 },
+      { "degree": 22.25 }
+    ]
+  },
+  "Rita Nitin Pingale": {
+    "dob": "1976-10-16",
+    "time": "17:03:40",
+    "place": "Mumbai",
+    "lat": "19.07",
+    "lon": "72.87",
+    "stars": [
+      { "degree": 21.28 },
+      { "degree": 13.23 },
+      { "degree": 25.43 },
+      { "degree": 4.45 },
+      { "degree": 5.04 },
+      { "degree": 5.32 },
+      { "degree": 22.25 }
+    ]
+  }
+}

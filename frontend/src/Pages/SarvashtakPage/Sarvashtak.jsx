@@ -6,6 +6,7 @@ import Ashtakvarg from "../../Components/AshtakvargaComponents/Ashtakvarg.jsx";
 const Sarvashtak = () => {
   // Data setup
   const [data, setData] = useState(null);
+  const [gochar, setGochar] = useState(null);
   useEffect(() => {
     const savedData = localStorage.getItem("Astro Data");
 
@@ -13,11 +14,22 @@ const Sarvashtak = () => {
       const parsedData = JSON.parse(savedData);
       setData(parsedData);
     }
+
+    const gocharData = localStorage.getItem("Gochar Data");
+
+    if (gocharData) {
+      const parsedData = JSON.parse(gocharData);
+      setGochar(parsedData);
+    }
   }, []);
 
   return (
     <>
-      <PageTitle />
+      <PageTitle
+        selectedUser={data?.selectedUser}
+        currentDasha={data?.currentDasha}
+        time={gochar?.chart?.currentTime}
+      />
 
       {data && (
         <Ashtakvarg planets={data.chart?.planets} lagna={data.chart?.lagna} />
